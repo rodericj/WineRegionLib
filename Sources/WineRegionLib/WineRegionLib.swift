@@ -186,23 +186,47 @@ public struct WineCountry {
             public struct Medoc {
                 public static let title = "Medoc"
                 public enum Appelation: String, AppelationDescribable {
+                    // Note: The is used as geojson's first feature's property's name
                     public var description: String {
                         switch self {
                         case .medoc: return "Medoc"
                         case .stJulien: return "Saint Julien"
+                        case .hautMedoc: return "Haut-Medoc"
+                        case .stEsteph: return "Saint-Estephe"
+                        case .margaux: return "Margaux"
+                        case .moulisEnMedoc: return "Moulis-en-Médoc"
+                        case .pauillac: return "Pauillac"
                         }
                     }
-
+                    
                     public var url: URL {
+                        let rootURLString = "https://github.com/rodericj/BordeauxWineRegions/raw/master/"
+                        let fileName: String
                         switch self {
                         case .stJulien:
-                            return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/St-Julien-AOP_Bordeaux_France.geojson")!
+                            fileName = "St-Julien-AOP_Bordeaux_France.geojson"
                         case .medoc:
-                            return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/Medoc-AOP_Bordeaux_France.geojson")!
+                            fileName = "Medoc-AOP_Bordeaux_France.geojson"
+                        case .hautMedoc:
+                            fileName = "Haut-Medoc-AOP_Bordeaux_France.geojson"
+                        case .stEsteph:
+                            fileName = "St-Estephe-AOP_Bordeaux_France.geojson"
+                        case .margaux:
+                            fileName = "Margaux-AOP_Bordeaux_France.geojson"
+                        case .moulisEnMedoc:
+                            fileName = "Moulis-en-Medoc-AOP_Bordeaux_France.geojson"
+                        case .pauillac:
+                            fileName = "Pauillac-AOP_Bordeaux_France.geojson"
                         }
+                        return URL(string: "\(rootURLString)/\(fileName)")!
                     }
                     case stJulien = "St. Julien"
                     case medoc
+                    case hautMedoc = "Haut-Médoc"
+                    case stEsteph = "St. Estèphe"
+                    case margaux = "Margaux"
+                    case moulisEnMedoc = "Moulis en Médoc"
+                    case pauillac = "Pauillac"
                 }
             }
         }
