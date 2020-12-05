@@ -196,6 +196,8 @@ public struct WineCountry {
                         case .margaux: return "Margaux"
                         case .moulisEnMedoc: return "Moulis-en-Médoc"
                         case .pauillac: return "Pauillac"
+                        case .sauternes: return "Sauternes"
+                        case .graves: return "Graves"
                         }
                     }
                     
@@ -217,6 +219,10 @@ public struct WineCountry {
                             fileName = "Moulis-en-Medoc-AOP_Bordeaux_France.geojson"
                         case .pauillac:
                             fileName = "Pauillac-AOP_Bordeaux_France.geojson"
+                        case .sauternes:
+                            fileName = "Sauternes-PDO_Bordeaux_France.geojson"
+                        case .graves:
+                            fileName = "Graves-AOP_Bordeaux_France.geojson"
                         }
                         return URL(string: "\(rootURLString)/\(fileName)")!
                     }
@@ -227,6 +233,8 @@ public struct WineCountry {
                     case margaux = "Margaux"
                     case moulisEnMedoc = "Moulis en Médoc"
                     case pauillac = "Pauillac"
+                    case sauternes = "Sauternes"
+                    case graves = "Graves"
                 }
             }
         }
