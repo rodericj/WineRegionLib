@@ -105,28 +105,6 @@ public struct WineCountry {
     }
 }
 
-public enum FrenchRegion: WineRegionDescribable, Hashable, Equatable {
-    public var description: String {
-        switch self {
-
-        case .bordeaux(let subRegion):
-            return subRegion.description
-        }
-    }
-
-    case bordeaux(BordeauxSubRegion)
-
-    public var url: URL {
-        switch self {
-        case .bordeaux(let subRegion):
-            return subRegion.url
-        }
-    }
-
-    public static func == (lhs: FrenchRegion, rhs: FrenchRegion) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}
 
 public enum DOGC: String, WineRegionDescribable, Hashable, Equatable, CustomStringConvertible {
     public var url: URL {
@@ -151,30 +129,6 @@ public enum DOGC: String, WineRegionDescribable, Hashable, Equatable, CustomStri
     case chianti
     case monticello
     case sicily
-}
-
-public enum WineLocale: Hashable, Equatable, WineRegionDescribable {
-    case unitedStates(USState)
-    case france(FrenchRegion)
-//    case italy(DOGC)
-
-    public var url: URL {
-        switch self {
-
-        case .unitedStates(let state):
-            return state.url
-        case .france(let region):
-            return region.url
-        }
-    }
-    public var description: String {
-        switch self {
-        case .unitedStates(let state):
-            return state.description
-        case .france(let aoc):
-            return aoc.description
-        }
-    }
 }
 
 extension Array where Element == AppelationDescribable {
