@@ -69,7 +69,9 @@ extension WineCountry {
             public enum Appelation: String, AppelationDescribable {
                 public var description: String {
                     switch self {
-                    case .notMedoc: return "Medoc"
+                    case .coteDeBeaune,
+                         .volay1erCru,
+                         .aloxCorton1erCru: return "Beaune"
                     case .notStJulien: return "Saint Julien"
                     }
                 }
@@ -78,12 +80,14 @@ extension WineCountry {
                     switch self {
                     case .notStJulien:
                         return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/St-Julien-AOP_Bordeaux_France.geojson")!
-                    case .notMedoc:
-                        return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/Medoc-AOP_Bordeaux_France.geojson")!
+                    case .coteDeBeaune, .volay1erCru, .aloxCorton1erCru:
+                        return URL(string: "https://github.com/rodericj/WineRegionMaps/raw/main/France/Burgundy/CoteDeBeaune.geojson")!
                     }
                 }
                 case notStJulien
-                case notMedoc
+                case coteDeBeaune
+                case volay1erCru = "Volnay 1er Cru"
+                case aloxCorton1erCru = "Aloxe-Corton 1er Cru"
             }
         }
         public struct Bordeaux {

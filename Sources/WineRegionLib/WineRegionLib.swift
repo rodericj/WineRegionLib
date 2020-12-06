@@ -78,6 +78,8 @@ public struct WineCountry {
         public struct California {
             public static let title = "California"
             public enum Appelation: String, AppelationDescribable {
+
+                // This maps to the geoJson field ava_id
                 public var description: String {
                     switch self {
                     case .napa:
@@ -90,6 +92,8 @@ public struct WineCountry {
 //                        return "saint__helena"
                     case .mendocinoCounty:
                         return "mendocino"
+                    case .dryCreekValley:
+                        return "dry_creek_valley"
                     }
                 }
 
@@ -98,8 +102,9 @@ public struct WineCountry {
                     return URL(string: "https://github.com/rodericj/ava/raw/master/avas_by_state/CA_avas.geojson")!
                 }
                 case mendocinoCounty = "Mendocino County"
-                case napa
+                case napa = "Napa Valley"
                 case centralCoast
+                case dryCreekValley = "Dry Creek Valley"
             }
         }
     }
@@ -164,44 +169,62 @@ struct CustomWineRegionFormat: Codable {
     let appellation: String
 }
 
+struct OpenStreetMapFormat: Codable {
+    let name: String
+    let type: String
+    let boundary: String
+}
+
 @available(iOS 13.0, *)
 public class WineRegion: ObservableObject {
     @Published public var regionMaps: [String: MKGeoJSONFeature] = [:]
 
     public init() {}
     private func fetchFrom(urls: [URL], keys: [String]) {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-        let decoder = MKGeoJSONDecoder()
-        let features = urls.map { try? Data(contentsOf: $0) }
-        .compactMap { $0 }
-        .map { data in
-            try? decoder.decode(data)
-        }.compactMap { $0 }
-        .map { mkGeoJSONObjects in
-            mkGeoJSONObjects
-                .map { $0 as? MKGeoJSONFeature }
-                .compactMap { $0 }
-        }.reduce([], +)
-        .filter { feature in
-            if let props = feature.properties {
-                do {
-                    let davisData = try jsonDecoder.decode(DavisAVAData.self, from: props)
-                    return keys.contains(davisData.avaId)
-                } catch {
-                    print("This is not a Davis data file. Probably OK", error)
-                }
+        DispatchQueue.global(qos: .background).async {
 
-                do {
-                    let rodericData = try jsonDecoder.decode(CustomWineRegionFormat.self, from: props)
-                    return keys.contains(rodericData.name)
-                } catch {
-                    print("This is not a Custom Wine region data file. Probably OK", error)
+            let jsonDecoder = JSONDecoder()
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+            let decoder = MKGeoJSONDecoder()
+            let features = urls.map { try? Data(contentsOf: $0) }
+                .compactMap { $0 }
+                .map { data in
+                    try? decoder.decode(data)
+                }.compactMap { $0 }
+                .map { mkGeoJSONObjects in
+                    mkGeoJSONObjects
+                        .map { $0 as? MKGeoJSONFeature }
+                        .compactMap { $0 }
+                }.reduce([], +)
+                .filter { feature in
+                    if let props = feature.properties {
+                        // TODO generalize/parameterize this decoding logic
+                        do {
+                            let davisData = try jsonDecoder.decode(DavisAVAData.self, from: props)
+                            return keys.contains(davisData.avaId)
+                        } catch {
+                            print("This is not a Davis data file. Probably OK", error)
+                        }
+
+                        do {
+                            let customWineRegionData = try jsonDecoder.decode(CustomWineRegionFormat.self, from: props)
+                            return keys.contains(customWineRegionData.name)
+                        } catch {
+                            print("This is not a Custom Wine region data file. Probably OK", error)
+                        }
+
+                        do {
+                            let osmData = try jsonDecoder.decode(OpenStreetMapFormat.self, from: props)
+                            return keys.contains(osmData.name)
+                        } catch {
+                            print("This is not a Custom Wine region data file. Probably OK", error)
+                        }
+                    }
+                    return false
                 }
-            }
-            return false
+            print("the keys are \(keys)")
+            self.regionMaps = Dictionary(uniqueKeysWithValues: zip(keys, features))
         }
-        regionMaps = Dictionary(uniqueKeysWithValues: zip(keys, features))
         print("We will show", regionMaps.keys)
     }
     public func getRegionsStruct(regions: [AppelationDescribable]) {
