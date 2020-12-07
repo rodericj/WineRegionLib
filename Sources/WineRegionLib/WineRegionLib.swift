@@ -141,6 +141,7 @@ struct OpenStreetMapFormat: Codable {
 @available(iOS 13.0, *)
 public class WineRegion: ObservableObject {
     @Published public var regionMaps: [String: MKGeoJSONFeature] = [:]
+    @Published public var regionPolygons: [String: MKPolygon] = [:]
 
     public init() {}
     private func fetchFrom(urls: [URL], keys: [String]) {
@@ -149,6 +150,25 @@ public class WineRegion: ObservableObject {
             let jsonDecoder = JSONDecoder()
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             let decoder = MKGeoJSONDecoder()
+
+            // Some geojson files have MKPolygons (Italy), while others have MKGeoJSONFeatures
+
+            // Extract the MKPolygon from a given geojson file
+            let mkPolygonFeatures = urls.map { try? Data(contentsOf: $0) }
+                .compactMap { $0 }
+                .map { data in
+                    try? decoder.decode(data)
+                }.compactMap { $0 }
+                .map { mkGeoJSONObjects -> [MKPolygon] in
+                    mkGeoJSONObjects
+                        .map { $0 as? MKPolygon }
+                        .compactMap { $0 }
+                    // OK so all of itally is just a polygon
+                }.reduce([], +)
+
+            self.regionPolygons = Dictionary(uniqueKeysWithValues: zip(keys, mkPolygonFeatures))
+
+            // Extract the given MKGeoJSONFeatures from a geojson file
             let features = urls.map { try? Data(contentsOf: $0) }
                 .compactMap { $0 }
                 .map { data in
