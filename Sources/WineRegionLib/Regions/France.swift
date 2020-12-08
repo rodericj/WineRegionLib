@@ -93,7 +93,7 @@ public struct France {
         public static let title = "Bordeaux"
         public struct Medoc {
             public static let title = "Medoc"
-            public enum Appelation: String, AppelationDescribable {
+            public enum Appelation: String, AppelationDescribable, CaseIterable {
                 // Note: The is used as geojson's first feature's property's name
                 public var description: String {
                     switch self {

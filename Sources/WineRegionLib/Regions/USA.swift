@@ -11,7 +11,7 @@ public struct USA {
     public static let title = "USA"
     public struct California {
         public static let title = "California"
-        public enum Appelation: String, AppelationDescribable {
+        public enum Appelation: String, AppelationDescribable, CaseIterable {
 
             // This maps to the geoJson field ava_id
             public var description: String {
