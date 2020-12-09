@@ -12,28 +12,20 @@ public struct France {
     public static let title = "France"
     public struct Burgundy {
         public static let title = "Burgundy"
-        public enum Appelation: String, AppelationDescribable {
+        public enum Appelation: String, AppelationDescribable, CaseIterable {
             public var description: String {
                 switch self {
-                case .coteDeBeaune,
-                     .volay1erCru,
-                     .aloxCorton1erCru: return "Beaune"
-                case .notStJulien: return "Saint Julien"
+                case .coteDeBeaune: return "Beaune"
                 }
             }
 
             public var url: URL {
                 switch self {
-                case .notStJulien:
-                    return URL(string: "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/St-Julien-AOP_Bordeaux_France.geojson")!
-                case .coteDeBeaune, .volay1erCru, .aloxCorton1erCru:
+                case .coteDeBeaune:
                     return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/France/Burgundy/CoteDeBeaune.geojson")!
                 }
             }
-            case notStJulien
             case coteDeBeaune
-            case volay1erCru = "Volnay 1er Cru"
-            case aloxCorton1erCru = "Aloxe-Corton 1er Cru"
         }
     }
     public struct Bordeaux {
