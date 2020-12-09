@@ -44,6 +44,7 @@ struct OpenStreetMapFormat: Codable {
 public class WineRegion: ObservableObject {
     @Published public var regionMaps: [String: MKGeoJSONFeature] = [:]
     @Published public var regionPolygons: [String: MKPolygon] = [:]
+    let session = URLSession(configuration: .default)
 
     public init() {}
     private func fetchFrom(urls: [URL], keys: [String]) {
@@ -53,69 +54,54 @@ public class WineRegion: ObservableObject {
             jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             let decoder = MKGeoJSONDecoder()
 
-            // Some geojson files have MKPolygons (Italy), while others have MKGeoJSONFeatures
-
-            // Extract the MKPolygon from a given geojson file
-            let mkPolygonFeatures = urls.map { try? Data(contentsOf: $0) }
-                .compactMap { $0 }
-                .map { data in
-                    try? decoder.decode(data)
-                }.compactMap { $0 }
-                .map { mkGeoJSONObjects -> [MKPolygon] in
-                    mkGeoJSONObjects
-                        .map { $0 as? MKPolygon }
-                        .compactMap { $0 }
-                    // OK so all of itally is just a polygon
-                }.reduce([], +)
-
-            self.regionPolygons = Dictionary(uniqueKeysWithValues: zip(keys, mkPolygonFeatures))
-
-            // Extract the given MKGeoJSONFeatures from a geojson file
-            let features = urls.map { try? Data(contentsOf: $0) }
-                .compactMap { $0 }
-                .map { data in
-                    try? decoder.decode(data)
-                }.compactMap { $0 }
-                .map { mkGeoJSONObjects in
-                    mkGeoJSONObjects
-                        .map { $0 as? MKGeoJSONFeature }
-                        .compactMap { $0 }
-                }.reduce([], +)
-                .filter { feature in
-                    if let props = feature.properties {
-                        // TODO generalize/parameterize this decoding logic
-                        do {
-                            let davisData = try jsonDecoder.decode(DavisAVAData.self, from: props)
-                            return keys.contains(davisData.avaId)
-                        } catch {
-                            print("This is not a Davis data file. Probably OK", error)
+            urls.map { url in
+                URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
+            }.forEach { request in
+                let task = self.session.downloadTask(with: request) { [weak self] (temporaryFileLocation, response, error)  in
+                    if let error = error {
+                        debugPrint("An error occurred while downloading a geojson file \(error)")
+                    }
+                    if let response = response as? HTTPURLResponse {
+                        switch response.statusCode {
+                        case 200...299:
+                            break // No problem
+                        case 300...399:
+                            break // Not much of a problem
+                        case 400...499:
+                            print(response.statusCode) // My problem
+                        case 500...599:
+                            print(response.statusCode) // Server problem
+                        default:
+                            debugPrint("unknown status code \(response.statusCode)")
                         }
 
-                        do {
-                            let customWineRegionData = try jsonDecoder.decode(CustomWineRegionFormat.self, from: props)
-                            return keys.contains(customWineRegionData.name)
-                        } catch {
-                            print("This is not a Custom Wine region data file. Probably OK", error)
-                        }
+                    }
+                    guard let temporaryFileLocation = temporaryFileLocation else {
+                        return
+                    }
+                    print(temporaryFileLocation)
+                    do {
+                        let data = try Data(contentsOf: temporaryFileLocation)
+                        let objects = try decoder.decode(data)
 
-                        do {
-                            let osmData = try jsonDecoder.decode(OpenStreetMapFormat.self, from: props)
-                            return keys.contains(osmData.name)
-                        } catch {
-                            print("This is not a Custom Wine region data file. Probably OK", error)
+                        // split here
+                        if let polygons = objects as? [MKPolygon] {
+                            self?.regionPolygons = Dictionary(uniqueKeysWithValues: zip(keys, polygons))
+                        }
+                        if let mkGeoJSONObjects = objects as? [MKGeoJSONFeature] {
+                            self?.regionMaps = Dictionary(uniqueKeysWithValues: zip(keys, mkGeoJSONObjects))
                         }
                     }
-                    return false
+                    catch {
+                        print("error decoding or getting file \(error)")
+                    }
+
                 }
-            print("the keys are \(keys)")
-            self.regionMaps = Dictionary(uniqueKeysWithValues: zip(keys, features))
+                task.resume()
+            }
         }
-        print("We will show", regionMaps.keys)
     }
-    public func getRegionsStruct(regions: [AppelationDescribable]) {
-        fetchFrom(urls: regions.map { $0.url }, keys: regions.allKeys)
-    }
-    public func getRegions(regions: [WineRegionDescribable]) {
+    public func getRegions(regions: [AppelationDescribable]) {
         fetchFrom(urls: regions.map { $0.url }, keys: regions.allKeys)
     }
 }
