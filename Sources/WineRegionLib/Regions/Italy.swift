@@ -130,9 +130,9 @@ public struct Italy {
             public var url: URL {
                 switch self {
                 case .chiantiClasico:
-                    return URL(string: "https://github.com/rodericj/WineRegionMaps/raw/main/Italy/ChiantiClassicoDOP.geojson")!
+                    return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/ChiantiClassicoDOP.geojson")!
                 default:
-                    return URL(string: "https://github.com/rodericj/WineRegionMaps/raw/main/Italy/\(self.rawValue.capitalized.replacingOccurrences(of: " ", with: "")).geojson")!
+                    return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/\(self.rawValue.capitalized.replacingOccurrences(of: " ", with: "")).geojson")!
                 }
             }
             case chiantiClasico = "Chianti Classico DOCG"

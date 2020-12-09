@@ -33,7 +33,7 @@ public struct USA {
 
 
             public var url: URL {
-                return URL(string: "https://github.com/rodericj/ava/raw/master/avas_by_state/CA_avas.geojson")!
+                return URL(string: "https://raw.githubusercontent.com/rodericj/ava/master/avas_by_state/CA_avas.geojson")!
             }
             case mendocinoCounty = "Mendocino County"
             case napa = "Napa Valley"

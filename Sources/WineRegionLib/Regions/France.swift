@@ -7,59 +7,6 @@
 
 import Foundation
 
-public enum BordeauxAppelation: String, WineRegionDescribable {
-    public var url: URL {
-        switch self {
-        case .stJulien:
-            return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/St-Julien-AOP_Bordeaux_France.geojson")!
-        }
-    }
-
-    public var description: String {
-        switch self {
-        case .stJulien:
-            return "Saint Julien"
-        }
-    }
-    case stJulien = "St. Julien"
-}
-public enum BordeauxSubRegion: String, WineRegionDescribable, Hashable {
-
-    public var description: String {
-        switch self {
-
-        case .hautMedoc:
-            return "Haut-Medoc"
-        case .listracMedoc:
-            return "listracMedoc"
-        case .moulisEnMedoc:
-            return "moulisEnMedoc"
-        case .médoc:
-            return "Medoc"
-        }
-    }
-
-    case hautMedoc
-    case listracMedoc
-    case moulisEnMedoc
-    case médoc = "Médoc"//(BordeauxAppelation)
-    public var url: URL {
-        switch self {
-
-        case .médoc:
-            return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/Medoc-AOP_Bordeaux_France.geojson")!
-
-        case .moulisEnMedoc:
-            return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/Moulis-en-Medoc-AOP_Bordeaux_France.geojson")!
-
-        case .listracMedoc:
-            return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/Listrac-Medoc-AOP_Bordeaux_France.geojson")!
-
-        case .hautMedoc:
-            return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/Haut-Medoc-AOP_Bordeaux_France.geojson")!
-        }
-    }
-}
 
 public struct France {
     public static let title = "France"
@@ -78,9 +25,9 @@ public struct France {
             public var url: URL {
                 switch self {
                 case .notStJulien:
-                    return URL(string: "https://github.com/rodericj/BordeauxWineRegions/raw/master/St-Julien-AOP_Bordeaux_France.geojson")!
+                    return URL(string: "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/St-Julien-AOP_Bordeaux_France.geojson")!
                 case .coteDeBeaune, .volay1erCru, .aloxCorton1erCru:
-                    return URL(string: "https://github.com/rodericj/WineRegionMaps/raw/main/France/Burgundy/CoteDeBeaune.geojson")!
+                    return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/France/Burgundy/CoteDeBeaune.geojson")!
                 }
             }
             case notStJulien
@@ -110,7 +57,7 @@ public struct France {
                 }
 
                 public var url: URL {
-                    let rootURLString = "https://github.com/rodericj/BordeauxWineRegions/raw/master/"
+                    let rootURLString = "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master"
                     let fileName: String
                     switch self {
                     case .stJulien:

@@ -5,109 +5,11 @@
 import Combine
 import MapKit
 
-public protocol WineRegionDescribable: CustomStringConvertible {
-    var url: URL { get }
-}
-
 public protocol AppelationDescribable: CustomStringConvertible {
     var url: URL { get }
 }
 
-public enum CaliforniaSubRegion: String, WineRegionDescribable, Hashable, Equatable, CaseIterable {
-    public var url: URL {
-        return URL(string: "https://github.com/rodericj/ava/raw/master/avas_by_state/CA_avas.geojson")!
-    }
-
-    public var description: String {
-        switch self {
-
-        case .napa:
-            return "napa_valley"
-        case .santaCruz:
-            return "santa_cruz_mountains"
-        case .centralCoast:
-            return "central_coast"
-        case .saintHelena:
-            return "saint__helena"
-        }
-    }
-
-    case napa
-    case santaCruz
-    case centralCoast
-    case saintHelena
-
-    public static func == (lhs: CaliforniaSubRegion, rhs: CaliforniaSubRegion) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}
-
-public enum USState: WineRegionDescribable, Hashable, Equatable {
-    case california(CaliforniaSubRegion)
-    case oregon
-    case washington
-
-    public var url: URL {
-        switch self {
-        case .california(let region):
-            return region.url
-        case .oregon:
-            return URL(string: "https://github.com/rodericj/ava/raw/master/avas_by_state/OR_avas.geojson")!
-        case .washington:
-            return URL(string: "https://github.com/rodericj/ava/raw/master/avas_by_state/WA_avas.geojson")!
-        }
-    }
-    public var description: String {
-        switch self {
-        case .california(let sub):
-            return sub.description
-        case .oregon:
-            return "oregon"
-        case .washington:
-            return "washington"
-        }
-    }
-    public static func == (lhs: USState, rhs: USState) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}
-
-
-
-public enum DOGC: String, WineRegionDescribable, Hashable, Equatable, CustomStringConvertible {
-    public var url: URL {
-        URL(string: "Not quite defined yet")!
-    }
-
-    public var description: String {
-        switch self {
-
-        case .chianti:
-            return "chianti"
-        case .monticello:
-            return "monticello"
-        case .sicily:
-            return "sicily"
-        }
-    }
-
-    public static func == (lhs: DOGC, rhs: DOGC) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-    case chianti
-    case monticello
-    case sicily
-}
-
 extension Array where Element == AppelationDescribable {
-    var allKeys: [String] {
-        map { locale in
-            locale.description
-        }
-    }
-}
-
-extension Array where Element == WineRegionDescribable {
     var allKeys: [String] {
         map { locale in
             locale.description
