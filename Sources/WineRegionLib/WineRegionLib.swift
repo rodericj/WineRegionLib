@@ -46,14 +46,19 @@ struct OpenStreetMapFormat: Codable {
     let boundary: String
 }
 
+public enum RegionResult {
+    case regions([MapKitOverlayable])
+    case loading(Float)
+    case none
+}
+
 @available(iOS 13.0, *)
 public class WineRegion: ObservableObject {
-    @Published public var regionMaps: [MapKitOverlayable] = [] // TODO change this to a result type with loading perhaps
+    @Published public var regionMaps: RegionResult = .none
+
     let session = URLSession(configuration: .default)
 
     var networkCancellable: AnyCancellable? = nil
-
-    // TODO determine if this is threadsafe
     let decoder = MKGeoJSONDecoder()
 
     public init() {}
@@ -78,6 +83,9 @@ public class WineRegion: ObservableObject {
             var datum = [Data]()
             let dispatchGroup = DispatchGroup()
 
+            let increment: Float = 100.0 / (Float(urls.count) * 2.0)
+            var currentLoadAmount: Float = 0.0
+            self.regionMaps = .loading(currentLoadAmount)
             urls.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             }.forEach { request in
@@ -97,6 +105,9 @@ public class WineRegion: ObservableObject {
                         return
                     }
                     do {
+                        currentLoadAmount += increment
+                        self?.regionMaps = .loading(currentLoadAmount)
+                        debugPrint(currentLoadAmount)
                         debugPrint("reading temp file")
                         let data = try Data(contentsOf: temporaryFileLocation)
                         debugPrint("✅ successfully read temp file")
@@ -107,6 +118,9 @@ public class WineRegion: ObservableObject {
                         }
                         debugPrint("✅ set it \(url.absoluteString)")
                         datum.append(data)
+                        currentLoadAmount += increment
+                        self?.regionMaps = .loading(currentLoadAmount)
+                        debugPrint(currentLoadAmount)
                         dispatchGroup.leave()
                     } catch {
                         debugPrint("🔴 to read temp file")
@@ -140,7 +154,7 @@ public class WineRegion: ObservableObject {
             .map { $0 as? MapKitOverlayable }
             .compactMap { $0 }
         debugPrint("new regions \(newRegions.count)")
-        self.regionMaps = newRegions
+        self.regionMaps = .regions(newRegions)
 
     }
     public func getRegions(regions: [AppelationDescribable]) {
