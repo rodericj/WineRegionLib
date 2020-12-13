@@ -52,16 +52,17 @@ public class WineRegion: ObservableObject {
     }
 
     private func fetchFrom(urls: [URL]) {
-        DispatchQueue.global(qos: .background).async {
-            var datum = [Data]()
-            let dispatchGroup = DispatchGroup()
+        var datum = [URL: Data]()
+        let dispatchGroup = DispatchGroup()
 
-            let progressIncrement: Float = 1 / (Float(urls.count) * 2.0)
-            var currentProgress: Float = 0.0
-            self.regionMaps = .loading(currentProgress)
+        let progressIncrement: Float = 1 / (Float(urls.count) * 2.0)
+        var currentProgress: Float = 0.0
+        self.regionMaps = .loading(currentProgress)
+        DispatchQueue.global(qos: .utility).async {
             urls.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             }.forEach { request in
+
                 dispatchGroup.enter()
                 let task = self.session.downloadTask(with: request) { [weak self] (temporaryFileLocation, response, error)  in
                     if let error = error {
@@ -83,7 +84,7 @@ public class WineRegion: ObservableObject {
                             dispatchGroup.leave()
                             return
                         }
-                        datum.append(data)
+                        datum[response!.url!] = data
                         dispatchGroup.leave()
                     } catch {
                         debugPrint("🔴 to read temp file")
@@ -98,7 +99,7 @@ public class WineRegion: ObservableObject {
         }
     }
 
-    private func consolidate(datum: [Data]) {
+    private func consolidate(datum: [URL: Data]) {
         debugPrint("we got \(datum.count) urls worth of data")
 
         // At this point we are done with the fetch, the other half is the parse
@@ -110,13 +111,13 @@ public class WineRegion: ObservableObject {
         let newRegions = datum
             .map { theData -> [MKGeoJSONObject]? in
                 do {
-                    debugPrint("🕕 parsing")
-                    let decoded = try decoder.decode(theData)
+//                    debugPrint("🕕 parsing")
+                    let decoded = try decoder.decode(theData.value)
                     currentLoadAmount += increment
                     self.update(result: .loading(currentLoadAmount))
                     return decoded
                 } catch {
-                    debugPrint("🔴error decoding \(error)")
+                    debugPrint("🔴error decoding \(error) on \(theData.key)")
                     return nil
                 }
             }
