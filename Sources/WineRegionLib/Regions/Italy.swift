@@ -32,7 +32,7 @@ public struct Italy {
                     .replacingOccurrences(of: "_", with: "-")
             }
             case abruzzoDOP
-            case affileCesanesediAffileDOP
+//            case affileCesanesediAffileDOP
             case aglianicodelTaburnoDOP
             case aglianicodelVultureDOP
             case aglianicodelVultureSuperioreDOP
@@ -48,13 +48,13 @@ public struct Italy {
             case alpiReticheIGP
             case altaLangaDOP
             case altaValledellaGreveIGP
-            case altoAdigeSfcdtirolSfcdtirolerdellAltoAdigeDOP
+//            case altoAdigeSfcdtirolSfcdtirolerdellAltoAdigeDOP
             case altoLivenzaIGP
             case altoMincioIGP
             case amaronedellaValpolicellaDOP
             case ameliaDOP
             case anagniIGP
-            case ansonicaCostadellArgentarioDOP
+//            case ansonicaCostadellArgentarioDOP
             case apriliaDOP
             case arboreaDOP
             case arcoleDOP
@@ -102,13 +102,13 @@ public struct Italy {
             case bramaterraDOP
             case breganzeDOP
             case brindisiDOP
-            case brunelloDiMontalcino = "Brunello di Montalcino"
+            case brunelloDiMontalcino// = "Brunello di Montalcino"
             case brunellodiMontalcinoDOP
             case buttafuocoButtafuocodellOltrepf2PaveseDOP
             case caccemmittediLuceraDOP
             case cagliariDOP
             case calabriaIGP
-            case caldaroKaltererKaltererseeLagodiCaldaroDOP
+//            case caldaroKaltererKaltererseeLagodiCaldaroDOP
             case calossoDOP
             case camarroIGP
             case campaniaIGP
@@ -139,7 +139,7 @@ public struct Italy {
             case catalanescadelMonteSommaSommaIGP
             case cellaticaDOP
             case cerasuolodAbruzzoDOP
-            case cerasuolodiVittoriaDOP
+//            case cerasuolodiVittoriaDOP
             case cerveteriDOP
             case cesanesedelPiglioPiglioDOP
             case cesanesediOlevanoRomanoOlevanoRomanoDOP
@@ -169,7 +169,7 @@ public struct Italy {
             case colliOrientalidelFriuliPicolitDOP
             case colliPeruginiDOP
             case colliPesaresiDOP
-            case colliPiacentiniDOP
+//            case colliPiacentiniDOP
             case colliRomagnaCentraleDOP
             case colliTortonesiDOP
             case colliTrevigianiIGP
@@ -237,9 +237,9 @@ public struct Italy {
             case ericeDOP
             case esinoDOP
 //            case est!Est!!Est!!!diMontefiasconeDOP
-            case estDiMontefiasconeDOP
+            case estDiMontefiasconeDOP = "est!Est!!Est!!!diMontefiasconeDOP"
             case etnaDOP
-            case falanghinadelSannioDOP
+//            case falanghinadelSannioDOP
             case falerioDOP
             case falernodelMassicoDOP
             case faraDOP
@@ -267,10 +267,10 @@ public struct Italy {
             case gambellaraDOP
             case gardaBrescianoRivieradelGardaBrescianoDOP
             case gardaColliMantovaniDOP
-            case gardaDOP
+//            case gardaDOP
             case gattinaraDOP
             case genazzanoDOP
-            case ghemmeDOP
+//            case ghemmeDOP
             case gioiadelColleDOP
             case girf2diCagliariDOP
             case golfodelTigullio_PortofinoPortofinoDOP
@@ -281,7 +281,7 @@ public struct Italy {
             case grignolinodAstiDOP
             case grignolinodelMonferratoCasaleseDOP
             case grottinodiRoccanovaDOP
-            case gutturnioDOP
+//            case gutturnioDOP
             case iTerrenidiSanseverinoDOP
             case irpiniaDOP
             case ischiaDOP
@@ -301,7 +301,7 @@ public struct Italy {
             case liguriadiLevanteIGP
             case lipudaIGP
             case lisonDOP
-            case lisonPramaggioreDOP
+//            case lisonPramaggioreDOP
             case lizzanoDOP
             case loazzoloDOP
             case locorotondoDOP
@@ -372,7 +372,7 @@ public struct Italy {
             case ormeascodiPornassioPornassioDOP
             case ortaNovaDOP
             case ortonaDOP
-            case ortrugodeiColliPiacentiniOrtrugoColliPiacentiniDOP
+//            case ortrugodeiColliPiacentiniOrtrugoColliPiacentiniDOP
             case orvietanoRossoRossoOrvietanoDOP
             case orvietoDOP
             case oscoTerredegliOsciIGP
@@ -406,12 +406,12 @@ public struct Italy {
             case ravennaIGP
             case reciotodellaValpolicellaDOP
             case reciotodiGambellaraDOP
-            case reciotodiSoaveDOP
+//            case reciotodiSoaveDOP
             case reggianoDOP
             case renoDOP
             case riesiDOP
-            case rivieradelBrentaDOP
-            case rivieraligurediPonenteDOP
+//            case rivieradelBrentaDOP
+//            case rivieraligurediPonenteDOP
             case roccamonfinaIGP
             case roeroDOP
             case romaDOP
@@ -426,12 +426,12 @@ public struct Italy {
             case rossodellaValdiCorniaValdiCorniaRossoDOP
             case rossodiCerignolaDOP
             case rossodiMontalcinoDOP
-            case rossodiMontepulcianoDOP
+//            case rossodiMontepulcianoDOP
             case rotaeIGP
             case rubiconeIGP
             case rubinodiCantavennaDOP
             case ruche9diCastagnoleMonferratoDOP
-            case s_AnnadiIsolaCapoRizzutoDOP
+            case s_AnnadiIsolaCapoRizzutoDOP = "S.AnnadiIsolaCapoRizzutoDOP"
             case sabbionetaIGP
             case salaparutaDOP
             case salemiIGP
@@ -446,7 +446,7 @@ public struct Italy {
             case sanSeveroDOP
             case sanTorpe8DOP
             case sanguediGiudaSanguediGiudadellOltrepf2PaveseDOP
-            case sannioDOP
+//            case sanfnioDOP
             case santAntimoDOP
             case santaMargheritadiBeliceDOP
             case sardegnaSemidanoDOP
@@ -511,8 +511,6 @@ public struct Italy {
             case valTidoneIGP
             case valcalepioDOP
             case valcamonicaIGP
-
-
             case vald92ArbiaDOP
             case vald92ArnodiSopraValdarnodiSopraDOP
             case valdadigeEtschtalerDOP
@@ -525,7 +523,7 @@ public struct Italy {
             case vallagarinaIGP
             case valleBeliceIGP
             case valled92ItriaIGP
-            case valledAostaValle9edAosteDOP
+//            case valledAostaValle9edAosteDOP
             case valledelTirsoIGP
             case valliOssolaneDOP
             case vallidiPortoPinoIGP
