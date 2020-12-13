@@ -15,36 +15,6 @@ public protocol MapKitOverlayable {}
 extension MKGeoJSONFeature: MapKitOverlayable {}
 
 extension MKPolygon: MapKitOverlayable {}
-extension Array where Element == AppelationDescribable {
-    var allKeys: [String] {
-        map { locale in
-            locale.description
-        }
-    }
-}
-
-struct DavisAVAData: Codable {
-    let state: String
-    let avaId: String
-    let contains: String
-    let cfrIndex: String
-    let cfrRevisionHistory: String
-    let approvedMaps: String
-    let boundaryDescription: String
-    let usedMaps: String
-}
-
-struct CustomWineRegionFormat: Codable {
-    let name: String
-    let department: String
-    let appellation: String
-}
-
-struct OpenStreetMapFormat: Codable {
-    let name: String
-    let type: String
-    let boundary: String
-}
 
 public enum RegionResult {
     case regions([MapKitOverlayable])
@@ -91,8 +61,6 @@ public class WineRegion: ObservableObject {
             }.forEach { request in
                 dispatchGroup.enter()
                 let task = self.session.downloadTask(with: request) { [weak self] (temporaryFileLocation, response, error)  in
-                    debugPrint("got \(request.url!)")
-
                     if let error = error {
                         debugPrint("An error occurred while downloading a geojson file \(error)")
                     }
@@ -106,7 +74,6 @@ public class WineRegion: ObservableObject {
                     do {
                         currentProgress += progressIncrement
                         self?.update(result: .loading(currentProgress))
-                        debugPrint("reading temp file")
                         let data = try Data(contentsOf: temporaryFileLocation)
                         guard let _ = response?.url else {
                             debugPrint("🔴 failed to read temp file")
