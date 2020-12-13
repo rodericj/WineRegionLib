@@ -12,33 +12,26 @@ public struct USA {
     public struct California {
         public static let title = "California"
         public enum Appelation: String, AppelationDescribable, CaseIterable {
-
-            // This maps to the geoJson field ava_id
             public var description: String {
-                switch self {
-                case .napa:
-                    return "napa_valley"
-                //                    case .santaCruz:
-                //                        return "santa_cruz_mountains"
-                case .centralCoast:
-                    return "central_coast"
-                //                    case .saintHelena:
-                //                        return "saint__helena"
-                case .mendocinoCounty:
-                    return "mendocino"
-                case .dryCreekValley:
-                    return "dry_creek_valley"
-                }
+                rawValue
             }
-
 
             public var url: URL {
-                return URL(string: "https://raw.githubusercontent.com/rodericj/ava/master/avas_by_state/CA_avas.geojson")!
+                let root = "https://raw.githubusercontent.com/rodericj/ava/master/avas/"
+                return URL(string: "\(root)\(rawValue).geojson")!
             }
-            case mendocinoCounty = "Mendocino County"
-            case napa = "Napa Valley"
-            case centralCoast
-            case dryCreekValley = "Dry Creek Valley"
+            case mendocino
+            case napaValley = "napa_valley"
+            case dryCreekValley = "dry_creek_valley"
+            case stHelena = "st__helena"
+            case northernSonoma = "northern_sonoma"
+            case oakville
+            case pasoRobles = "paso_robles"
+            case petalumaGap = "petaluma_gap"
+            case losCarneros = "los_carneros"
+            case santaYnezValley = "santa_ynez_valley"
+            case sonomaValley = "sonoma_valley"
+            case alexanderValley = "alexander_valley"
         }
     }
 }
