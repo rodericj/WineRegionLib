@@ -20,9 +20,17 @@ public struct Italy {
             public var description: String { self.rawValue }
 
             public var url: URL {
-                URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/\(self.rawValue.capitalizeFirst.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "dop", with: "DOP")).geojson")!
+                URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/\(urlableName).geojson")!
+
             }
-            case chiantiClasico
+
+            private var urlableName: String {
+                self.rawValue
+                    .capitalizeFirst
+                    .replacingOccurrences(of: " ", with: "")
+                    .replacingOccurrences(of: "dop", with: "DOP")
+                    .replacingOccurrences(of: "_", with: "-")
+            }
             case abruzzoDOP
             case affileCesanesediAffileDOP
             case aglianicodelTaburnoDOP
