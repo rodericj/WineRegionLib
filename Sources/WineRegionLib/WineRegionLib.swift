@@ -83,14 +83,13 @@ public class WineRegion: ObservableObject {
             var datum = [Data]()
             let dispatchGroup = DispatchGroup()
 
-            let increment: Float = 100.0 / (Float(urls.count) * 2.0)
-            var currentLoadAmount: Float = 0.0
-            self.regionMaps = .loading(currentLoadAmount)
+            let progressIncrement: Float = 1 / (Float(urls.count) * 2.0)
+            var currentProgress: Float = 0.0
+            self.regionMaps = .loading(currentProgress)
             urls.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             }.forEach { request in
                 dispatchGroup.enter()
-                debugPrint("fetching \(request.url!)")
                 let task = self.session.downloadTask(with: request) { [weak self] (temporaryFileLocation, response, error)  in
                     debugPrint("got \(request.url!)")
 
@@ -105,22 +104,16 @@ public class WineRegion: ObservableObject {
                         return
                     }
                     do {
-                        currentLoadAmount += increment
-                        self?.regionMaps = .loading(currentLoadAmount)
-                        debugPrint(currentLoadAmount)
+                        currentProgress += progressIncrement
+                        self?.update(result: .loading(currentProgress))
                         debugPrint("reading temp file")
                         let data = try Data(contentsOf: temporaryFileLocation)
-                        debugPrint("✅ successfully read temp file")
-                        guard let url = response?.url else {
+                        guard let _ = response?.url else {
                             debugPrint("🔴 failed to read temp file")
                             dispatchGroup.leave()
                             return
                         }
-                        debugPrint("✅ set it \(url.absoluteString)")
                         datum.append(data)
-                        currentLoadAmount += increment
-                        self?.regionMaps = .loading(currentLoadAmount)
-                        debugPrint(currentLoadAmount)
                         dispatchGroup.leave()
                     } catch {
                         debugPrint("🔴 to read temp file")
@@ -137,12 +130,20 @@ public class WineRegion: ObservableObject {
 
     private func consolidate(datum: [Data]) {
         debugPrint("we got \(datum.count) urls worth of data")
+
+        // At this point we are done with the fetch, the other half is the parse
+        // So we set the load progress amount to 50% and increment every time we get new content
+        var currentLoadAmount: Float = 0.5
+        let increment: Float = 1 / (Float(datum.count) * 2.0)
+
         let decoder = MKGeoJSONDecoder()
         let newRegions = datum
             .map { theData -> [MKGeoJSONObject]? in
                 do {
                     debugPrint("🕕 parsing")
                     let decoded = try decoder.decode(theData)
+                    currentLoadAmount += increment
+                    self.update(result: .loading(currentLoadAmount))
                     return decoded
                 } catch {
                     debugPrint("🔴error decoding \(error)")
@@ -154,8 +155,13 @@ public class WineRegion: ObservableObject {
             .map { $0 as? MapKitOverlayable }
             .compactMap { $0 }
         debugPrint("new regions \(newRegions.count)")
-        self.regionMaps = .regions(newRegions)
+        update(result: .regions(newRegions))
+    }
 
+    private func update(result: RegionResult) {
+        DispatchQueue.main.async {
+            self.regionMaps = result
+        }
     }
     public func getRegions(regions: [AppelationDescribable]) {
         fetchFrom(urls: regions.map { $0.url })
