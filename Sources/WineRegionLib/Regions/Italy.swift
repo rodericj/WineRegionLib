@@ -7,137 +7,22 @@
 
 import Foundation
 
+extension String {
+    var capitalizeFirst: String {
+        prefix(1).capitalized + dropFirst()
+    }
+}
 public struct Italy {
     public static let title = "Italy"
     public struct Tuscany {
         public static let title = "Tuscany"
-        public enum Appelation: String, AppelationDescribable {
-
-            // This maps to the geoJson field ava_id
-            public var description: String {
-                switch self {
-                case .vald92ArbiaDOP:
-                    return "TODO"
-                case .vald92ArnodiSopraValdarnodiSopraDOP:
-                    return "TODO"
-                case .valdadigeEtschtalerDOP:
-                    return "TODO"
-                case .valdamatoIGP:
-                    return "TODO"
-                case .valdiCorniaDOP:
-                    return "TODO"
-                case .valdiMagraIGP:
-                    return "TODO"
-                case .valdiNetoIGP:
-                    return "TODO"
-                case .valdichianatoscanaDOP:
-                    return "TODO"
-                case .valdinievoleDOP:
-                    return "TODO"
-                case .vallagarinaIGP:
-                    return "TODO"
-                case .valleBeliceIGP:
-                    return "TODO"
-                case .valled92ItriaIGP:
-                    return "TODO"
-                case .valledAostaValle9edAosteDOP:
-                    return "TODO"
-                case .valledelTirsoIGP:
-                    return "TODO"
-                case .valliOssolaneDOP:
-                    return "TODO"
-                case .vallidiPortoPinoIGP:
-                    return "TODO"
-                case .valpolicellaDOP:
-                    return "TODO"
-                case .valpolicellaripassoDOP:
-                    return "TODO"
-                case .valsusaDOP:
-                    return "TODO"
-                case .valte8nesiDOP:
-                    return "TODO"
-                case .valtellinaSuperioreDOP:
-                    return "TODO"
-                case .valtellinarossoRossodiValtellinaDOP:
-                    return "TODO"
-                case .velletriDOP:
-                    return "TODO"
-                case .veneto:
-                    return "TODO"
-                case .venetoIGP:
-                    return "TODO"
-                case .venetoorientaleIGP:
-                    return "TODO"
-                case .veneziaDOP:
-                    return "TODO"
-                case .veneziaGiuliaIGP:
-                    return "TODO"
-                case .verdicchiodeiCastellidiJesiDOP:
-                    return "TODO"
-                case .verdicchiodiMatelicaDOP:
-                    return "TODO"
-                case .verdicchiodiMatelicaRiservaDOP:
-                    return "TODO"
-                case .verdunoPelavergaVerdunoDOP:
-                    return "TODO"
-                case .vermentinodiGalluraDOP:
-                    return "TODO"
-                case .vermentinodiSardegnaDOP:
-                    return "TODO"
-                case .vernacciadiOristanoDOP:
-                    return "TODO"
-                case .vernacciadiSanGimignanoDOP:
-                    return "TODO"
-                case .vernacciadiSerrapetronaDOP:
-                    return "TODO"
-                case .veronaVeroneseProvinciadiVeronaIGP:
-                    return "TODO"
-                case .vesuvioDOP:
-                    return "TODO"
-                case .vicenzaDOP:
-                    return "TODO"
-                case .vignanelloDOP:
-                    return "TODO"
-                case .vignetidelleDolomitiWeinbergDolomitenIGP:
-                    return "TODO"
-                case .villamagnaDOP:
-                    return "TODO"
-                case .vinSantodelChiantiClassicoDOP:
-                    return "TODO"
-                case .vinSantodelChiantiDOP:
-                    return "TODO"
-                case .vinSantodiCarmignanoDOP:
-                    return "TODO"
-                case .vinSantodiMontepulcianoDOP:
-                    return "TODO"
-                case .vinoNobilediMontepulcianoDOP:
-                    return "TODO"
-                case .vittoriaDOP:
-                    return "TODO"
-                case .zagaroloDOP:
-                    return "TODO"
-
-                case .chiantiClasico:
-                    return "chianti_classico"
-                case .superTuscan:
-                    return "super_tuscan"
-
-                default:
-                    return "TODO"
-                }
-            }
+        public enum Appelation: String, AppelationDescribable, CaseIterable {
+            public var description: String { self.rawValue }
 
             public var url: URL {
-                switch self {
-                case .chiantiClasico:
-                    return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/ChiantiClassicoDOP.geojson")!
-                default:
-                    return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/\(self.rawValue.capitalized.replacingOccurrences(of: " ", with: "")).geojson")!
-                }
+                URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/\(self.rawValue.capitalizeFirst.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "dop", with: "DOP")).geojson")!
             }
-            case chiantiClasico = "Chianti Classico DOCG"
-            case superTuscan = "Super Tuscan"
-
+            case chiantiClasico
             case abruzzoDOP
             case affileCesanesediAffileDOP
             case aglianicodelTaburnoDOP

@@ -16,6 +16,9 @@ extension MKGeoJSONFeature: MapKitOverlayable {}
 
 extension MKPolygon: MapKitOverlayable {}
 
+@available(iOS 13.0, *)
+extension MKMultiPolygon: MapKitOverlayable {}
+
 public enum RegionResult {
     case regions([MapKitOverlayable])
     case loading(Float)
@@ -40,7 +43,7 @@ public class WineRegion: ObservableObject {
         case 300...399:
             break // Not much of a problem
         case 400...499:
-            debugPrint(response.statusCode) // My problem
+            debugPrint("\(response.statusCode) on \(response.url)") // My problem
         case 500...599:
             debugPrint(response.statusCode) // Server problem
         default:
