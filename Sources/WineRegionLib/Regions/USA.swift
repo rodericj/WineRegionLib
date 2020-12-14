@@ -13,7 +13,13 @@ public struct USA {
         public static let title = "California"
         public enum Appelation: String, AppelationDescribable, CaseIterable {
             public var description: String {
-                rawValue
+                // Ultimately this capitalizes the string and splits on the capitals so "abcDeFG" becomes "Abc De Fg"
+                let doctoredString = rawValue.capitalizeAndSplit()
+                return doctoredString
+                    .capitalized
+                    .replacingOccurrences(of: "P D O", with: "PDO")
+                    .replacingOccurrences(of: "_", with: "")
+                    .replacingOccurrences(of: "  ", with: " ")
             }
 
             public var url: URL {
