@@ -18,6 +18,29 @@ extension Character {
 }
 
 
+extension String {
+
+    func capitalizeAndSplit() -> String {
+        let indexes = Set(self
+            .enumerated()
+            .filter { $0.element.isUppercase }
+            .map { $0.offset })
+
+        let chunks = self
+            .map { String($0) }
+            .enumerated()
+            .reduce([String]()) { chunks, elm -> [String] in
+                guard !chunks.isEmpty else { return [elm.element] }
+                guard !indexes.contains(elm.offset) else { return chunks + [String(elm.element)] }
+
+                var chunks = chunks
+                chunks[chunks.count-1] += String(elm.element)
+                return chunks
+            }
+        return chunks.joined(separator: " ")
+    }
+}
+
 public struct Italy {
     public static let title = "Italy"
     public struct Tuscany {
@@ -39,24 +62,8 @@ public struct Italy {
 
                 // Ultimately this capitalizes the string and splits on the capitals so "abcDeFG" becomes "Abc De Fg"
                 // We also replace D O P with DOP and a few other simple replacements
-                let indexes = Set(self.rawValue
-                    .enumerated()
-                    .filter { $0.element.isUppercase }
-                    .map { $0.offset })
-
-                let chunks = self.rawValue
-                    .map { String($0) }
-                    .enumerated()
-                    .reduce([String]()) { chunks, elm -> [String] in
-                        guard !chunks.isEmpty else { return [elm.element] }
-                        guard !indexes.contains(elm.offset) else { return chunks + [String(elm.element)] }
-
-                        var chunks = chunks
-                        chunks[chunks.count-1] += String(elm.element)
-                        return chunks
-                    }
-                print("chunks \(chunks)")
-                return chunks.joined(separator: " ")
+                let doctoredString = rawValue.capitalizeAndSplit()
+                return doctoredString
                     .capitalized
                     .replacingOccurrences(of: "D O P", with: "DOP")
                     .replacingOccurrences(of: "I G P", with: "IGP")
