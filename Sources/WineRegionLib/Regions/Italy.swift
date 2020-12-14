@@ -12,12 +12,57 @@ extension String {
         prefix(1).capitalized + dropFirst()
     }
 }
+
+extension Character {
+    var isUppercase: Bool { return String(self).uppercased() == String(self) }
+}
+
+
 public struct Italy {
     public static let title = "Italy"
     public struct Tuscany {
+
         public static let title = "Tuscany"
         public enum Appelation: String, AppelationDescribable, CaseIterable {
-            public var description: String { self.rawValue }
+
+            public init?(_ appellation: String) {
+                switch appellation {
+                case "Chianti Classico DOCG":
+                    self = .chiantiClassicoDOP
+                case "Brunello di Montalcino":
+                    self = .brunellodiMontalcinoDOP
+                default:
+                    return nil
+                }
+            }
+            public var description: String {
+
+                // Ultimately this capitalizes the string and splits on the capitals so "abcDeFG" becomes "Abc De Fg"
+                // We also replace D O P with DOP and a few other simple replacements
+                let indexes = Set(self.rawValue
+                    .enumerated()
+                    .filter { $0.element.isUppercase }
+                    .map { $0.offset })
+
+                let chunks = self.rawValue
+                    .map { String($0) }
+                    .enumerated()
+                    .reduce([String]()) { chunks, elm -> [String] in
+                        guard !chunks.isEmpty else { return [elm.element] }
+                        guard !indexes.contains(elm.offset) else { return chunks + [String(elm.element)] }
+
+                        var chunks = chunks
+                        chunks[chunks.count-1] += String(elm.element)
+                        return chunks
+                    }
+                print("chunks \(chunks)")
+                return chunks.joined(separator: " ")
+                    .capitalized
+                    .replacingOccurrences(of: "D O P", with: "DOP")
+                    .replacingOccurrences(of: "I G P", with: "IGP")
+                    .replacingOccurrences(of: "O I G P", with: "OIGP")
+                    .replacingOccurrences(of: "_", with: "")
+            }
 
             public var url: URL {
                 URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/\(urlableName).geojson")!

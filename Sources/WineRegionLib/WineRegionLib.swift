@@ -7,6 +7,7 @@ import MapKit
 
 public protocol AppelationDescribable: CustomStringConvertible {
     var url: URL { get }
+    var description: String { get }
 }
 
 public protocol MapKitOverlayable {}
