@@ -29,7 +29,7 @@ public struct France {
         }
     }
     public struct Bordeaux {
-        public func appelation(named: String) -> AppelationDescribable? {
+        public static func appelation(named: String) -> AppelationDescribable? {
             switch named {
             case "St. Julien":
                 return Appelation.st_Julien
