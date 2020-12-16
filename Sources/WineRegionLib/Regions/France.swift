@@ -29,8 +29,17 @@ public struct France {
         }
     }
     public struct Bordeaux {
+        public func appelation(named: String) -> AppelationDescribable? {
+            switch named {
+            case "St. Julien":
+                return Appelation.st_Julien
+            default:
+                return nil
+            }
+        }
         public static let title = "Bordeaux"
         public enum Appelation: String, AppelationDescribable, CaseIterable {
+
             public var description: String {
 
                 // Ultimately this capitalizes the string and splits on the capitals so "abcDeFG" becomes "Abc De Fg"
