@@ -13,6 +13,7 @@ public protocol AppelationDescribable: CustomStringConvertible {
 public protocol MapKitOverlayable {}
 
 @available(iOS 13.0, *)
+@available(macOS 10.15, *)
 extension MKGeoJSONFeature: MapKitOverlayable {}
 
 extension MKPolygon: MapKitOverlayable {}
@@ -44,7 +45,7 @@ public class WineRegion: ObservableObject {
         case 300...399:
             break // Not much of a problem
         case 400...499:
-            debugPrint("\(response.statusCode) on \(response.url)") // My problem
+            debugPrint("\(response.statusCode) on \(response.url?.debugDescription ?? "no url")") // My problem
         case 500...599:
             debugPrint(response.statusCode) // Server problem
         default:
@@ -112,7 +113,6 @@ public class WineRegion: ObservableObject {
         let newRegions = datum
             .map { theData -> [MKGeoJSONObject]? in
                 do {
-//                    debugPrint("🕕 parsing")
                     let decoded = try decoder.decode(theData.value)
                     currentLoadAmount += increment
                     self.update(result: .loading(currentLoadAmount))
