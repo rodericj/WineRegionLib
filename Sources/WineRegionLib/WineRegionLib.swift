@@ -13,7 +13,6 @@ public protocol AppelationDescribable: CustomStringConvertible {
 public protocol MapKitOverlayable {}
 
 @available(iOS 13.0, *)
-@available(macOS 10.15, *)
 extension MKGeoJSONFeature: MapKitOverlayable {}
 
 extension MKPolygon: MapKitOverlayable {}
