@@ -10,41 +10,37 @@ import Foundation
 
 public struct France {
     public static let title = "France"
-    public struct Burgundy {
+    public enum Burgundy: String, AppelationDescribable, CaseIterable {
         public static let title = "Burgundy"
-        public enum Appelation: String, AppelationDescribable, CaseIterable {
-            public var description: String {
-                switch self {
-                case .coteDeBeaune: return "Beaune"
-                }
+        public var description: String {
+            switch self {
+            case .coteDeBeaune: return "Beaune"
             }
-
-            public var url: URL {
-                switch self {
-                case .coteDeBeaune:
-                    return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/France/Burgundy/CoteDeBeaune.geojson")!
-                }
-            }
-            case coteDeBeaune
         }
+
+        public var url: URL {
+            switch self {
+            case .coteDeBeaune:
+                return URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/France/Burgundy/CoteDeBeaune.geojson")!
+            }
+        }
+        case coteDeBeaune
+
     }
-    public struct Bordeaux {
+    public enum Bordeaux: String, AppelationDescribable, CaseIterable {
         public static func appelation(named: String) -> AppelationDescribable? {
             switch named {
             case "St. Julien":
-                return Appelation.st_Julien
+                return st_Julien
             default:
                 return nil
             }
         }
         public static let title = "Bordeaux"
-        public enum Appelation: String, AppelationDescribable, CaseIterable {
 
             public var description: String {
-
                 // Ultimately this capitalizes the string and splits on the capitals so "abcDeFG" becomes "Abc De Fg"
                 // We also replace P D O with PDO and a few other simple replacements
-
                 let doctoredString = rawValue.capitalizeAndSplit()
                 return doctoredString
                     .capitalized
@@ -100,9 +96,6 @@ public struct France {
             case st_Foy_Bordeaux
             case st_Georges_St_Emilion
             case st_Julien
-
-
-        }
     }
 
 }
