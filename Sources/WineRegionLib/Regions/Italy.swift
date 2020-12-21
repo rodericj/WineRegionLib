@@ -1,616 +1,624 @@
-//
-//  File.swift
-//  
-//
-//  Created by Roderic Campbell on 12/5/20.
-//
-
-import Foundation
-
-extension String {
-    var capitalizeFirst: String {
-        prefix(1).capitalized + dropFirst()
-    }
-}
-
-extension Character {
-    var isUppercase: Bool { return String(self).uppercased() == String(self) }
-}
-
-
-extension String {
-
-    func capitalizeAndSplit() -> String {
-        let indexes = Set(self
-                            .enumerated()
-                            .filter { $0.element.isUppercase }
-                            .map { $0.offset })
-
-        let chunks = self
-            .map { String($0) }
-            .enumerated()
-            .reduce([String]()) { chunks, elm -> [String] in
-                guard !chunks.isEmpty else { return [elm.element] }
-                guard !indexes.contains(elm.offset) else { return chunks + [String(elm.element)] }
-
-                var chunks = chunks
-                chunks[chunks.count-1] += String(elm.element)
-                return chunks
-            }
-        return chunks.joined(separator: " ")
-    }
-}
-
 public struct Italy {
-    public static let title = "Italy"
-    public enum Tuscany: String, AppelationDescribable, CaseIterable  {
-
-        public static let title = "Tuscany"
-        public init?(_ appellation: String) {
-            switch appellation {
-            case "Chianti Classico DOCG":
-                self = .chiantiClassicoDOP
-            case "Brunello di Montalcino":
-                self = .brunellodiMontalcinoDOP
-            default:
-                return nil
-            }
-        }
-        public var description: String {
-
-            // Ultimately this capitalizes the string and splits on the capitals so "abcDeFG" becomes "Abc De Fg"
-            // We also replace D O P with DOP and a few other simple replacements
-            let doctoredString = rawValue.capitalizeAndSplit()
-            return doctoredString
-                .capitalized
-                .replacingOccurrences(of: "D O P", with: "DOP")
-                .replacingOccurrences(of: "I G P", with: "IGP")
-                .replacingOccurrences(of: "O I G P", with: "OIGP")
-                .replacingOccurrences(of: "_", with: "")
-        }
-
-        public var url: URL {
-            URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/\(urlableName).geojson")!
-
-        }
-
-        private var urlableName: String {
-            self.rawValue
-                .capitalizeFirst
-                .replacingOccurrences(of: " ", with: "")
-                .replacingOccurrences(of: "dop", with: "DOP")
-                .replacingOccurrences(of: "_", with: "-")
-        }
-        case abruzzoDOP
-        //            case affileCesanesediAffileDOP
-        case aglianicodelTaburnoDOP
-        case aglianicodelVultureDOP
-        case aglianicodelVultureSuperioreDOP
-        case albaDOP
-        case albugnanoDOP
-        case alcamoDOP
-        case aleaticoPassitodellElbaElbaAleaticoPassitoDOP
-        case aleaticodiGradoliDOP
-        case aleaticodiPugliaDOP
-        case alezioDOP
-        case algheroDOP
-        case alleronaIGP
-        case alpiReticheIGP
-        case altaLangaDOP
-        case altaValledellaGreveIGP
-        //            case altoAdigeSfcdtirolSfcdtirolerdellAltoAdigeDOP
-        case altoLivenzaIGP
-        case altoMincioIGP
-        case amaronedellaValpolicellaDOP
-        case ameliaDOP
-        case anagniIGP
-        //            case ansonicaCostadellArgentarioDOP
-        case apriliaDOP
-        case arboreaDOP
-        case arcoleDOP
-        case arghille0IGP
-        case asolo_ProseccoColliAsolani_ProseccoDOP
-        case assisiDOP
-        case astiDOP
-        case atinaDOP
-        case aversaDOP
-        case avolaIGP
-        case bagnoliBagnolidiSopraDOP
-        case bagnoliFriularoFriularodiBagnoliDOP
-        case barbagiaIGP
-        case barbarescoDOP
-        case barberadAlbaDOP
-        case barberadAstiDOP
-        case barberadelMonferratoDOP
-        case barberadelMonferratoSuperioreDOP
-        case barcoRealediCarmignanoDOP
-        case bardolinoDOP
-        case bardolinoSuperioreDOP
-        case barlettaDOP
-        case baroloDOP
-        case basilicataIGP
-        case benacoBrescianoIGP
-        case beneventoBeneventanoIGP
-        case bergamascaIGP
-        case bettonaIGP
-        case bianchellodelMetauroDOP
-        case biancoCapenaDOP
-        case biancodelSillaroSillaroIGP
-        case biancodellEmpoleseDOP
-        case biancodiCastelfrancoEmiliaIGP
-        case biancodiCustozaCustozaDOP
-        case biancodiPitiglianoDOP
-        case bifernoDOP
-        case bivongiDOP
-        case bocaDOP
-        case bolgheriDOP
-        case bolgheriSassicaiaDOP
-        case bonardadellOltrepf2PaveseDOP
-        case boscoEliceoDOP
-        case botticinoDOP
-        case brachettodAcquiAcquiDOP
-        case bramaterraDOP
-        case breganzeDOP
-        case brindisiDOP
-        case brunelloDiMontalcino// = "Brunello di Montalcino"
-        case brunellodiMontalcinoDOP
-        case buttafuocoButtafuocodellOltrepf2PaveseDOP
-        case caccemmittediLuceraDOP
-        case cagliariDOP
-        case calabriaIGP
-        //            case caldaroKaltererKaltererseeLagodiCaldaroDOP
-        case calossoDOP
-        case camarroIGP
-        case campaniaIGP
-        case campiFlegreiDOP
-        case campidanodiTerralbaTerralbaDOP
-        case canaveseDOP
-        case candiadeiColliApuaniDOP
-        case cannaraIGP
-        case cannellinodiFrascatiDOP
-        case cannonaudiSardegnaDOP
-        case capalbioDOP
-        case capriDOP
-        case caprianodelColleDOP
-        case caremaDOP
-        case carignanodelSulcisDOP
-        case carmignanoDOP
-        case carsoCarso_KrasDOP
-        case casavecchiadiPontelatoneDOP
-        case casteggioDOP
-        case castelSanLorenzoDOP
-        case casteldelMonteBombinoNeroDOP
-        case casteldelMonteDOP
-        case casteldelMonteNerodiTroiaDOP
-        case casteldelMonteRossoRiservaDOP
-        case castellerDOP
-        case castelliRomaniDOP
-        case castellidiJesiVerdicchioRiservaDOP
-        case catalanescadelMonteSommaSommaIGP
-        case cellaticaDOP
-        case cerasuolodAbruzzoDOP
-        //            case cerasuolodiVittoriaDOP
-        case cerveteriDOP
-        case cesanesedelPiglioPiglioDOP
-        case cesanesediOlevanoRomanoOlevanoRomanoDOP
-        case cf2neroDOP
-        case chiantiClassico
-        case chiantiClassicoDOP
-        case chiantiDOP
-        case cilentoDOP
-        case cinqueTerreCinqueTerreSciacchetre0DOP
-        case circeoDOP
-        case cirf2DOP
-        case cisternadAstiDOP
-        case civitellad92AglianoIGP
-        case colliAlbaniDOP
-        case colliAltotiberiniDOP
-        case colliAprutiniIGP
-        case colliBericiDOP
-        case colliBolognesiClassicoPignolettoDOP
-        case colliBolognesiDOP
-        case colliCiminiIGP
-        case colliEtruschiViterbesiTusciaDOP
-        case colliEuganeiDOP
-        case colliEuganeiFiord92ArancioFiordArancioColliEuganeiDOP
-        case colliLanuviniDOP
-        case colliMaceratesiDOP
-        case colliMartaniDOP
-        case colliOrientalidelFriuliPicolitDOP
-        case colliPeruginiDOP
-        case colliPesaresiDOP
-        //            case colliPiacentiniDOP
-        case colliRomagnaCentraleDOP
-        case colliTortonesiDOP
-        case colliTrevigianiIGP
-        case collidImolaDOP
-        case collidelLimbaraIGP
-        case collidelSangroIGP
-        case collidelTrasimenoTrasimenoDOP
-        case collidellEtruriaCentraleDOP
-        case collidellaSabinaDOP
-        case collidellaToscanacentraleIGP
-        case collidiConeglianoDOP
-        case collidiFaenzaDOP
-        case collidiLuniDOP
-        case collidiParmaDOP
-        case collidiRiminiDOP
-        case collidiSalernoIGP
-        case collidiScandianoediCanossaDOP
-        case collinaTorineseDOP
-        case collinadelMilaneseIGP
-        case collineFrentaneIGP
-        case collineJonicheTarantineDOP
-        case collineLucchesiDOP
-        case collineNovaresiDOP
-        case collinePescaresiIGP
-        case collineSaluzzesiDOP
-        case collineSavonesiIGP
-        case collineTeatineIGP
-        case collinedelGenovesatoIGP
-        case collinediLevantoDOP
-        case collioGorizianoCollioDOP
-        case conegliano_ProseccoConeglianoValdobbiadene_ProseccoValdobbiadene_ProseccoDOP
-        case conselvanoIGP
-        case conteadiSclafaniValledolmo_ConteadiSclafaniDOP
-        case contessaEntellinaDOP
-        case controguerraDOP
-        case copertinoDOP
-        case coriDOP
-        case cortesedellAltoMonferratoDOP
-        case cortesediGaviGaviDOP
-        case cortiBenedettinedelPadovanoDOP
-        case cortonaDOP
-        case costaEtruscoRomanaIGP
-        case costaToscanaIGP
-        case costaViolaIGP
-        case costadAmalfiDOP
-        case costedellaSesiaDOP
-        case curtefrancaDOP
-        case dauniaIGP
-        case delVasteseHistoniumIGP
-        case deliaNivolelliDOP
-        case doglianiDOP
-        case dolceacquaRossesediDolceacquaDOP
-        case dolcettodAcquiDOP
-        case dolcettodAlbaDOP
-        case dolcettodAstiDOP
-        case dolcettodiDianod92AlbaDianod92AlbaDOP
-        case dolcettodiOvadaDOP
-        case dolcettodiOvadaSuperioreOvadaDOP
-        case dugentaIGP
-        case elbaDOP
-        case eloroDOP
-        case emiliadellEmiliaIGP
-        case epomeoIGP
-        case erbalucediCalusoCalusoDOP
-        case ericeDOP
-        case esinoDOP
-        //            case est!Est!!Est!!!diMontefiasconeDOP
-        case estDiMontefiasconeDOP = "est!Est!!Est!!!diMontefiasconeDOP"
-        case etnaDOP
-        //            case falanghinadelSannioDOP
-        case falerioDOP
-        case falernodelMassicoDOP
-        case faraDOP
-        case faroDOP
-        case fianodiAvellinoDOP
-        case fontanarossadiCerdaIGP
-        case forlecIGP
-        case fortanadelTaroIGP
-        case franciacortaDOP
-        case frascatiDOP
-        case frascatiSuperioreDOP
-        case freisadAstiDOP
-        case freisadiChieriDOP
-        case friuliAnniaDOP
-        case friuliAquileiaDOP
-        case friuliColliOrientaliDOP
-        case friuliGraveDOP
-        case friuliIsonzoIsonzodelFriuliDOP
-        case friuliLatisanaDOP
-        case fruiuliAquileia
-        case frusinatedelFrusinateIGP
-        case gabianoDOP
-        case galatinaDOP
-        case galluccioDOP
-        case gambellaraDOP
-        case gardaBrescianoRivieradelGardaBrescianoDOP
-        case gardaColliMantovaniDOP
-        //            case gardaDOP
-        case gattinaraDOP
-        case genazzanoDOP
-        //            case ghemmeDOP
-        case gioiadelColleDOP
-        case girf2diCagliariDOP
-        case golfodelTigullio_PortofinoPortofinoDOP
-        case granceSenesiDOP
-        case gravinaDOP
-        case grecodiBiancoDOP
-        case grecodiTufoDOP
-        case grignolinodAstiDOP
-        case grignolinodelMonferratoCasaleseDOP
-        case grottinodiRoccanovaDOP
-        //            case gutturnioDOP
-        case iTerrenidiSanseverinoDOP
-        case irpiniaDOP
-        case ischiaDOP
-        case isoladeiNuraghiIGP
-        case lacrimadiMorroLacrimadiMorrodAlbaDOP
-        case lagodiCorbaraDOP
-        case lambruscoGrasparossadiCastelvetroDOP
-        case lambruscoMantovanoDOP
-        case lambruscoSalaminodiSantaCroceDOP
-        case lambruscodiSorbaraDOP
-        case lameziaDOP
-        case langheDOP
-        case lazioIGP
-        case lessiniDurelloDurelloLessiniDOP
-        case lessonaDOP
-        case leveranoDOP
-        case liguriadiLevanteIGP
-        case lipudaIGP
-        case lisonDOP
-        //            case lisonPramaggioreDOP
-        case lizzanoDOP
-        case loazzoloDOP
-        case locorotondoDOP
-        case locrideIGP
-        case luganaDOP
-        case malanottedelPiavePiaveMalanotteDOP
-        case malvasiadelleLipariDOP
-        case malvasiadiBosaDOP
-        case malvasiadiCasorzodAstiCasorzoMalvasiadiCasorzoDOP
-        case malvasiadiCastelnuovoDonBoscoDOP
-        case mamertinoMamertinodiMilazzoDOP
-        case mandrolisaiDOP
-        case marcaTrevigianaIGP
-        case marcheIGP
-        case maremmaToscanaDOP
-        case marinoDOP
-        case marmillaIGP
-        case marsalaDOP
-        case martinaMartinaFrancaDOP
-        case materaDOP
-        case matinoDOP
-        case melissaDOP
-        case menfiDOP
-        case merlaraDOP
-        case mitterbergIGP
-        case modenadiModenaDOP
-        case molisedelMoliseDOP
-        case monferratoDOP
-        case monicadiSardegnaDOP
-        case monrealeDOP
-        case montecarloDOP
-        case montecastelliIGP
-        case montecompatriColonnaMontecompatriColonnaDOP
-        case montecuccoDOP
-        case montecuccoSangioveseDOP
-        case montefalcoDOP
-        case montefalcoSagrantinoDOP
-        case montello_ColliAsolaniDOP
-        case montelloMontelloRossoDOP
-        case montenettodiBresciaIGP
-        case montepulcianodAbruzzoCollineTeramaneDOP
-        case montepulcianodAbruzzoDOP
-        case monteregiodiMassaMarittimaDOP
-        case montescudaioDOP
-        case montiLessiniDOP
-        case morellinodiScansanoDOP
-        case moscadellodiMontalcinoDOP
-        case moscatodiSardegnaDOP
-        case moscatodiSorso_SennoriMoscatodiSorsoMoscatodiSennoriDOP
-        case moscatodiTraniDOP
-        case murgiaIGP
-        case nardf2DOP
-        case narniIGP
-        case nascodiCagliariDOP
-        case nebbiolodAlbaDOP
-        case negroamarodiTerradOtrantoDOP
-        case nettunoDOP
-        case nizzaDOP
-        case notoDOP
-        case nuragusdiCagliariDOP
-        case nurraIGP
-        case offidaDOP
-        case ogliastraIGP
-        case oltrepf2PaveseDOP
-        case oltrepf2PavesePinotgrigioDOP
-        case oltrepf2PavesemetodoclassicoDOP
-        case orciaDOP
-        case ormeascodiPornassioPornassioDOP
-        case ortaNovaDOP
-        case ortonaDOP
-        //            case ortrugodeiColliPiacentiniOrtrugoColliPiacentiniDOP
-        case orvietanoRossoRossoOrvietanoDOP
-        case orvietoDOP
-        case oscoTerredegliOsciIGP
-        case ostuniDOP
-        case paestumIGP
-        case palizziIGP
-        case pantelleriaDOP
-        case parrinaDOP
-        case parteollaIGP
-        case pellaroIGP
-        case penisolaSorrentinaDOP
-        case pentroPentrodiIserniaDOP
-        case pergolaDOP
-        case piaveDOP
-        case piedmont
-        case piemonteDOP
-        case pineroleseDOP
-        case pinotnerodellOltrepf2PaveseDOP
-        case planargiaIGP
-        case pominoDOP
-        case pompeianoIGP
-        case primitivodiManduriaDOP
-        case primitivodiManduriaDolceNaturaleDOP
-        case proseccoDOP
-        case provinciadiMantovaIGP
-        case provinciadiNuoroIGP
-        case provinciadiPaviaIGP
-        case pugliaIGP
-        case quistelloIGP
-        case ramandoloDOP
-        case ravennaIGP
-        case reciotodellaValpolicellaDOP
-        case reciotodiGambellaraDOP
-        //            case reciotodiSoaveDOP
-        case reggianoDOP
-        case renoDOP
-        case riesiDOP
-        //            case rivieradelBrentaDOP
-        //            case rivieraligurediPonenteDOP
-        case roccamonfinaIGP
-        case roeroDOP
-        case romaDOP
-        case romagnaAlbanaDOP
-        case romagnaDOP
-        case romangiaIGP
-        case ronchiVaresiniIGP
-        case ronchidiBresciaIGP
-        case rosazzoDOP
-        case rossoCf2neroDOP
-        case rossoPicenoPicenoDOP
-        case rossodellaValdiCorniaValdiCorniaRossoDOP
-        case rossodiCerignolaDOP
-        case rossodiMontalcinoDOP
-        //            case rossodiMontepulcianoDOP
-        case rotaeIGP
-        case rubiconeIGP
-        case rubinodiCantavennaDOP
-        case ruche9diCastagnoleMonferratoDOP
-        case s_AnnadiIsolaCapoRizzutoDOP = "S.AnnadiIsolaCapoRizzutoDOP"
-        case sabbionetaIGP
-        case salaparutaDOP
-        case salemiIGP
-        case salentoIGP
-        case saliceSalentinoDOP
-        case salinaIGP
-        case sambucadiSiciliaDOP
-        case sanColombanoSanColombanoalLambroDOP
-        case sanGimignanoDOP
-        case sanGinesioDOP
-        case sanMartinodellaBattagliaDOP
-        case sanSeveroDOP
-        case sanTorpe8DOP
-        case sanguediGiudaSanguediGiudadellOltrepf2PaveseDOP
-        //            case sanfnioDOP
-        case santAntimoDOP
-        case santaMargheritadiBeliceDOP
-        case sardegnaSemidanoDOP
-        case savutoDOP
-        case scanzoMoscatodiScanzoDOP
-        case scavignaDOP
-        case sciaccaDOP
-        case scillaIGP
-        case sebinoIGP
-        case serenissimaVignetidellaSerenissimaDOP
-        case serrapetronaDOP
-        case sforzatodiValtellinaSfursatdiValtellinaDOP
-        case sibiolaIGP
-        case siciliaDOP
-        case siracusaDOP
-        case sizzanoDOP
-        case soaveDOP
-        case soaveSuperioreDOP
-        case sovanaDOP
-        case spelloIGP
-        case spoletoDOP
-        case squinzanoDOP
-        case streviDOP
-        case suveretoDOP
-        case tarantinoIGP
-        case tarquiniaDOP
-        case taurasiDOP
-        case tavoliereTavolieredellePuglieDOP
-        case teroldegoRotalianoDOP
-        case terracinaMoscatodiTerracinaDOP
-        case terradOtrantoDOP
-        case terradeifortiValdadigeTerradeifortiDOP
-        case terraticodiBibbonaDOP
-        case terrazzedellImperieseIGP
-        case terreAlfieriDOP
-        case terreAquilaneTerredeLAquilaIGP
-        case terreLarianeIGP
-        case terreSicilianeIGP
-        case terreTollesiTullumDOP
-        case terredelColleoniColleoniDOP
-        case terredelVolturnoIGP
-        case terredellAltaValdAgriDOP
-        case terrediCasoleDOP
-        case terrediChietiIGP
-        case terrediCosenzaDOP
-        case terrediOffidaDOP
-        case terrediPisaDOP
-        case terrediVelejaIGP
-        case tharrosIGP
-        case tintiliadelMoliseDOP
-        case todiDOP
-        case torgianoDOP
-        case torgianoRossoRiservaDOP
-        case toscanoToscanaIGP
-        case trebbianodAbruzzoDOP
-        case trentinoDOP
-        case trentoDOP
-        case trexentaIGP
-        case umbria
-        case umbriaIGP
-        case valPolce8veraDOP
-        case valTidoneIGP
-        case valcalepioDOP
-        case valcamonicaIGP
-        case vald92ArbiaDOP
-        case vald92ArnodiSopraValdarnodiSopraDOP
-        case valdadigeEtschtalerDOP
-        case valdamatoIGP
-        case valdiCorniaDOP
-        case valdiMagraIGP
-        case valdiNetoIGP
-        case valdichianatoscanaDOP
-        case valdinievoleDOP
-        case vallagarinaIGP
-        case valleBeliceIGP
-        case valled92ItriaIGP
-        //            case valledAostaValle9edAosteDOP
-        case valledelTirsoIGP
-        case valliOssolaneDOP
-        case vallidiPortoPinoIGP
-        case valpolicellaDOP
-        case valpolicellaripassoDOP
-        case valsusaDOP
-        case valte8nesiDOP
-        case valtellinaSuperioreDOP
-        case valtellinarossoRossodiValtellinaDOP
-        case velletriDOP
-        case veneto
-        case venetoIGP
-        case venetoorientaleIGP
-        case veneziaDOP
-        case veneziaGiuliaIGP
-        case verdicchiodeiCastellidiJesiDOP
-        case verdicchiodiMatelicaDOP
-        case verdicchiodiMatelicaRiservaDOP
-        case verdunoPelavergaVerdunoDOP
-        case vermentinodiGalluraDOP
-        case vermentinodiSardegnaDOP
-        case vernacciadiOristanoDOP
-        case vernacciadiSanGimignanoDOP
-        case vernacciadiSerrapetronaDOP
-        case veronaVeroneseProvinciadiVeronaIGP
-        case vesuvioDOP
-        case vicenzaDOP
-        case vignanelloDOP
-        case vignetidelleDolomitiWeinbergDolomitenIGP
-        case villamagnaDOP
-        case vinSantodelChiantiClassicoDOP
-        case vinSantodelChiantiDOP
-        case vinSantodiCarmignanoDOP
-        case vinSantodiMontepulcianoDOP
-        case vinoNobilediMontepulcianoDOP
-        case vittoriaDOP
-        case zagaroloDOP
+    public enum Tuscany: String, AppelationDescribable, CaseIterable {
+        case parrinaDOP 
+        case vinsantodicarmignanoDOP 
+        case valdicorniaDOP 
+        case terraticodibibbonaDOP 
+        case ansonicacostadellargentarioDOP 
+        case ricciarellidisienaIGP 
+        case cintaseneseDOP 
+        case chiantiDOP 
+        case morellinodiscansanoDOP 
+        case pominoDOP 
+        case vernacciadisangimignanoDOP 
+        case moscadellodimontalcinoDOP 
+        case mortadelladipratoIGP 
+        case santorpèDOP 
+        case capalbioDOP 
+        case rossodimontalcinoDOP 
+        case terredipisaDOP 
+        case cantuccinitoscanicantuccitoscaniIGP 
+        case castagnadelmonteamiataIGP 
+        case orciaDOP 
+        case collinelucchesiDOP 
+        case farrodellagarfagnanaIGP 
+        case lardodicolonnataIGP 
+        case santantimoDOP 
+        case altavalledellagreveIGP 
+        case bolgherisassicaiaDOP 
+        case terredicasoleDOP 
+        case elbaDOP 
+        case valdarbiaDOP 
+        case montecuccoDOP 
+        case montecuccosangioveseDOP 
+        case grancesenesiDOP 
+        case seggianoDOP 
+        case luccaDOP 
+        case montecarloDOP 
+        case biancodellempoleseDOP 
+        case marronedelmugelloIGP 
+        case biancodipitiglianoDOP 
+        case chianticlassicoDOP 
+        case aleaticopassitodellelbaelbaaleatico 
+        case cortonaDOP 
+        case carmignanoDOP 
+        case barcorealedicarmignanoDOP 
+        case marronedicapresemichelangeloDOP 
+        case vinonobiledimontepulcianoDOP 
+        case maremmatoscanaDOP 
+        case fagiolodisoranaIGP 
+        case monteregiodimassamarittimaDOP 
+        case valdarnodisopravaldarnodisoprado 
+        case bolgheriDOP 
+        case zafferanodisangimignanoDOP 
+        case vinsantodelchiantiDOP 
+        case collidellatoscanacentraleIGP 
+        case farinadicastagnedellalunigianaDOP 
+        case prosciuttotoscanoDOP 
+        case farinadinecciodellagarfagnanaDOP 
+        case candiadeicolliapuaniDOP 
+        case rossodellavaldicorniavaldicornia 
+        case montecastelliIGP 
+        case vinsantodimontepulcianoDOP 
+        case finocchionaIGP 
+        case sangimignanoDOP 
+        case panfortedisienaIGP 
+        case pecorinodellebalzevolterraneDOP 
+        case terredisienaDOP 
+        case suveretoDOP 
+        case rossodimontepulcianoDOP 
+        case montescudaioDOP 
+        case costatoscanaIGP 
+        case sovanaDOP 
+        case valdichianatoscanaDOP 
+        case valdimagraIGP 
+        case toscanotoscanaIGP 
+        case valdinievoleDOP 
+        case brunellodimontalcinoDOP 
+        case collidelletruriacentraleDOP 
+        case mieledellalunigianaDOP 
+        case panetoscanoDOP 
+        case vinsantodelchianticlassicoDOP 
     }
-
+    public enum EmiliaRomagna_Tuscany: String, AppelationDescribable, CaseIterable {
+        case fungodiborgotaroIGP 
+    }
+    public enum LazioAndOther2: String, AppelationDescribable, CaseIterable {
+        case pecorinotoscanoDOP 
+        case pecorinoromanoDOP 
+    }
+    public enum AbruzzoAndOther5: String, AppelationDescribable, CaseIterable {
+        case agnellodelcentroitaliaIGP 
+    }
+    public enum EmiliaRomagnaAndOther7: String, AppelationDescribable, CaseIterable {
+        case mortadellabolognaIGP 
+    }
+    public enum AbruzzoAndOther7: String, AppelationDescribable, CaseIterable {
+        case vitellonebiancodellappenninocentralei 
+    }
+    public enum AbruzzoAndOther10: String, AppelationDescribable, CaseIterable {
+        case salaminiitalianiallacacciatoraDOP 
+    }
+    public enum AbruzzoAndOther19: String, AppelationDescribable, CaseIterable {
+        case mozzarellastg 
+        case pizzanapoletanastg 
+    }
+    public enum Liguria_Tuscany: String, AppelationDescribable, CaseIterable {
+        case collidiluniDOP 
+    }
+    public enum Piedmont: String, AppelationDescribable, CaseIterable {
+        case dolcettodiovadasuperioreovadaDOP 
+        case nizzaDOP 
+        case lessonaDOP 
+        case pineroleseDOP 
+        case malvasiadicastelnuovodonboscoDOP 
+        case roeroDOP 
+        case freisadastiDOP 
+        case freisadichieriDOP 
+        case dolcettodacquiDOP 
+        case bocaDOP 
+        case barbarescoDOP 
+        case verdunopelavergaverdunoDOP 
+        case cortesedigavigaviDOP 
+        case barberadastiDOP 
+        case ruchédicastagnolemonferratoDOP 
+        case collinenovaresiDOP 
+        case dolcettodalbaDOP 
+        case altalangaDOP 
+        case terrealfieriDOP 
+        case canaveseDOP 
+        case erbalucedicalusocalusoDOP 
+        case valsusaDOP 
+        case doglianiDOP 
+        case gabianoDOP 
+        case collinatorineseDOP 
+        case albugnanoDOP 
+        case nebbiolodalbaDOP 
+        case malvasiadicasorzodasticasorzomal 
+        case faraDOP 
+        case valliossolaneDOP 
+        case astiDOP 
+        case collitortonesiDOP 
+        case grignolinodastiDOP 
+        case caremaDOP 
+        case dolcettodidianodalbadianodalbado 
+        case dolcettodastiDOP 
+        case streviDOP 
+        case baroloDOP 
+        case dolcettodiovadaDOP 
+        case langheDOP 
+        case sizzanoDOP 
+        case barberadelmonferratoDOP 
+        case barberadalbaDOP 
+        case collinesaluzzesiDOP 
+        case albaDOP 
+        case ghemmeDOP 
+        case cisternadastiDOP 
+        case costedellasesiaDOP 
+        case grignolinodelmonferratocasaleseDOP 
+        case calossoDOP 
+        case cortesedellaltomonferratoDOP 
+        case brachettodacquiacquiDOP 
+        case piemonteDOP 
+        case barberadelmonferratosuperioreDOP 
+        case rubinodicantavennaDOP 
+        case gattinaraDOP 
+        case bramaterraDOP 
+        case loazzoloDOP 
+        case monferratoDOP 
+    }
+    public enum Veneto: String, AppelationDescribable, CaseIterable {
+        case veneziaDOP 
+        case gambellaraDOP 
+        case bagnolifriularofriularodibagnoliDOP 
+        case collibericiDOP 
+        case breganzeDOP 
+        case piaveDOP 
+        case lessinidurellodurellolessiniDOP 
+        case soaveDOP 
+        case collieuganeiDOP 
+        case malanottedelpiavepiavemalanotteDOP 
+        case reciotodisoaveDOP 
+        case bardolinoDOP 
+        case bardolinosuperioreDOP 
+        case marcatrevigianaIGP 
+        case collidiconeglianoDOP 
+        case montellomontellorossoDOP 
+        case biancodicustozacustozaDOP 
+        case reciotodellavalpolicellaDOP 
+        case soavesuperioreDOP 
+        case collitrevigianiIGP 
+        case valpolicellaripassoDOP 
+        case conegliano_Proseccoconeglianovaldobb 
+        case montello_ColliasolaniDOP 
+        case veronaveroneseprovinciadiveronaig 
+        case asolo_Proseccocolliasolani_Prosecc 
+        case reciotodigambellaraDOP 
+        case conselvanoIGP 
+        case collieuganeifiordaranciofiordaran 
+        case cortibenedettinedelpadovanoDOP 
+        case bagnolibagnolidisopraDOP 
+        case venetoorientaleIGP 
+        case serenissimavignetidellaserenissimado 
+        case rivieradelbrentaDOP 
+        case vicenzaDOP 
+        case venetoIGP 
+        case valpolicellaDOP 
+        case amaronedellavalpolicellaDOP 
+        case montilessiniDOP 
+        case merlaraDOP 
+        case arcoleDOP 
+    }
+    public enum Lazio: String, AppelationDescribable, CaseIterable {
+        case colliciminiIGP 
+        case marinoDOP 
+        case collidellasabinaDOP 
+        case apriliaDOP 
+        case vignanelloDOP 
+        case romaDOP 
+        case lazioIGP 
+        case civitelladaglianoIGP 
+        case atinaDOP 
+        case anagniIGP 
+        case terracinamoscatoditerracinaDOP 
+        case costaetruscoromanaIGP 
+        case coriDOP 
+        case cesanesedelpigliopiglioDOP 
+        case collietruschiviterbesitusciaDOP 
+        case tarquiniaDOP 
+        case cannellinodifrascatiDOP 
+        case frusinatedelfrusinateIGP 
+        case estestestdimontefiasconeDOP 
+        case frascatisuperioreDOP 
+        case biancocapenaDOP 
+        case zagaroloDOP 
+        case velletriDOP 
+        case affilecesanesediaffileDOP 
+        case aleaticodigradoliDOP 
+        case montecompatricolonnamontecompatrico 
+        case cerveteriDOP 
+        case collilanuviniDOP 
+        case collialbaniDOP 
+        case castelliromaniDOP 
+        case cesanesediolevanoromanoolevanoroman 
+        case frascatiDOP 
+        case nettunoDOP 
+        case circeoDOP 
+        case genazzanoDOP 
+    }
+    public enum Apulia: String, AppelationDescribable, CaseIterable {
+        case primitivodimanduriaDOP 
+        case casteldelmonteDOP 
+        case lizzanoDOP 
+        case tavolieretavolieredellepuglieDOP 
+        case rossodicerignolaDOP 
+        case aleaticodipugliaDOP 
+        case barlettaDOP 
+        case galatinaDOP 
+        case caccemmittediluceraDOP 
+        case brindisiDOP 
+        case gravinaDOP 
+        case moscatoditraniDOP 
+        case squinzanoDOP 
+        case negroamaroditerradotrantoDOP 
+        case locorotondoDOP 
+        case ortanovaDOP 
+        case primitivodimanduriadolcenaturaleDOP 
+        case collinejonichetarantineDOP 
+        case murgiaIGP 
+        case pugliaIGP 
+        case salentoIGP 
+        case gioiadelcolleDOP 
+        case casteldelmontebombinoneroDOP 
+        case valleditriaIGP 
+        case nardòDOP 
+        case sanseveroDOP 
+        case ostuniDOP 
+        case martinamartinafrancaDOP 
+        case copertinoDOP 
+        case leveranoDOP 
+        case matinoDOP 
+        case tarantinoIGP 
+        case casteldelmonteneroditroiaDOP 
+        case salicesalentinoDOP 
+        case dauniaIGP 
+        case casteldelmonterossoriservaDOP 
+        case alezioDOP 
+        case terradotrantoDOP 
+    }
+    public enum EmiliaRomagna: String, AppelationDescribable, CaseIterable {
+        case collidiscandianoedicanossaDOP 
+        case valtidoneIGP 
+        case romagnaDOP 
+        case forlìIGP 
+        case gutturnioDOP 
+        case collibolognesiclassicopignolettoDOP 
+        case collidiriminiDOP 
+        case colliromagnacentraleDOP 
+        case collidimolaDOP 
+        case renoDOP 
+        case ortrugodeicollipiacentiniortrugoc 
+        case lambruscograsparossadicastelvetroDOP 
+        case romagnaalbanaDOP 
+        case lambruscosalaminodisantacroceDOP 
+        case lambruscodisorbaraDOP 
+        case boscoeliceoDOP 
+        case fortanadeltaroIGP 
+        case collipiacentiniDOP 
+        case biancodelsillarosillaroIGP 
+        case terredivelejaIGP 
+        case ravennaIGP 
+        case collibolognesiDOP 
+        case collidifaenzaDOP 
+        case biancodicastelfrancoemiliaIGP 
+        case rubiconeIGP 
+        case collidiparmaDOP 
+        case modenadimodenaDOP 
+        case emiliadellemiliaIGP 
+        case reggianoDOP 
+    }
+    public enum Sardinia: String, AppelationDescribable, CaseIterable {
+        case moscatodisardegnaDOP 
+        case vermentinodisardegnaDOP 
+        case provinciadinuoroIGP 
+        case giròdicagliariDOP 
+        case tharrosIGP 
+        case cannonaudisardegnaDOP 
+        case vernacciadioristanoDOP 
+        case sardegnasemidanoDOP 
+        case parteollaIGP 
+        case nuragusdicagliariDOP 
+        case arboreaDOP 
+        case cagliariDOP 
+        case barbagiaIGP 
+        case planargiaIGP 
+        case marmillaIGP 
+        case isoladeinuraghiIGP 
+        case valledeltirsoIGP 
+        case vallidiportopinoIGP 
+        case moscatodisorso_Sennorimoscatodisor 
+        case carignanodelsulcisDOP 
+        case vermentinodigalluraDOP 
+        case nurraIGP 
+        case romangiaIGP 
+        case ogliastraIGP 
+        case sibiolaIGP 
+        case mandrolisaiDOP 
+        case algheroDOP 
+        case collidellimbaraIGP 
+        case trexentaIGP 
+        case campidanoditerralbaterralbaDOP 
+        case monicadisardegnaDOP 
+        case malvasiadibosaDOP 
+        case nascodicagliariDOP 
+    }
+    public enum Campania: String, AppelationDescribable, CaseIterable {
+        case ischiaDOP 
+        case epomeoIGP 
+        case capriDOP 
+        case pompeianoIGP 
+        case falanghinadelsannioDOP 
+        case falernodelmassicoDOP 
+        case paestumIGP 
+        case terredelvolturnoIGP 
+        case cilentoDOP 
+        case aversaDOP 
+        case taurasiDOP 
+        case catalanescadelmontesommasommaIGP 
+        case grecoditufoDOP 
+        case casavecchiadipontelatoneDOP 
+        case beneventobeneventanoIGP 
+        case collidisalernoIGP 
+        case roccamonfinaIGP 
+        case campiflegreiDOP 
+        case irpiniaDOP 
+        case sannioDOP 
+        case aglianicodeltaburnoDOP 
+        case galluccioDOP 
+        case penisolasorrentinaDOP 
+        case costadamalfiDOP 
+        case fianodiavellinoDOP 
+        case vesuvioDOP 
+        case campaniaIGP 
+        case castelsanlorenzoDOP 
+        case dugentaIGP 
+    }
+    public enum Sicily: String, AppelationDescribable, CaseIterable {
+        case mamertinomamertinodimilazzoDOP 
+        case sciaccaDOP 
+        case salinaIGP 
+        case ericeDOP 
+        case marsalaDOP 
+        case camarroIGP 
+        case fontanarossadicerdaIGP 
+        case contessaentellinaDOP 
+        case faroDOP 
+        case malvasiadellelipariDOP 
+        case delianivolelliDOP 
+        case vallebeliceIGP 
+        case terresicilianeIGP 
+        case menfiDOP 
+        case etnaDOP 
+        case salemiIGP 
+        case salaparutaDOP 
+        case siciliaDOP 
+        case siracusaDOP 
+        case sambucadisiciliaDOP 
+        case riesiDOP 
+        case monrealeDOP 
+        case eloroDOP 
+        case santamargheritadibeliceDOP 
+        case cerasuolodivittoriaDOP 
+        case notoDOP 
+        case pantelleriaDOP 
+        case avolaIGP 
+        case conteadisclafanivalledolmo_Conteadi 
+        case alcamoDOP 
+        case vittoriaDOP 
+    }
+    public enum Lombardy: String, AppelationDescribable, CaseIterable {
+        case buttafuocobuttafuocodelloltrepòpaves 
+        case ronchivaresiniIGP 
+        case caprianodelcolleDOP 
+        case gardacollimantovaniDOP 
+        case valcamonicaIGP 
+        case cellaticaDOP 
+        case franciacortaDOP 
+        case oltrepòpavesepinotgrigioDOP 
+        case sforzatodivaltellinasfursatdivaltel 
+        case valtènesiDOP 
+        case provinciadimantovaIGP 
+        case sabbionetaIGP 
+        case scanzomoscatodiscanzoDOP 
+        case valcalepioDOP 
+        case oltrepòpaveseDOP 
+        case benacobrescianoIGP 
+        case provinciadipaviaIGP 
+        case lambruscomantovanoDOP 
+        case sancolombanosancolombanoallambrodo 
+        case valtellinasuperioreDOP 
+        case terrelarianeIGP 
+        case sanguedigiudasanguedigiudadellolt 
+        case bergamascaIGP 
+        case botticinoDOP 
+        case curtefrancaDOP 
+        case quistelloIGP 
+        case collinadelmilaneseIGP 
+        case casteggioDOP 
+        case pinotnerodelloltrepòpaveseDOP 
+        case ronchidibresciaIGP 
+        case montenettodibresciaIGP 
+        case gardabrescianorivieradelgardabresci 
+        case altomincioIGP 
+        case oltrepòpavesemetodoclassicoDOP 
+        case bonardadelloltrepòpaveseDOP 
+        case sebinoIGP 
+        case alpireticheIGP 
+        case valtellinarossorossodivaltellinaDOP 
+        case terredelcolleonicolleoniDOP 
+    }
+    public enum Umbria: String, AppelationDescribable, CaseIterable {
+        case narniIGP 
+        case collimartaniDOP 
+        case spelloIGP 
+        case colliperuginiDOP 
+        case orvietanorossorossoorvietanoDOP 
+        case lagodicorbaraDOP 
+        case collideltrasimenotrasimenoDOP 
+        case collialtotiberiniDOP 
+        case alleronaIGP 
+        case montefalcoDOP 
+        case montefalcosagrantinoDOP 
+        case cannaraIGP 
+        case ameliaDOP 
+        case todiDOP 
+        case torgianorossoriservaDOP 
+        case bettonaIGP 
+        case assisiDOP 
+        case torgianoDOP 
+        case spoletoDOP 
+        case umbriaIGP 
+    }
+    public enum Marche: String, AppelationDescribable, CaseIterable {
+        case collimaceratesiDOP 
+        case esinoDOP 
+        case rossopicenopicenoDOP 
+        case sanginesioDOP 
+        case marcheIGP 
+        case serrapetronaDOP 
+        case falerioDOP 
+        case vernacciadiserrapetronaDOP 
+        case terredioffidaDOP 
+        case offidaDOP 
+        case verdicchiodimatelicaDOP 
+        case lacrimadimorrolacrimadimorrodalba 
+        case collipesaresiDOP 
+        case bianchellodelmetauroDOP 
+        case rossocòneroDOP 
+        case iterrenidisanseverinoDOP 
+        case verdicchiodimatelicariservaDOP 
+        case verdicchiodeicastellidijesiDOP 
+        case castellidijesiverdicchioriservaDOP 
+        case còneroDOP 
+        case pergolaDOP 
+    }
+    public enum FriuliVeneziaGiulia: String, AppelationDescribable, CaseIterable {
+        case veneziagiuliaIGP 
+        case carsocarso_KrasDOP 
+        case colliorientalidelfriulipicolitDOP 
+        case friulilatisanaDOP 
+        case friulicolliorientaliDOP 
+        case friuliisonzoisonzodelfriuliDOP 
+        case friuligraveDOP 
+        case friulianniaDOP 
+        case colliogorizianocollioDOP 
+        case friuliaquileiaDOP 
+        case rosazzoDOP 
+        case ramandoloDOP 
+    }
+    public enum Calabria: String, AppelationDescribable, CaseIterable {
+        case scavignaDOP 
+        case palizziIGP 
+        case scillaIGP 
+        case grecodibiancoDOP 
+        case valdinetoIGP 
+        case arghillàIGP 
+        case lipudaIGP 
+        case calabriaIGP 
+        case locrideIGP 
+        case sannadiisolacaporizzutoDOP 
+        case lameziaDOP 
+        case savutoDOP 
+        case costaviolaIGP 
+        case bivongiDOP 
+        case melissaDOP 
+        case valdamatoIGP 
+        case pellaroIGP 
+        case ciròDOP 
+        case terredicosenzaDOP 
+    }
+    public enum Trentino: String, AppelationDescribable, CaseIterable {
+        case caldarokaltererkaltererseelagodi 
+        case teroldegorotalianoDOP 
+        case trentoDOP 
+        case altoadigesüdtirolsüdtirolerdell 
+        case castellerDOP 
+        case trentinoDOP 
+        case mitterbergIGP 
+    }
+    public enum Abruzzo: String, AppelationDescribable, CaseIterable {
+        case cerasuolodabruzzoDOP 
+        case trebbianodabruzzoDOP 
+        case controguerraDOP 
+        case montepulcianodabruzzoDOP 
+        case villamagnaDOP 
+        case collinefrentaneIGP 
+        case collidelsangroIGP 
+        case terretollesitullumDOP 
+        case collineteatineIGP 
+        case terreaquilaneterredelaquilaIGP 
+        case terredichietiIGP 
+        case delvastesehistoniumIGP 
+        case montepulcianodabruzzocollineteramane 
+        case collinepescaresiIGP 
+        case colliaprutiniIGP 
+        case ortonaDOP 
+        case abruzzoDOP 
+    }
+    public enum Basilicata: String, AppelationDescribable, CaseIterable {
+        case materaDOP 
+        case grottinodiroccanovaDOP 
+        case terredellaltavaldagriDOP 
+        case basilicataIGP 
+        case aglianicodelvulturesuperioreDOP 
+        case aglianicodelvultureDOP 
+    }
+    public enum Liguria: String, AppelationDescribable, CaseIterable {
+        case cinqueterrecinqueterresciacchetràdo 
+        case collinedilevantoDOP 
+        case collinesavonesiIGP 
+        case collinedelgenovesatoIGP 
+        case golfodeltigullio_Portofinoportofino 
+        case rivieraligurediponenteDOP 
+        case ormeascodipornassiopornassioDOP 
+        case terrazzedellimperieseIGP 
+        case liguriadilevanteIGP 
+        case valpolcèveraDOP 
+        case dolceacquarossesedidolceacquaDOP 
+    }
+    public enum Molise: String, AppelationDescribable, CaseIterable {
+        case pentropentrodiiserniaDOP 
+        case tintiliadelmoliseDOP 
+        case molisedelmoliseDOP 
+        case rotaeIGP 
+        case bifernoDOP 
+        case oscoterredegliosciIGP 
+    }
+    public enum ValleDAosta: String, AppelationDescribable, CaseIterable {
+        case valledaostavalléedaosteDOP 
+    }
+    public enum FriuliVeneziaGiulia_Veneto: String, AppelationDescribable, CaseIterable {
+        case proseccoDOP 
+        case altolivenzaIGP 
+        case lisonpramaggioreDOP 
+        case lisonDOP 
+    }
+    public enum Lazio_Umbria: String, AppelationDescribable, CaseIterable {
+        case orvietoDOP 
+    }
+    public enum Lombardy_Veneto: String, AppelationDescribable, CaseIterable {
+        case luganaDOP 
+        case sanmartinodellabattagliaDOP 
+        case gardaDOP 
+    }
+    public enum Trentino_Veneto: String, AppelationDescribable, CaseIterable {
+        case vignetidelledolomitiweinbergdolomite 
+        case terradeifortivaldadigeterradeifortido 
+        case vallagarinaIGP 
+        case valdadigeetschtalerDOP 
+    }
+    public enum FriuliVeneziaGiuliaAndOther2: String, AppelationDescribable, CaseIterable {
+        case trevenezietribenečijeIGP 
+        case delleveneziebeneškihokoliševDOP 
+    }
 }
