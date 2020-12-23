@@ -49,6 +49,7 @@ def convertToJson(result):
         regionDict = {}
         regionName = StructTitleDecorator(region)
         regionDict["title"] = regionName
+        regionDict["url"] = "http://www.findthetoplevelnamehere.com"
         children = []
         for subRegion in result[region]:
             title = CaseTitleDecorator(subRegion)
