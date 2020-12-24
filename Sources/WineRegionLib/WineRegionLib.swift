@@ -137,7 +137,7 @@ public class WineRegion: ObservableObject {
     }
 
     public func loadMap(for region: RegionJson) {
-        guard let url = URL(string: region.url) else {
+        guard let urlString = region.url, let url = URL(string: urlString) else {
             print("not a valid url \(region.url)")
             return
         }
@@ -153,11 +153,13 @@ public class WineRegion: ObservableObject {
 
         regionsTree = .loading(0)
         // find file named "newCalifornia"
+        print("california")
         let californiaURL = URL(fileURLWithPath: "/Users/roderic/dev/rodericj/WineRegionLib/Scripts/newCalifornia.json")
         let californiaData = try Data(contentsOf: californiaURL)
         let californiaRegion = try decoder.decode(RegionJson.self, from: californiaData)
         regionsTree = .loading(0.5)
 
+        print("Italy")
         // find file named "newItaly"
         let italyURL = URL(fileURLWithPath: "/Users/roderic/dev/rodericj/WineRegionLib/Scripts/newItaly.json")
         let italyData = try Data(contentsOf: italyURL)
@@ -190,7 +192,7 @@ extension KeyedDecodingContainer {
 public struct RegionJson: Decodable, Identifiable {
     @DecodableUUID public var id: UUID
     public let title: String
-    public let url: String
+    public let url: String?
     public let children: [RegionJson]?
     public init(title: String, url: String, children: [RegionJson]?) {
         self.title = title
