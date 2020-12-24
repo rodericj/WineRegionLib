@@ -1,5 +1,24 @@
 from bs4 import BeautifulSoup
 import json
+import re
+#                                                                                  class="card prduct-card-position col-md-6 col-sm-6 product-card">
+#
+#                                                                                 <div class="text-white">
+#                                                                                         <div class="card-body flex-child">
+#                                                                                                 <p class="mb-0 product-title">
+#
+#
+#                                                                                                                 Chianti Classico DOP
+#
+#                                                                                                 </p>
+#
+#                                                                                                 <h6 class="mt-2 mb-1 qcont">
+#
+#                                                                                                                 tuscany
+#
+#
+#
+#                                                                                                 </h6>
 # Example data
 # <p class="mb-0 product-title"> Zafferano di San Gimignano DOP </p> <h6 class="mt-2 mb-1 qcont"> tuscany </h6>
 # <h6 class="mt-2 mb-1 qcont">
@@ -91,7 +110,67 @@ result = Convert(tupleArray, d)
 
 
 newJsonAbleResult = convertToJson(result)
-print(json.dumps(newJsonAbleResult, indent=4))
+#print(json.dumps(newJsonAbleResult, indent=4))
+
+def getRegionTuple(htmlSnippet):
+    splits = re.split('\n|\t', htmlSnippet.get_text())
+    spaceFiltered = [i for i in splits if i != '' and i != 'Wines']
+    return spaceFiltered
+
+
+pattern = re.compile(r"openProduct\(([0-9]+), [0-9]+")
+results = soup.find_all("div", onclick=pattern)
+re.split('\n|\t', results[0].get_text())
+
+regionSubRegionPairsArray = [getRegionTuple(x) for x in results]
+productID = [re.search(pattern, a["onclick"]).group(1) for a in results]
+
+
+zippedList = list(zip(productID, regionSubRegionPairsArray))
+
+# print(zippedList)
+# print([{"id" : x[0], "region" : x[1][1], "subregion" : x[1][0]} for x in zippedList])
+
+italy = {"title": "Italy",
+         "url": "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_regions.geojson",
+         "children": []
+         }
+
+italyChildren = {}
+for region in zippedList:
+    # download the geojson
+    regionID = region[0]
+    downloadUrl = "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/" + regionID + "/mapOpenData"
+
+    # touch up the name
+    uneditedSubregionName = region[1][0]
+    subRegionName = region[1][0].replace(" ", "") \
+                     .replace("/", "").replace("'", "") \
+                     .replace(".", "").replace("’", "").replace("-", "")
+
+    # name the downloaded file
+    fileName = subRegionName + ".geojson"
+    # print("wget", downloadUrl, "-O ", "../../WineRegionMaps/Italy/" + fileName, " &")
+    # get the appropriate italy child based on the region
+    regionName = region[1][1]
+    if regionName not in  italyChildren.keys():
+        italyChildren[regionName] = { "title": regionName, "children": []}
+
+    dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/" + subRegionName + ".geojson"
+
+    subRegionObject = {"title": uneditedSubregionName,
+                       "url": dictURL}
+
+    # find the item that has the appropriate one. italyChildren is an array
+    italyChildren[regionName]["children"].append(subRegionObject)
+    # add this child to the italy object
+
+
+italy["children"] = list(italyChildren.values())
+print(json.dumps(italy, indent=4))
+
+# https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/114/mapOpenData
+
 
 
 #printSwiftStruct(result)
