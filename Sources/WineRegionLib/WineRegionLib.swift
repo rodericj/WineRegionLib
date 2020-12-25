@@ -31,6 +31,7 @@ public class WineRegion: ObservableObject {
     @Published public var regionMaps: RegionResult<MapKitOverlayable> = .none
     @Published public var regionsTree: RegionResult<RegionJson> = .none
 
+    public var loadingValue: Float = 0.0
     let session = URLSession(configuration: .default)
 
     var networkCancellable: AnyCancellable? = nil
@@ -60,6 +61,7 @@ public class WineRegion: ObservableObject {
         let progressIncrement: Float = 1 / (Float(urls.count) * 2.0)
         var currentProgress: Float = 0.0
         self.regionMaps = .loading(currentProgress)
+        self.loadingValue = currentProgress
         DispatchQueue.global(qos: .utility).async {
             urls.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
@@ -80,6 +82,7 @@ public class WineRegion: ObservableObject {
                     do {
                         currentProgress += progressIncrement
                         self?.update(result: RegionResult<MapKitOverlayable>.loading(currentProgress))
+                        self?.loadingValue = currentProgress
                         let data = try Data(contentsOf: temporaryFileLocation)
                         guard let _ = response?.url else {
                             debugPrint("🔴 failed to read temp file")
@@ -133,12 +136,13 @@ public class WineRegion: ObservableObject {
     private func update(result: RegionResult<MapKitOverlayable>) {
         DispatchQueue.main.async {
             self.regionMaps = result
+            self.loadingValue = 1
         }
     }
 
     public func loadMap(for region: RegionJson) {
         guard let urlString = region.url, let url = URL(string: urlString) else {
-            print("not a valid url \(region.url)")
+            print("not a valid url: \(region.url ?? "nil")")
             return
         }
         fetchFrom(urls: [url])
@@ -154,15 +158,18 @@ public class WineRegion: ObservableObject {
         regionsTree = .loading(0)
         // find file named "newCalifornia"
         print("california")
-        let californiaURL = URL(fileURLWithPath: "/Users/roderic/dev/rodericj/WineRegionLib/Scripts/newCalifornia.json")
-        let californiaData = try Data(contentsOf: californiaURL)
+        guard let californiaPath = Bundle.main.url(forResource: "newCalifornia", withExtension: "json"),
+              let italyPath = Bundle.main.url(forResource: "newItaly", withExtension: "json") else {
+            fatalError()
+        }
+        print(californiaPath)
+        let californiaData = try Data(contentsOf: californiaPath)
         let californiaRegion = try decoder.decode(RegionJson.self, from: californiaData)
         regionsTree = .loading(0.5)
 
         print("Italy")
         // find file named "newItaly"
-        let italyURL = URL(fileURLWithPath: "/Users/roderic/dev/rodericj/WineRegionLib/Scripts/newItaly.json")
-        let italyData = try Data(contentsOf: italyURL)
+        let italyData = try Data(contentsOf: italyPath)
         let italyRegion = try decoder.decode(RegionJson.self, from: italyData)
         regionsTree = .regions([italyRegion, californiaRegion])
     }
