@@ -23,6 +23,7 @@ extension MKMultiPolygon: MapKitOverlayable {}
 public enum RegionResult<T> {
     case regions([T])
     case loading(Float)
+    case error(Error)
     case none
 }
 
@@ -133,9 +134,17 @@ public class WineRegion: ObservableObject {
         update(result: RegionResult<MapKitOverlayable>.regions(newRegions))
     }
 
+    // Push published events to the main queue
     private func update(result: RegionResult<MapKitOverlayable>) {
         DispatchQueue.main.async {
             self.regionMaps = result
+            self.loadingValue = 1
+        }
+    }
+
+    private func update(tree: RegionResult<RegionJson>) {
+        DispatchQueue.main.async {
+            self.regionsTree = tree
             self.loadingValue = 1
         }
     }
@@ -152,26 +161,31 @@ public class WineRegion: ObservableObject {
         fetchFrom(urls: regions.map { $0.url })
     }
 
-    public func getRegionTree() throws {
+    public func getRegionTree() {
         let decoder = JSONDecoder()
 
-        regionsTree = .loading(0)
-        // find file named "newCalifornia"
-        print("california")
-        guard let californiaPath = Bundle.main.url(forResource: "newCalifornia", withExtension: "json"),
-              let italyPath = Bundle.main.url(forResource: "newItaly", withExtension: "json") else {
-            fatalError()
-        }
-        print(californiaPath)
-        let californiaData = try Data(contentsOf: californiaPath)
-        let californiaRegion = try decoder.decode(RegionJson.self, from: californiaData)
-        regionsTree = .loading(0.5)
+        DispatchQueue.global(qos: .utility).async {
 
-        print("Italy")
-        // find file named "newItaly"
-        let italyData = try Data(contentsOf: italyPath)
-        let italyRegion = try decoder.decode(RegionJson.self, from: italyData)
-        regionsTree = .regions([italyRegion, californiaRegion])
+            self.update(tree: .loading(0))
+            // find file named "newCalifornia"
+            print("california")
+            guard let californiaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/newCalifornia.json"),
+                  let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/newItaly.json") else {
+                fatalError()
+            }
+            do {
+                let californiaData = try Data(contentsOf: californiaURL)
+                let californiaRegion = try decoder.decode(RegionJson.self, from: californiaData)
+                self.update(tree: .loading(0))
+
+                print("Italy")
+                let italyData = try Data(contentsOf: italyURL)
+                let italyRegion = try decoder.decode(RegionJson.self, from: italyData)
+                self.update(tree: .regions([italyRegion, californiaRegion]))
+            } catch {
+                self.update(tree: .error(error))
+            }
+        }
     }
 }
 
