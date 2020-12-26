@@ -1,4 +1,8 @@
 import json
+import anytree
+from anytree import NodeMixin, RenderTree, Node
+from anytree import Node, RenderTree, AsciiStyle
+from anytree.exporter import JsonExporter
 
 fileName = '/Users/roderic/dev/rodericj/WineRegionLib/Scripts/CA_avas.geojson'
 file = open(fileName, 'r')
@@ -6,58 +10,52 @@ d = json.load(file)
 
 allFeatures = d["features"]
 
-def childrenOf(features, topLevelFeaturesArray):
-    #print("entering children of with features: ... ", len(features))
-    children = []
-    for firstLevelFeature in features:
-        #print("first level feature name ", firstLevelFeature["properties"]["name"])
-        avaID = firstLevelFeature["properties"]["ava_id"]
-        title = firstLevelFeature["properties"]["name"]
-        thisChild = {"title": title,
-                     "ava_id": avaID,
-                     "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/" + avaID + ".geojson"
-                     }
-        # at this point i've decided that subFeatures isn't a thing, we need to do a more global lookup
-        topLevelContainsList = firstLevelFeature["properties"]["contains"]
 
-        if topLevelContainsList is None:
-            #print("no contains in ", title)
-            continue
-        otherRegionNamesInsideThisFeature = topLevelContainsList.split("|")
-        #print("contains", len(otherRegionNamesInsideThisFeature))
+## This is the anytree implementation
 
-        fullRegionObjectsInsideThisFeature = []
-        for regionName in otherRegionNamesInsideThisFeature:
-            #print("try to find from the global list", regionName)
-            for secondLevelFeature in features: # Iterate through the parameter array of features
-                #print("does ", regionName, " = ", secondLevelFeature["properties"]["name"])
-                if secondLevelFeature["properties"]["name"] == regionName:
-                    #print("found ", regionName, " in ", firstLevelFeature["properties"]["name"])
-                    fullRegionObjectsInsideThisFeature.append(secondLevelFeature)
-                    # let's retain that feature
-        thisChildsChildren = childrenOf(fullRegionObjectsInsideThisFeature, topLevelFeaturesArray)
-        if len(thisChildsChildren) != 0:
-            thisChild["children"] = thisChildsChildren
+class MyBaseClass(object):
+    avaID = ""
 
-        children.append(thisChild)
+class AVAFeatureNode(MyBaseClass, NodeMixin):  # Add Node feature
+    def __init__(self, name, avaID, url, parent=None, children=None):
+        self.name = name
+        self.avaID = avaID
+        self.url = url
+        self.parent = parent
+        if children:
+            self.children = children
 
-    return children
+californiaNode = AVAFeatureNode("California", "none",
+                                "https://raw.githubusercontent.com/rodericj/ava/master/avas/" + "californiaPlaceholderTODO" + ".geojson")
+for feature in allFeatures:
+    name = feature["properties"]["name"]
+    avaID = feature["properties"]["ava_id"]
+    url = "https://raw.githubusercontent.com/rodericj/ava/master/avas/" + avaID.replace(" ", "") + ".geojson"
 
+    thisfeatureAsNode = AVAFeatureNode(name, avaID, url)
+    if feature["properties"]["within"] is None:
+        thisfeatureAsNode.parent = californiaNode
+        continue
 
-california = {
-    "title": "California",
-    "url" : "http://www.cool.com",
-    "children": []
-}
+for feature in allFeatures:
+    if feature["properties"]["within"] is None:
+        continue  # because we've already added it
+    name = feature["properties"]["name"]
+    avaID = feature["properties"]["ava_id"]
+    url = "https://raw.githubusercontent.com/rodericj/ava/master/avas/" + avaID.replace(" ", "") + ".geojson"
 
+    withinArray = feature["properties"]["within"].split("|")
+    allWithin = anytree.findall(californiaNode, filter_=lambda node: node.name in withinArray)
+    print([within.depth for within in allWithin])
+    filtered_lst = [(x, y) for x, y in enumerate(allWithin)]
 
-californiaChildren = []
-theResults = childrenOf(allFeatures, allFeatures)
+    if len(filtered_lst) == 0:
+        continue
+    thisfeatureAsNode = AVAFeatureNode(name, avaID, url, parent=max(filtered_lst)[1])
 
-california["children"] = theResults
-# print(california)
+# for pre, fill, node in RenderTree(californiaNode):
+#     treestr = u"%s%s" % (pre, node.name)
+#     print(treestr.ljust(8), node.url)
+exporter = JsonExporter(indent=2, sort_keys=True)
 
-print(json.dumps(california, indent=4))
-
-# print(json.dumps(d, indent=4))
-
+print(exporter.export(californiaNode))
