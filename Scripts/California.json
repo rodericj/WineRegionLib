@@ -13,29 +13,35 @@
                 {
                   "avaID": "san_ysidro_district",
                   "name": "San Ysidro District",
+                  "title": "San Ysidro District",
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_ysidro_district.geojson"
                 }
               ],
               "name": "Santa Clara Valley",
+              "title": "Santa Clara Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/santa_clara_valley.geojson"
             },
             {
               "avaID": "livermore_valley",
               "name": "Livermore Valley",
+              "title": "Livermore Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/livermore_valley.geojson"
             },
             {
               "avaID": "lamorinda",
               "name": "Lamorinda",
+              "title": "Lamorinda",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/lamorinda.geojson"
             },
             {
               "avaID": "Pacheco_Pass",
               "name": "Pacheco Pass",
+              "title": "Pacheco Pass",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/Pacheco_Pass.geojson"
             }
           ],
           "name": "San Francisco Bay",
+          "title": "San Francisco Bay",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_francisco_bay.geojson"
         },
         {
@@ -44,60 +50,72 @@
             {
               "avaID": "paso_robles_estrella_district",
               "name": "Paso Robles Estrella District",
+              "title": "Paso Robles Estrella District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/paso_robles_estrella_district.geojson"
             },
             {
               "avaID": "paso_robles_highlands_district",
               "name": "Paso Robles Highlands District",
+              "title": "Paso Robles Highlands District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/paso_robles_highlands_district.geojson"
             },
             {
               "avaID": "adelaida_district",
               "name": "Adelaida District",
+              "title": "Adelaida District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/adelaida_district.geojson"
             },
             {
               "avaID": "creston_district",
               "name": "Creston District",
+              "title": "Creston District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/creston_district.geojson"
             },
             {
               "avaID": "san_juan_creek",
               "name": "San Juan Creek",
+              "title": "San Juan Creek",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_juan_creek.geojson"
             },
             {
               "avaID": "el_pomar_district",
               "name": "El Pomar District",
+              "title": "El Pomar District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/el_pomar_district.geojson"
             },
             {
               "avaID": "templeton_gap_district",
               "name": "Templeton Gap District",
+              "title": "Templeton Gap District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/templeton_gap_district.geojson"
             },
             {
               "avaID": "san_miguel_district",
               "name": "San Miguel District",
+              "title": "San Miguel District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_miguel_district.geojson"
             },
             {
               "avaID": "santa_margarita_ranch",
               "name": "Santa Margarita Ranch",
+              "title": "Santa Margarita Ranch",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/santa_margarita_ranch.geojson"
             },
             {
               "avaID": "paso_robles_geneseo_district",
               "name": "Paso Robles Geneseo District",
+              "title": "Paso Robles Geneseo District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/paso_robles_geneseo_district.geojson"
             },
             {
               "avaID": "paso_robles_willow_creek_district",
               "name": "Paso Robles Willow Creek District",
+              "title": "Paso Robles Willow Creek District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/paso_robles_willow_creek_district.geojson"
             }
           ],
           "name": "Paso Robles",
+          "title": "Paso Robles",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/paso_robles.geojson"
         },
         {
@@ -106,25 +124,30 @@
             {
               "avaID": "san_lucas",
               "name": "San Lucas",
+              "title": "San Lucas",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_lucas.geojson"
             },
             {
               "avaID": "san_bernabe",
               "name": "San Bernabe",
+              "title": "San Bernabe",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_bernabe.geojson"
             },
             {
               "avaID": "santa_lucia_highlands",
               "name": "Santa Lucia Highlands",
+              "title": "Santa Lucia Highlands",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/santa_lucia_highlands.geojson"
             },
             {
               "avaID": "hames_valley",
               "name": "Hames Valley",
+              "title": "Hames Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/hames_valley.geojson"
             }
           ],
           "name": "Monterey",
+          "title": "Monterey",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/monterey.geojson"
         },
         {
@@ -133,35 +156,42 @@
             {
               "avaID": "sta__rita_hills",
               "name": "Sta. Rita Hills",
+              "title": "Sta. Rita Hills",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/sta__rita_hills.geojson"
             },
             {
               "avaID": "happy_canyon_of_santa_barbara",
               "name": "Happy Canyon of Santa Barbara",
+              "title": "Happy Canyon of Santa Barbara",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/happy_canyon_of_santa_barbara.geojson"
             },
             {
               "avaID": "los_olivos_district",
               "name": "Los Olivos District",
+              "title": "Los Olivos District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/los_olivos_district.geojson"
             },
             {
               "avaID": "ballard_canyon",
               "name": "Ballard Canyon",
+              "title": "Ballard Canyon",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/ballard_canyon.geojson"
             }
           ],
           "name": "Santa Ynez Valley",
+          "title": "Santa Ynez Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/santa_ynez_valley.geojson"
         },
         {
           "avaID": "san_antonio_valley",
           "name": "San Antonio Valley",
+          "title": "San Antonio Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_antonio_valley.geojson"
         },
         {
           "avaID": "santa_maria_valley",
           "name": "Santa Maria Valley",
+          "title": "Santa Maria Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/santa_maria_valley.geojson"
         },
         {
@@ -170,6 +200,7 @@
             {
               "avaID": "paicines",
               "name": "Paicines",
+              "title": "Paicines",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/paicines.geojson"
             },
             {
@@ -178,58 +209,70 @@
                 {
                   "avaID": "lime_kiln_valley",
                   "name": "Lime Kiln Valley",
+                  "title": "Lime Kiln Valley",
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/lime_kiln_valley.geojson"
                 }
               ],
               "name": "Cienega Valley",
+              "title": "Cienega Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/cienega_valley.geojson"
             }
           ],
           "name": "San Benito",
+          "title": "San Benito",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_benito.geojson"
         },
         {
           "avaID": "arroyo_grande_valley",
           "name": "Arroyo Grande Valley",
+          "title": "Arroyo Grande Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/arroyo_grande_valley.geojson"
         },
         {
           "avaID": "arroyo_seco",
           "name": "Arroyo Seco",
+          "title": "Arroyo Seco",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/arroyo_seco.geojson"
         },
         {
           "avaID": "edna_valley",
           "name": "Edna Valley",
+          "title": "Edna Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/edna_valley.geojson"
         },
         {
           "avaID": "carmel_valley",
           "name": "Carmel Valley",
+          "title": "Carmel Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/carmel_valley.geojson"
         },
         {
           "avaID": "chalone",
           "name": "Chalone",
+          "title": "Chalone",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/chalone.geojson"
         },
         {
           "avaID": "mt__harlan",
           "name": "Mt. Harlan",
+          "title": "Mt. Harlan",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mt__harlan.geojson"
         },
         {
           "avaID": "york_mountain",
           "name": "York Mountain",
+          "title": "York Mountain",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/york_mountain.geojson"
         },
         {
           "avaID": "alisos_canyon",
           "name": "Alisos Canyon",
+          "title": "Alisos Canyon",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/alisos_canyon.geojson"
         }
       ],
       "name": "Central Coast",
+      "title": "Central Coast",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/central_coast.geojson"
     },
     {
@@ -241,6 +284,7 @@
             {
               "avaID": "petaluma_gap",
               "name": "Petaluma Gap",
+              "title": "Petaluma Gap",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/petaluma_gap.geojson"
             },
             {
@@ -249,29 +293,35 @@
                 {
                   "avaID": "moon_mountain_district_sonoma_county",
                   "name": "Moon Mountain District Sonoma County",
+                  "title": "Moon Mountain District Sonoma County",
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/moon_mountain_district_sonoma_county.geojson"
                 },
                 {
                   "avaID": "bennett_valley",
                   "name": "Bennett Valley",
+                  "title": "Bennett Valley",
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/bennett_valley.geojson"
                 },
                 {
                   "avaID": "sonoma_mountain",
                   "name": "Sonoma Mountain",
+                  "title": "Sonoma Mountain",
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/sonoma_mountain.geojson"
                 }
               ],
               "name": "Sonoma Valley",
+              "title": "Sonoma Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/sonoma_valley.geojson"
             },
             {
               "avaID": "fort_ross_seaview",
               "name": "Fort Ross-Seaview",
+              "title": "Fort Ross-Seaview",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/fort_ross_seaview.geojson"
             }
           ],
           "name": "Sonoma Coast",
+          "title": "Sonoma Coast",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/sonoma_coast.geojson"
         },
         {
@@ -280,85 +330,102 @@
             {
               "avaID": "los_carneros",
               "name": "Los Carneros",
+              "title": "Los Carneros",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/los_carneros.geojson"
             },
             {
               "avaID": "mt_veeder",
               "name": "Mt. Veeder",
+              "title": "Mt. Veeder",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mt_veeder.geojson"
             },
             {
               "avaID": "howell_mountain",
               "name": "Howell Mountain",
+              "title": "Howell Mountain",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/howell_mountain.geojson"
             },
             {
               "avaID": "calistoga",
               "name": "Calistoga",
+              "title": "Calistoga",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/calistoga.geojson"
             },
             {
               "avaID": "atlas_peak",
               "name": "Atlas Peak",
+              "title": "Atlas Peak",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/atlas_peak.geojson"
             },
             {
               "avaID": "coombsville",
               "name": "Coombsville",
+              "title": "Coombsville",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/coombsville.geojson"
             },
             {
               "avaID": "oak_knoll_district_of_napa_valley",
               "name": "Oak Knoll District of Napa Valley",
+              "title": "Oak Knoll District of Napa Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/oak_knoll_district_of_napa_valley.geojson"
             },
             {
               "avaID": "st__helena",
               "name": "St. Helena",
+              "title": "St. Helena",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/st__helena.geojson"
             },
             {
               "avaID": "spring_mountain_district",
               "name": "Spring Mountain District",
+              "title": "Spring Mountain District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/spring_mountain_district.geojson"
             },
             {
               "avaID": "yountville",
               "name": "Yountville",
+              "title": "Yountville",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/yountville.geojson"
             },
             {
               "avaID": "rutherford",
               "name": "Rutherford ",
+              "title": "Rutherford ",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/rutherford.geojson"
             },
             {
               "avaID": "oakville ",
               "name": "Oakville",
+              "title": "Oakville",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/oakville.geojson"
             },
             {
               "avaID": "chiles_valley",
               "name": "Chiles Valley",
+              "title": "Chiles Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/chiles_valley.geojson"
             },
             {
               "avaID": "diamond_mountain_district",
               "name": "Diamond Mountain District",
+              "title": "Diamond Mountain District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/diamond_mountain_district.geojson"
             },
             {
               "avaID": "wild_horse_valley",
               "name": "Wild Horse Valley",
+              "title": "Wild Horse Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/wild_horse_valley.geojson"
             },
             {
               "avaID": "stags_leap_district",
               "name": "Stags Leap District",
+              "title": "Stags Leap District",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/stags_leap_district.geojson"
             }
           ],
           "name": "Napa Valley",
+          "title": "Napa Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/napa_valley.geojson"
         },
         {
@@ -370,44 +437,53 @@
                 {
                   "avaID": "chalk_hill",
                   "name": "Chalk Hill",
+                  "title": "Chalk Hill",
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/chalk_hill.geojson"
                 },
                 {
                   "avaID": "green_valley_of_russian_river",
                   "name": "Green Valley of Russian River",
+                  "title": "Green Valley of Russian River",
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/green_valley_of_russian_river.geojson"
                 }
               ],
               "name": "Russian River Valley",
+              "title": "Russian River Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/russian_river_valley.geojson"
             },
             {
               "avaID": "dry_creek_valley",
               "name": "Dry Creek Valley",
+              "title": "Dry Creek Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/dry_creek_valley.geojson"
             },
             {
               "avaID": "alexander_valley",
               "name": "Alexander Valley",
+              "title": "Alexander Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/alexander_valley.geojson"
             },
             {
               "avaID": "knights_valley",
               "name": "Knights Valley ",
+              "title": "Knights Valley ",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/knights_valley.geojson"
             },
             {
               "avaID": "rockpile",
               "name": "Rockpile",
+              "title": "Rockpile",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/rockpile.geojson"
             },
             {
               "avaID": "pine_mountain_cloverdale_peak",
               "name": "Pine Mountain-Cloverdale Peak",
+              "title": "Pine Mountain-Cloverdale Peak",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/pine_mountain_cloverdale_peak.geojson"
             }
           ],
           "name": "Northern Sonoma",
+          "title": "Northern Sonoma",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/northern_sonoma.geojson"
         },
         {
@@ -416,35 +492,42 @@
             {
               "avaID": "mendocino_ridge",
               "name": "Mendocino Ridge",
+              "title": "Mendocino Ridge",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mendocino_ridge.geojson"
             },
             {
               "avaID": "yorkville_highlands",
               "name": "Yorkville Highlands",
+              "title": "Yorkville Highlands",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/yorkville_highlands.geojson"
             },
             {
               "avaID": "redwood_valley",
               "name": "Redwood Valley",
+              "title": "Redwood Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/redwood_valley.geojson"
             },
             {
               "avaID": "potter_valley",
               "name": "Potter Valley",
+              "title": "Potter Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/potter_valley.geojson"
             },
             {
               "avaID": "mcdowell_valley",
               "name": "McDowell Valley",
+              "title": "McDowell Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mcdowell_valley.geojson"
             },
             {
               "avaID": "cole_ranch",
               "name": "Cole Ranch",
+              "title": "Cole Ranch",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/cole_ranch.geojson"
             }
           ],
           "name": "Mendocino",
+          "title": "Mendocino",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mendocino.geojson"
         },
         {
@@ -453,59 +536,71 @@
             {
               "avaID": "red_hills_lake_county",
               "name": "Red Hills Lake County",
+              "title": "Red Hills Lake County",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/red_hills_lake_county.geojson"
             },
             {
               "avaID": "high_valley",
               "name": "High Valley",
+              "title": "High Valley",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/high_valley.geojson"
             },
             {
               "avaID": "kelsey_bench_lake_county",
               "name": "Kelsey Bench\u2013Lake County",
+              "title": "Kelsey Bench\u2013Lake County",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/kelsey_bench_lake_county.geojson"
             }
           ],
           "name": "Clear Lake",
+          "title": "Clear Lake",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/clear_lake.geojson"
         },
         {
           "avaID": "anderson_valley",
           "name": "Anderson Valley",
+          "title": "Anderson Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/anderson_valley.geojson"
         },
         {
           "avaID": "fountaingrove_district",
           "name": "Fountaingrove District",
+          "title": "Fountaingrove District",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/fountaingrove_district.geojson"
         },
         {
           "avaID": "eagle_peak_mendocino_county",
           "name": "Eagle Peak Mendocino County",
+          "title": "Eagle Peak Mendocino County",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/eagle_peak_mendocino_county.geojson"
         },
         {
           "avaID": "suisun_valley",
           "name": "Suisun Valley",
+          "title": "Suisun Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/suisun_valley.geojson"
         },
         {
           "avaID": "solano_county_green_valley",
           "name": "Solano County Green Valley",
+          "title": "Solano County Green Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/solano_county_green_valley.geojson"
         },
         {
           "avaID": "guenoc_valley",
           "name": "Guenoc Valley",
+          "title": "Guenoc Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/guenoc_valley.geojson"
         },
         {
           "avaID": "benmore_valley",
           "name": "Benmore Valley",
+          "title": "Benmore Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/benmore_valley.geojson"
         }
       ],
       "name": "North Coast",
+      "title": "North Coast",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/north_coast.geojson"
     },
     {
@@ -517,29 +612,35 @@
             {
               "avaID": "fair_play",
               "name": "Fair Play",
+              "title": "Fair Play",
               "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/fair_play.geojson"
             }
           ],
           "name": "El Dorado",
+          "title": "El Dorado",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/el_dorado.geojson"
         },
         {
           "avaID": "north_yuba",
           "name": "North Yuba",
+          "title": "North Yuba",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/north_yuba.geojson"
         },
         {
           "avaID": "california_shenandoah_valley",
           "name": "California Shenandoah Valley",
+          "title": "California Shenandoah Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/california_shenandoah_valley.geojson"
         },
         {
           "avaID": "fiddletown",
           "name": "Fiddletown",
+          "title": "Fiddletown",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/fiddletown.geojson"
         }
       ],
       "name": "Sierra Foothills",
+      "title": "Sierra Foothills",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/sierra_foothills.geojson"
     },
     {
@@ -548,20 +649,24 @@
         {
           "avaID": "temecula_valley",
           "name": "Temecula Valley",
+          "title": "Temecula Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/temecula_valley.geojson"
         },
         {
           "avaID": "ramona_valley",
           "name": "Ramona Valley",
+          "title": "Ramona Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/ramona_valley.geojson"
         },
         {
           "avaID": "san_pasqual_valley",
           "name": "San Pasqual Valley",
+          "title": "San Pasqual Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/san_pasqual_valley.geojson"
         }
       ],
       "name": "South Coast",
+      "title": "South Coast",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/south_coast.geojson"
     },
     {
@@ -570,50 +675,60 @@
         {
           "avaID": "clements_hills",
           "name": "Clements Hills",
+          "title": "Clements Hills",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/clements_hills.geojson"
         },
         {
           "avaID": "mokelumne_river",
           "name": "Mokelumne River",
+          "title": "Mokelumne River",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mokelumne_river.geojson"
         },
         {
           "avaID": "sloughhouse",
           "name": "Sloughhouse",
+          "title": "Sloughhouse",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/sloughhouse.geojson"
         },
         {
           "avaID": "borden_ranch",
           "name": "Borden Ranch",
+          "title": "Borden Ranch",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/borden_ranch.geojson"
         },
         {
           "avaID": "alta_mesa",
           "name": "Alta Mesa",
+          "title": "Alta Mesa",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/alta_mesa.geojson"
         },
         {
           "avaID": "cosumnes_river",
           "name": "Cosumnes River",
+          "title": "Cosumnes River",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/cosumnes_river.geojson"
         },
         {
           "avaID": "jahant",
           "name": "Jahant",
+          "title": "Jahant",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/jahant.geojson"
         }
       ],
       "name": "Lodi",
+      "title": "Lodi",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/lodi.geojson"
     },
     {
       "avaID": "madera",
       "name": "Madera",
+      "title": "Madera",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/madera.geojson"
     },
     {
       "avaID": "antelope_valley_of_the_california_high_desert",
       "name": "Antelope Valley of the California High Desert",
+      "title": "Antelope Valley of the California High Desert",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/antelope_valley_of_the_california_high_desert.geojson"
     },
     {
@@ -622,10 +737,12 @@
         {
           "avaID": "ben_lomond_mountain",
           "name": "Ben Lomond Mountain",
+          "title": "Ben Lomond Mountain",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/ben_lomond_mountain.geojson"
         }
       ],
       "name": "Santa Cruz Mountains",
+      "title": "Santa Cruz Mountains",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/santa_cruz_mountains.geojson"
     },
     {
@@ -634,35 +751,42 @@
         {
           "avaID": "saddle_rock__malibu",
           "name": "Saddle Rock- Malibu",
+          "title": "Saddle Rock- Malibu",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/saddle_rock__malibu.geojson"
         },
         {
           "avaID": "malibu_newton_canyon",
           "name": "Malibu-Newton Canyon",
+          "title": "Malibu-Newton Canyon",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/malibu_newton_canyon.geojson"
         }
       ],
       "name": "Malibu Coast",
+      "title": "Malibu Coast",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/malibu_coast.geojson"
     },
     {
       "avaID": "cucamonga_valley",
       "name": "Cucamonga Valley",
+      "title": "Cucamonga Valley",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/cucamonga_valley.geojson"
     },
     {
       "avaID": "trinity_lakes",
       "name": "Trinity Lakes",
+      "title": "Trinity Lakes",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/trinity_lakes.geojson"
     },
     {
       "avaID": "capay_valley",
       "name": "Capay Valley",
+      "title": "Capay Valley",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/capay_valley.geojson"
     },
     {
       "avaID": "dunnigan_hills",
       "name": "Dunnigan Hills",
+      "title": "Dunnigan Hills",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/dunnigan_hills.geojson"
     },
     {
@@ -671,78 +795,94 @@
         {
           "avaID": "merritt_island",
           "name": "Merritt Island",
+          "title": "Merritt Island",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/merritt_island.geojson"
         }
       ],
       "name": "Clarksburg",
+      "title": "Clarksburg",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/clarksburg.geojson"
     },
     {
       "avaID": "squaw_valley_miramonte",
       "name": "Squaw Valley-Miramonte",
+      "title": "Squaw Valley-Miramonte",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/squaw_valley_miramonte.geojson"
     },
     {
       "avaID": "covelo",
       "name": "Covelo",
+      "title": "Covelo",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/covelo.geojson"
     },
     {
       "avaID": "tracy_hills",
       "name": "Tracy Hills",
+      "title": "Tracy Hills",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/tracy_hills.geojson"
     },
     {
       "avaID": "diablo_grande",
       "name": "Diablo Grande",
+      "title": "Diablo Grande",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/diablo_grande.geojson"
     },
     {
       "avaID": "inwood_valley",
       "name": "Inwood Valley",
+      "title": "Inwood Valley",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/inwood_valley.geojson"
     },
     {
       "avaID": "dos_rios",
       "name": "Dos Rios",
+      "title": "Dos Rios",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/dos_rios.geojson"
     },
     {
       "avaID": "manton_valley",
       "name": "Manton Valley",
+      "title": "Manton Valley",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/manton_valley.geojson"
     },
     {
       "avaID": "sierra_pelona_valley",
       "name": "Sierra Pelona Valley",
+      "title": "Sierra Pelona Valley",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/sierra_pelona_valley.geojson"
     },
     {
       "avaID": "leona_valley",
       "name": "Leona Valley",
+      "title": "Leona Valley",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/leona_valley.geojson"
     },
     {
       "avaID": "willow_creek",
       "name": "Willow Creek",
+      "title": "Willow Creek",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/willow_creek.geojson"
     },
     {
       "avaID": "salado_creek",
       "name": "Salado Creek",
+      "title": "Salado Creek",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/salado_creek.geojson"
     },
     {
       "avaID": "seiad_valley",
       "name": "Seiad Valley",
+      "title": "Seiad Valley",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/seiad_valley.geojson"
     },
     {
       "avaID": "river_junction",
       "name": "River Junction",
+      "title": "River Junction",
       "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/river_junction.geojson"
     }
   ],
   "name": "California",
+  "title": "California",
   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/californiaPlaceholderTODO.geojson"
 }

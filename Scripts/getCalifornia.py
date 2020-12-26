@@ -15,10 +15,11 @@ allFeatures = d["features"]
 
 class MyBaseClass(object):
     avaID = ""
-
+    title = ""
 class AVAFeatureNode(MyBaseClass, NodeMixin):  # Add Node feature
     def __init__(self, name, avaID, url, parent=None, children=None):
         self.name = name
+        self.title = name
         self.avaID = avaID
         self.url = url
         self.parent = parent
