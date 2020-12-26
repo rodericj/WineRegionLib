@@ -337,10 +337,10 @@
                   "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/los_carneros.geojson"
                 },
                 {
-                  "avaID": "mt_veeder",
+                  "avaID": "mt__veeder",
                   "name": "Mt. Veeder",
                   "title": "Mt. Veeder",
-                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mt_veeder.geojson"
+                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mt__veeder.geojson"
                 },
                 {
                   "avaID": "howell_mountain",
