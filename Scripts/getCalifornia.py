@@ -46,7 +46,6 @@ for feature in allFeatures:
 
     withinArray = feature["properties"]["within"].split("|")
     allWithin = anytree.findall(californiaNode, filter_=lambda node: node.name in withinArray)
-    print([within.depth for within in allWithin])
     filtered_lst = [(x, y) for x, y in enumerate(allWithin)]
 
     if len(filtered_lst) == 0:
