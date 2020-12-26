@@ -165,11 +165,8 @@ public class WineRegion: ObservableObject {
         let decoder = JSONDecoder()
 
         DispatchQueue.global(qos: .utility).async {
-
             self.update(tree: .loading(0))
-            // find file named "newCalifornia"
-            print("california")
-            guard let californiaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/newCalifornia.json"),
+            guard let californiaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/USA.json"),
                   let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/newItaly.json") else {
                 fatalError()
             }
@@ -178,7 +175,6 @@ public class WineRegion: ObservableObject {
                 let californiaRegion = try decoder.decode(RegionJson.self, from: californiaData)
                 self.update(tree: .loading(0))
 
-                print("Italy")
                 let italyData = try Data(contentsOf: italyURL)
                 let italyRegion = try decoder.decode(RegionJson.self, from: italyData)
                 self.update(tree: .regions([italyRegion, californiaRegion]))
