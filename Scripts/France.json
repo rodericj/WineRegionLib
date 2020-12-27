@@ -13,11 +13,6 @@
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Blaye-AOP_Bordeaux_France.geojson"
         },
         {
-          "name": "Bordeaux",
-          "title": "Bordeaux",
-          "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux-AOP_Bordeaux_France.geojson"
-        },
-        {
           "name": "Bordeaux Superior",
           "title": "Bordeaux Superior",
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux-Superior-AOP_Bordeaux_France.geojson"
@@ -185,10 +180,11 @@
       ],
       "name": "Bordeaux",
       "title": "Bordeaux",
-      "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux_Communes.geojson"
+      "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux-AOP_Bordeaux_France.geojson"
     }
   ],
   "name": "France",
   "title": "France",
   "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/France/France.geojson"
 }
+

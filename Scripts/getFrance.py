@@ -23,10 +23,10 @@ g = github.Github()
 regionFiles = g.get_repo("rodericj/BordeauxWineRegions").get_contents("/")
 
 france = AVAFeatureNode("France", "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/France/France.geojson")
-bordeaux = AVAFeatureNode("Bordeaux", "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux_Communes.geojson")
+bordeaux = AVAFeatureNode("Bordeaux", "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux-AOP_Bordeaux_France.geojson")
 bordeaux.parent = france
 for regionFile in regionFiles:
-    if regionFile.path.endswith(".geojson") and regionFile.path != "Bordeaux_Communes.geojson":
+    if regionFile.path.endswith(".geojson") and regionFile.path != "Bordeaux_Communes.geojson" and regionFile.path != "Bordeaux-AOP_Bordeaux_France.geojson":
         dashSplits = regionFile.path.split("-AOP")
         name = dashSplits[0].replace("-", " ")
         url = regionFile.download_url
