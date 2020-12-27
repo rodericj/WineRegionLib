@@ -30,7 +30,7 @@ def getState(abbreviation, stateName):
     allFeatures = data["features"]
 
     stateNode = AVAFeatureNode(stateName, "none",
-                                    "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/" + abbreviation+ ".geojson")
+                                    "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/" + stateName.replace(" ", "") + ".geojson")
     for feature in allFeatures:
         name = feature["properties"]["name"]
         avaID = feature["properties"]["ava_id"]
