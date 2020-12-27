@@ -887,19 +887,81 @@
       ],
       "name": "California",
       "title": "California",
-      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/California.geojson"
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/CA.geojson"
     },
     {
       "avaID": "none",
       "children": [
         {
           "avaID": "columbia_valley",
+          "children": [
+            {
+              "avaID": "walla_walla_valley",
+              "children": [
+                {
+                  "avaID": "the_rocks_district_of_milton_freewater",
+                  "name": "The Rocks District of Milton-Freewater",
+                  "title": "The Rocks District of Milton-Freewater",
+                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/the_rocks_district_of_milton_freewater.geojson"
+                }
+              ],
+              "name": "Walla Walla Valley",
+              "title": "Walla Walla Valley",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/walla_walla_valley.geojson"
+            }
+          ],
           "name": "Columbia Valley",
           "title": "Columbia Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/columbia_valley.geojson"
         },
         {
           "avaID": "willamette_valley",
+          "children": [
+            {
+              "avaID": "chehalem_mountains",
+              "children": [
+                {
+                  "avaID": "ribbon_ridge",
+                  "name": "Ribbon Ridge",
+                  "title": "Ribbon Ridge",
+                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/ribbon_ridge.geojson"
+                }
+              ],
+              "name": "Chehalem Mountains",
+              "title": "Chehalem Mountains",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/chehalem_mountains.geojson"
+            },
+            {
+              "avaID": "yamhill_carlton",
+              "name": "Yamhill-Carlton",
+              "title": "Yamhill-Carlton",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/yamhill_carlton.geojson"
+            },
+            {
+              "avaID": "van_duzer_corridor",
+              "name": "Van Duzer Corridor",
+              "title": "Van Duzer Corridor",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/van_duzer_corridor.geojson"
+            },
+            {
+              "avaID": "eola_amity_hills",
+              "name": "Eola-Amity Hills",
+              "title": "Eola-Amity Hills",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/eola_amity_hills.geojson"
+            },
+            {
+              "avaID": "mcminnville",
+              "name": "McMinnville",
+              "title": "McMinnville",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/mcminnville.geojson"
+            },
+            {
+              "avaID": "dundee_hills",
+              "name": "Dundee Hills",
+              "title": "Dundee Hills",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/dundee_hills.geojson"
+            }
+          ],
           "name": "Willamette Valley",
           "title": "Willamette Valley",
           "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/willamette_valley.geojson"
@@ -913,7 +975,123 @@
       ],
       "name": "Oregon",
       "title": "Oregon",
-      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/Oregon.geojson"
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/OR.geojson"
+    },
+    {
+      "avaID": "none",
+      "children": [
+        {
+          "avaID": "columbia_valley",
+          "children": [
+            {
+              "avaID": "yakima_valley",
+              "children": [
+                {
+                  "avaID": "rattlesnake_hills",
+                  "name": "Rattlesnake Hills",
+                  "title": "Rattlesnake Hills",
+                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/rattlesnake_hills.geojson"
+                },
+                {
+                  "avaID": "red_mountain",
+                  "name": "Red Mountain",
+                  "title": "Red Mountain",
+                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/red_mountain.geojson"
+                },
+                {
+                  "avaID": "snipes_mountain",
+                  "name": "Snipes Mountain",
+                  "title": "Snipes Mountain",
+                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/snipes_mountain.geojson"
+                },
+                {
+                  "avaID": "candy_mountain",
+                  "name": "Candy Mountain",
+                  "title": "Candy Mountain",
+                  "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/candy_mountain.geojson"
+                }
+              ],
+              "name": "Yakima Valley",
+              "title": "Yakima Valley",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/yakima_valley.geojson"
+            },
+            {
+              "avaID": "horse_heaven_hills",
+              "name": "Horse Heaven Hills",
+              "title": "Horse Heaven Hills",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/horse_heaven_hills.geojson"
+            },
+            {
+              "avaID": "walla_walla_valley",
+              "name": "Walla Walla Valley",
+              "title": "Walla Walla Valley",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/walla_walla_valley.geojson"
+            },
+            {
+              "avaID": "ancient_lakes_of_columbia_valley",
+              "name": "Ancient Lakes of Columbia Valley",
+              "title": "Ancient Lakes of Columbia Valley",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/ancient_lakes_of_columbia_valley.geojson"
+            },
+            {
+              "avaID": "wahluke_slope",
+              "name": "Wahluke Slope",
+              "title": "Wahluke Slope",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/wahluke_slope.geojson"
+            },
+            {
+              "avaID": "lake_chelan",
+              "name": "Lake Chelan",
+              "title": "Lake Chelan",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/lake_chelan.geojson"
+            },
+            {
+              "avaID": "naches_heights",
+              "name": "Naches Heights",
+              "title": "Naches Heights",
+              "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/naches_heights.geojson"
+            }
+          ],
+          "name": "Columbia Valley",
+          "title": "Columbia Valley",
+          "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/columbia_valley.geojson"
+        },
+        {
+          "avaID": "puget_sound",
+          "name": "Puget Sound",
+          "title": "Puget Sound",
+          "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/puget_sound.geojson"
+        },
+        {
+          "avaID": "lewis_clark_valley",
+          "name": "Lewis\u2013Clark Valley",
+          "title": "Lewis\u2013Clark Valley",
+          "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/lewis_clark_valley.geojson"
+        },
+        {
+          "avaID": "columbia_gorge",
+          "name": "Columbia Gorge",
+          "title": "Columbia Gorge",
+          "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/columbia_gorge.geojson"
+        }
+      ],
+      "name": "Washington",
+      "title": "Washington",
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/WA.geojson"
+    },
+    {
+      "avaID": "none",
+      "children": [
+        {
+          "avaID": "niagara_escarpment",
+          "name": "Niagara Escarpment",
+          "title": "Niagara Escarpment",
+          "url": "https://raw.githubusercontent.com/rodericj/ava/master/avas/niagara_escarpment.geojson"
+        }
+      ],
+      "name": "New York",
+      "title": "New York",
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/NY.geojson"
     }
   ],
   "name": "USA",
