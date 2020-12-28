@@ -57,7 +57,7 @@ def getState(abbreviation, stateName):
         thisfeatureAsNode = AVAFeatureNode(name, avaID, url, parent=max(filtered_lst)[1])
     return stateNode
 
-usa = AVAFeatureNode("USA", "none", "")
+usa = AVAFeatureNode("USA", "none", "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/USA.geojson")
 
 oregonNode = getState("OR", "Oregon")
 californiaNode = getState("CA", "California")
