@@ -26,9 +26,12 @@ france = AVAFeatureNode("France", "https://raw.githubusercontent.com/rodericj/Wi
 bordeaux = AVAFeatureNode("Bordeaux", "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux-AOP_Bordeaux_France.geojson")
 bordeaux.parent = france
 for regionFile in regionFiles:
-    if regionFile.path.endswith(".geojson") and regionFile.path != "Bordeaux_Communes.geojson" and regionFile.path != "Bordeaux-AOP_Bordeaux_France.geojson":
+    if regionFile.path.endswith(".geojson")\
+            and regionFile.path != "Bordeaux_Communes.geojson" \
+            and regionFile.path != "Bordeaux-AOP_Bordeaux_France.geojson" \
+            and regionFile.path != "Bordeaux-Superior-AOP_Bordeaux_France.geojson":
         dashSplits = regionFile.path.split("-AOP")
-        name = dashSplits[0].replace("-", " ")
+        name = dashSplits[0].replace("-", " ").replace(" PDO_Bordeaux_France.geojson", "")
         url = regionFile.download_url
         feature = AVAFeatureNode(name, url)
         feature.parent = bordeaux

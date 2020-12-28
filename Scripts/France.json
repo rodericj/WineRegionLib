@@ -13,11 +13,6 @@
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Blaye-AOP_Bordeaux_France.geojson"
         },
         {
-          "name": "Bordeaux Superior",
-          "title": "Bordeaux Superior",
-          "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Bordeaux-Superior-AOP_Bordeaux_France.geojson"
-        },
-        {
           "name": "Canon Fronsac",
           "title": "Canon Fronsac",
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Canon-Fronsac-AOP_Bordeaux_France.geojson"
@@ -33,13 +28,13 @@
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Cotes-de-Blaye-AOP_Bordeaux_France.geojson"
         },
         {
-          "name": "Cotes de Bordeaux PDO_Bordeaux_France.geojson",
-          "title": "Cotes de Bordeaux PDO_Bordeaux_France.geojson",
+          "name": "Cotes de Bordeaux",
+          "title": "Cotes de Bordeaux",
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Cotes-de-Bordeaux-PDO_Bordeaux_France.geojson"
         },
         {
-          "name": "Cotes de Bordeaux St Macaire PDO_Bordeaux_France.geojson",
-          "title": "Cotes de Bordeaux St Macaire PDO_Bordeaux_France.geojson",
+          "name": "Cotes de Bordeaux St Macaire",
+          "title": "Cotes de Bordeaux St Macaire",
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Cotes-de-Bordeaux-St-Macaire-PDO_Bordeaux_France.geojson"
         },
         {
@@ -138,8 +133,8 @@
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Puisseguin-St-Emilion-AOP_Bordeaux_France.geojson"
         },
         {
-          "name": "Sauternes PDO_Bordeaux_France.geojson",
-          "title": "Sauternes PDO_Bordeaux_France.geojson",
+          "name": "Sauternes",
+          "title": "Sauternes",
           "url": "https://raw.githubusercontent.com/rodericj/BordeauxWineRegions/master/Sauternes-PDO_Bordeaux_France.geojson"
         },
         {
@@ -187,4 +182,3 @@
   "title": "France",
   "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/France/France.geojson"
 }
-
