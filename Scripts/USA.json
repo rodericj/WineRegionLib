@@ -887,7 +887,7 @@
       ],
       "name": "California",
       "title": "California",
-      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/CA.geojson"
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/California.geojson"
     },
     {
       "avaID": "none",
@@ -975,7 +975,7 @@
       ],
       "name": "Oregon",
       "title": "Oregon",
-      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/OR.geojson"
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/Oregon.geojson"
     },
     {
       "avaID": "none",
@@ -1077,7 +1077,7 @@
       ],
       "name": "Washington",
       "title": "Washington",
-      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/WA.geojson"
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/Washington.geojson"
     },
     {
       "avaID": "none",
@@ -1091,7 +1091,7 @@
       ],
       "name": "New York",
       "title": "New York",
-      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/NY.geojson"
+      "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/USA/NewYork.geojson"
     }
   ],
   "name": "USA",
