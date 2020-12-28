@@ -151,7 +151,7 @@ public class WineRegion: ObservableObject {
 
     public func loadMap(for region: RegionJson) {
         guard let urlString = region.url, let url = URL(string: urlString) else {
-            print("not a valid url: \(region.url ?? "nil")")
+            print("not a valid url: \(region)")
             return
         }
         fetchFrom(urls: [url])
@@ -166,23 +166,22 @@ public class WineRegion: ObservableObject {
 
         DispatchQueue.global(qos: .utility).async {
             self.update(tree: .loading(0))
-            guard let californiaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/USA.json"),
+            guard let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/USA.json"),
                   let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/Italy.json"),
                   let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/France.json")else {
                 fatalError()
             }
             do {
-                let californiaData = try Data(contentsOf: californiaURL)
-                let californiaRegion = try decoder.decode(RegionJson.self, from: californiaData)
+                let usaData = try Data(contentsOf: usaURL)
+                let usaRegion = try decoder.decode(RegionJson.self, from: usaData)
                 self.update(tree: .loading(0))
 
                 let italyData = try Data(contentsOf: italyURL)
                 let italyRegion = try decoder.decode(RegionJson.self, from: italyData)
 
-
                 let franceData = try Data(contentsOf: franceURL)
                 let franceRegion = try decoder.decode(RegionJson.self, from: franceData)
-                self.update(tree: .regions([italyRegion, californiaRegion, franceRegion]))
+                self.update(tree: .regions([usaRegion, franceRegion, italyRegion]))
             } catch {
                 self.update(tree: .error(error))
             }
