@@ -20,7 +20,7 @@ The Italian Ministry of agricultural, food and forestry policy has provided a [w
 
 
 ### The script
-The regions and subregions are then grok'd by [getItaly.py](https://github.com/rodericj/WineRegionLib/blob/main/Scripts/getItaly.py) using [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) with some massaging of the data. These files are then referenced in [this json blob](https://github.com/rodericj/WineRegionLib/blob/main/Scripts/newItaly.json).
+The regions and subregions are then grok'd by [getItaly.py](https://github.com/rodericj/WineRegionLib/blob/main/Scripts/getItaly.py) using [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) with some massaging of the data. These files are then referenced in [this json blob](https://github.com/rodericj/WineRegionLib/blob/main/Scripts/Italy.json).
 
 ## Storage
 

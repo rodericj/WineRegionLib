@@ -167,7 +167,7 @@ public class WineRegion: ObservableObject {
         DispatchQueue.global(qos: .utility).async {
             self.update(tree: .loading(0))
             guard let californiaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/USA.json"),
-                  let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/newItaly.json"),
+                  let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/Italy.json"),
                   let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/France.json")else {
                 fatalError()
             }
