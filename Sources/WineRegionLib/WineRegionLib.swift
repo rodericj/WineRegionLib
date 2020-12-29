@@ -163,7 +163,6 @@ public class WineRegion: ObservableObject {
 
     public func getRegionTree() {
         let decoder = JSONDecoder()
-
         DispatchQueue.global(qos: .utility).async {
             self.update(tree: .loading(0))
             guard let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/USA.json"),
@@ -219,6 +218,26 @@ public struct RegionJson: Decodable, Identifiable {
         self.title = title
         self.url = url
         self.children = children
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case url
+        case children
+    }
+
+    public init(from decoder:Decoder) throws {
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let theseChildren = try container.decodeIfPresent([RegionJson]?.self, forKey: .children)
+            self.children = theseChildren??.sorted { $0.title < $1.title }
+            url = try container.decodeIfPresent(String?.self, forKey: .url) ?? nil
+            title = try container.decode(String.self, forKey: .title)
+
+        } catch {
+            print(error)
+            fatalError()
+        }
     }
 
 }
