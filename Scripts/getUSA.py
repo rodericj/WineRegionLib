@@ -23,7 +23,7 @@ class AVAFeatureNode(MyBaseClass, NodeMixin):  # Add Node feature
 
 # Straight up copy paste of California
 def getState(abbreviation, stateName):
-    fileName = "/Users/roderic/dev/rodericj/WineRegionLib/Scripts/" + abbreviation + "_avas.geojson"
+    fileName = "/Users/roderic/dev/rodericj/WineRegionLib/Data/" + abbreviation + "_avas.geojson"
     file = open(fileName, 'r')
     data = json.load(file)
 
