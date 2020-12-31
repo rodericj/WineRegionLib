@@ -113,7 +113,6 @@ for region in zippedList:
 
     dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + encodedName + ".geojson"
 
-    print(dictURL)
     # response = urllib.request.urlopen(dictURL)
     # if response.status != 200:
     #     print("Failed: ", response.status, dictURL)
