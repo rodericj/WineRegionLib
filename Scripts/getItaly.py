@@ -116,14 +116,39 @@ for region in zippedList:
     # response = urllib.request.urlopen(dictURL)
     # if response.status != 200:
     #     print("Failed: ", response.status, dictURL)
+    # else:
+    #     print("good to go")
     # print(dictURL)
+
+
+    # Note: There are a few italian regions that are not valid for whatever reason. They have a 0 byte file size
+    blacklist = ["AffileCesanesediAffileDOP",
+                "AltoAdigeSdtirolSdtirolerdell",
+                "AnsonicaCostadellArgentarioDOP",
+                "CaldaroKaltererKaltererseeLagodi",
+                "CerasuolodiVittoriaDOP",
+                "ColliPiacentiniDOP",
+                "FalanghinadelSannioDOP",
+                "GardaDOP",
+                "GhemmeDOP",
+                "GutturnioDOP",
+                "LisonPramaggioreDOP",
+                "OrtrugodeiColliPiacentiniOrtrugoC",
+                "ReciotodiSoaveDOP",
+                "RivieradelBrentaDOP",
+                "RivieraligurediPonenteDOP",
+                "RossodiMontepulcianoDOP",
+                "SannioDOP",
+                "ValledAostaValledAosteDOP",
+                "delleVenezieBenekihokolievDOP"]
+
     subRegionObject = {"title": uneditedSubregionName,
                        "originalURL": downloadUrl,
                        "url": dictURL}
 
-    # find the item that has the appropriate one. italyChildren is an array
-    italyChildren[regionName]["children"].append(subRegionObject)
-    # add this child to the italy object
+    if encodedName not in blacklist:
+        # find the item that has the appropriate one. italyChildren is an array
+        italyChildren[regionName]["children"].append(subRegionObject)
 
 italy["children"] = list(italyChildren.values())
 print(json.dumps(italy, indent=4))

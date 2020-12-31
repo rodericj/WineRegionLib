@@ -71,11 +71,6 @@
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CortesediGaviGaviDOP.geojson"
                 },
                 {
-                    "title": "Ghemme",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/437/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/GhemmeDOP.geojson"
-                },
-                {
                     "title": "Roero",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/580/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/RoeroDOP.geojson"
@@ -336,11 +331,6 @@
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/ReciotodellaValpolicellaDOP.geojson"
                 },
                 {
-                    "title": "Recioto di Soave",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/579/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/ReciotodiSoaveDOP.geojson"
-                },
-                {
                     "title": "Soave Superiore",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/582/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/SoaveSuperioreDOP.geojson"
@@ -404,11 +394,6 @@
                     "title": "Piave",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/829/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/PiaveDOP.geojson"
-                },
-                {
-                    "title": "Riviera del Brenta",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/878/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/RivieradelBrentaDOP.geojson"
                 },
                 {
                     "title": "Lessini Durello / Durello Lessini",
@@ -564,11 +549,6 @@
                     "title": "Capalbio",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/627/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CapalbioDOP.geojson"
-                },
-                {
-                    "title": "Ansonica Costa dell'Argentario",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/677/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/AnsonicaCostadellArgentarioDOP.geojson"
                 },
                 {
                     "title": "Barco Reale di Carmignano",
@@ -756,11 +736,6 @@
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/VinSantodiMontepulcianoDOP.geojson"
                 },
                 {
-                    "title": "Rosso di Montepulciano",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1159/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/RossodiMontepulcianoDOP.geojson"
-                },
-                {
                     "title": "Maremma Toscana",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1203/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/MaremmaToscanaDOP.geojson"
@@ -819,11 +794,6 @@
                     "title": "Frascati Superiore",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/432/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/FrascatiSuperioreDOP.geojson"
-                },
-                {
-                    "title": "Affile / Cesanese di Affile",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/632/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/AffileCesanesediAffileDOP.geojson"
                 },
                 {
                     "title": "Cesanese di Olevano Romano / Olevano Romano ",
@@ -1206,11 +1176,6 @@
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CollidiScandianoediCanossaDOP.geojson"
                 },
                 {
-                    "title": "Colli Piacentini",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/719/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/ColliPiacentiniDOP.geojson"
-                },
-                {
                     "title": "Colli d'Imola",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/757/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CollidImolaDOP.geojson"
@@ -1224,11 +1189,6 @@
                     "title": "Colli di Rimini",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/760/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CollidiRiminiDOP.geojson"
-                },
-                {
-                    "title": "Ortrugo dei Colli Piacentini / Ortrugo / Colli Piacentini",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/806/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/OrtrugodeiColliPiacentiniOrtrugoC.geojson"
                 },
                 {
                     "title": "Reggiano",
@@ -1249,11 +1209,6 @@
                     "title": "Lambrusco Grasparossa di Castelvetro",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/875/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/LambruscoGrasparossadiCastelvetroDOP.geojson"
-                },
-                {
-                    "title": "Gutturnio",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/877/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/GutturnioDOP.geojson"
                 },
                 {
                     "title": "Lambrusco Salamino di Santa Croce",
@@ -1521,11 +1476,6 @@
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/GrecodiTufoDOP.geojson"
                 },
                 {
-                    "title": "Sannio",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/557/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/SannioDOP.geojson"
-                },
-                {
                     "title": "Taurasi",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/583/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/TaurasiDOP.geojson"
@@ -1559,11 +1509,6 @@
                     "title": "Falerno del Massico",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/739/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/FalernodelMassicoDOP.geojson"
-                },
-                {
-                    "title": "Falanghina del Sannio",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/762/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/FalanghinadelSannioDOP.geojson"
                 },
                 {
                     "title": "Galluccio",
@@ -1759,11 +1704,6 @@
                     "title": "Sicilia",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1053/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/SiciliaDOP.geojson"
-                },
-                {
-                    "title": "Cerasuolo di Vittoria",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1155/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CerasuolodiVittoriaDOP.geojson"
                 },
                 {
                     "title": "Avola",
@@ -2391,16 +2331,6 @@
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CastellerDOP.geojson"
                 },
                 {
-                    "title": "Alto Adige / S\u00fcdtirol / S\u00fcdtiroler / dell'Alto Adige",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/790/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/AltoAdigeSdtirolSdtirolerdell.geojson"
-                },
-                {
-                    "title": "Caldaro / Kalterer / Kalterersee / Lago di Caldaro",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/870/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/CaldaroKaltererKaltererseeLagodi.geojson"
-                },
-                {
                     "title": "Trento",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1055/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/TrentoDOP.geojson"
@@ -2571,11 +2501,6 @@
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/OrmeascodiPornassioPornassioDOP.geojson"
                 },
                 {
-                    "title": "Riviera ligure di Ponente",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/883/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/RivieraligurediPonenteDOP.geojson"
-                },
-                {
                     "title": "Dolceacqua / Rossese di Dolceacqua",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/886/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/DolceacquaRossesediDolceacquaDOP.geojson"
@@ -2644,13 +2569,7 @@
         },
         {
             "title": "valle d'aosta",
-            "children": [
-                {
-                    "title": "Valle d'Aosta / Vall\u00e9e d'Aoste",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/925/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/ValledAostaValledAosteDOP.geojson"
-                }
-            ]
+            "children": []
         },
         {
             "title": "friuli venezia giulia - veneto",
@@ -2659,11 +2578,6 @@
                     "title": "Lison ",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/440/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/LisonDOP.geojson"
-                },
-                {
-                    "title": "Lison Pramaggiore",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1035/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/LisonPramaggioreDOP.geojson"
                 },
                 {
                     "title": "Prosecco",
@@ -2700,11 +2614,6 @@
         {
             "title": "lombardy - veneto",
             "children": [
-                {
-                    "title": "Garda",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/831/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/GardaDOP.geojson"
-                },
                 {
                     "title": "Lugana",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/860/mapOpenData",
@@ -2745,11 +2654,6 @@
         {
             "title": "friuli venezia giulia and other 2",
             "children": [
-                {
-                    "title": "\"delle Venezie/Bene\u0161kih okoli\u0161ev\u201d",
-                    "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1182/mapOpenData",
-                    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/renameItalyGeoJson/Italy/delleVenezieBenekihokolievDOP.geojson"
-                },
                 {
                     "title": "Trevenezie / Tri Bene\u010dije",
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1175/mapOpenData",
