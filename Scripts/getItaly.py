@@ -50,8 +50,8 @@ def printSwiftStruct(result):
 
     print("}")
 
-def convertSubRegionToURL(subRegion):
-    root = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/"
+def convertSubRegionToURL(subRegion, branch):
+    root = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/"
     newSubRegion = subRegion.replace("\t", "") \
         .replace(" ", "").replace("...", "") \
         .replace("-", "_").replace("'", "").replace(".", "") \
@@ -61,7 +61,7 @@ def convertSubRegionToURL(subRegion):
 
     return root + newSubRegion + ".geojson"
 
-def convertToJson(result):
+def convertToJson(result, branch):
 
     italyChildren = []
     for region in result:
@@ -72,11 +72,10 @@ def convertToJson(result):
         children = []
         for subRegion in result[region]:
             title = CaseTitleDecorator(subRegion)
-            url = convertSubRegionToURL(subRegion)
+            url = convertSubRegionToURL(subRegion, branch)
             newValue = {"title": title,
                         "url": url
                         }
-#            print(url)
             children.append(newValue)
         regionDict["children"] = children
         italyChildren.append(regionDict)
@@ -89,9 +88,15 @@ def convertToJson(result):
 
     return italy
 
+# For looking up the names of the regions
+lookupFileName = "/Users/roderic/dev/rodericj/WineRegionLib/Data/disciplinari.json"
+lookupFile = open(lookupFileName, 'r')
+lookupData = json.load(lookupFile)
 
-fileName = "/Users/roderic/dev/rodericj/WineRegionLib/Scripts/italyWebsite.html"
+fileName = "/Users/roderic/dev/rodericj/WineRegionLib/Data/italyWebsite.html"
+
 file = open(fileName, 'r')
+
 soup = BeautifulSoup(file.read(), features="html.parser")
 tops = soup.find_all("p", class_="product-title")
 bottoms = soup.find_all("h6", class_="qcont")
@@ -108,8 +113,9 @@ for result in tuple(both):
 d = {}
 result = Convert(tupleArray, d)
 
+branch = "renameItalyGeoJson"
 
-newJsonAbleResult = convertToJson(result)
+newJsonAbleResult = convertToJson(result, branch)
 #print(json.dumps(newJsonAbleResult, indent=4))
 
 def getRegionTuple(htmlSnippet):
@@ -143,10 +149,11 @@ for region in zippedList:
     downloadUrl = "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/" + regionID + "/mapOpenData"
 
     # touch up the name
-    uneditedSubregionName = region[1][0]
+    uneditedSubregionName = [x["prodotto"]["denominazione"] for x in lookupData if x["idDisciplinare"] == int(regionID)][0]
+
     subRegionName = region[1][0].replace(" ", "") \
                      .replace("/", "").replace("'", "") \
-                     .replace(".", "").replace("’", "").replace("-", "")
+                     .replace(".", "").replace("’", "").replace("-", "").replace("\"", "").replace("”", "")
 
     # name the downloaded file
     fileName = subRegionName + ".geojson"
@@ -154,11 +161,13 @@ for region in zippedList:
     # get the appropriate italy child based on the region
     regionName = region[1][1]
     if regionName not in  italyChildren.keys():
-        italyChildren[regionName] = { "title": regionName, "children": []}
+        italyChildren[regionName] = {"title": regionName,
+                                    "children": []}
 
-    dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/" + subRegionName + ".geojson"
+    dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + subRegionName + ".geojson"
 
     subRegionObject = {"title": uneditedSubregionName,
+                       "originalURL": downloadUrl,
                        "url": dictURL}
 
     # find the item that has the appropriate one. italyChildren is an array
