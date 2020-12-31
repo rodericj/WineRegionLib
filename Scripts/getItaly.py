@@ -3,6 +3,8 @@ import json
 import re
 import urllib.request
 import urllib
+import string
+
 #                                                                                  class="card prduct-card-position col-md-6 col-sm-6 product-card">
 #
 #                                                                                 <div class="text-white">
@@ -41,15 +43,18 @@ both = zip(tops, bottoms)
 
 tupleArray = []
 for result in tuple(both):
-    strippedTops = repr(result[0]).replace('\\t', '').replace('\n', '').replace('\\n', '').replace('<p class="mb-0 product-title">', '').replace('</p>', '')
-    strippedBottoms = repr(result[1]).replace('\\t', '').replace('\n', '').replace('\\n', '').replace('<h6 class="mt-2 mb-1 qcont">', '').replace('</h6>', '')
+    strippedTops = repr(result[0]).replace('\\t', '').replace('\n', '').replace('\\n', '').replace(
+        '<p class="mb-0 product-title">', '').replace('</p>', '')
+    strippedBottoms = repr(result[1]).replace('\\t', '').replace('\n', '').replace('\\n', '').replace(
+        '<h6 class="mt-2 mb-1 qcont">', '').replace('</h6>', '')
     tupleArray.append((strippedBottoms, strippedTops))
 
-#print(tupleArray)
+# print(tupleArray)
 
 d = {}
 
 branch = "renameItalyGeoJson"
+
 
 def getRegionTuple(htmlSnippet):
     splits = re.split('\n|\t', htmlSnippet.get_text())
@@ -64,7 +69,6 @@ re.split('\n|\t', results[0].get_text())
 regionSubRegionPairsArray = [getRegionTuple(x) for x in results]
 productID = [re.search(pattern, a["onclick"]).group(1) for a in results]
 
-
 zippedList = list(zip(productID, regionSubRegionPairsArray))
 
 # print(zippedList)
@@ -75,37 +79,45 @@ italy = {"title": "Italy",
          "children": []
          }
 
-
 italyChildren = {}
+
 for region in zippedList:
     # download the geojson
     regionID = region[0]
     downloadUrl = "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/" + regionID + "/mapOpenData"
 
     # touch up the name
-    uneditedSubregionName = [x["prodotto"]["denominazione"] for x in lookupData if x["idDisciplinare"] == int(regionID)][0]
+    uneditedSubregionName = \
+    [x["prodotto"]["denominazione"] for x in lookupData if x["idDisciplinare"] == int(regionID)][0]
 
     subRegionName = region[1][0].replace(" ", "") \
-                     .replace("/", "").replace("'", "") \
-                     .replace(".", "").replace("’", "").replace("-", "").replace("\"", "").replace("”", "")
+        .replace("/", "").replace("'", "") \
+        .replace(".", "").replace("’", "").replace("-", "").replace("\"", "").replace("”", "")
 
     # name the downloaded file
     fileName = subRegionName + ".geojson"
-    # print("wget", downloadUrl, "-O ", "../../WineRegionMaps/Italy/" + fileName, " &")
+
+
+    # encodedName = bytes(subRegionName, 'utf-8').decode('utf-8', 'ignore')
+
+    encodedName = ''.join(x for x in subRegionName if x in string.printable)
+    # encodedName = urllib.parse.quote(subRegionName).bytes(line, 'utf-8').decode('utf-8','ignore')
+    writeURL = "../WineRegionMaps/Italy/" + encodedName + ".geojson"
+    # print("wget", downloadUrl, "--quiet -O ", writeURL + " &")
     # get the appropriate italy child based on the region
     regionName = region[1][1]
 
-    if regionName not in  italyChildren.keys():
+    if regionName not in italyChildren.keys():
         italyChildren[regionName] = {"title": regionName,
-                                    "children": []}
+                                     "children": []}
 
-    dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + urllib.parse.quote(subRegionName) + ".geojson"
+    dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + encodedName + ".geojson"
 
-    # print(dictURL)
+    print(dictURL)
     # response = urllib.request.urlopen(dictURL)
     # if response.status != 200:
     #     print("Failed: ", response.status, dictURL)
-
+    # print(dictURL)
     subRegionObject = {"title": uneditedSubregionName,
                        "originalURL": downloadUrl,
                        "url": dictURL}
@@ -113,7 +125,6 @@ for region in zippedList:
     # find the item that has the appropriate one. italyChildren is an array
     italyChildren[regionName]["children"].append(subRegionObject)
     # add this child to the italy object
-
 
 italy["children"] = list(italyChildren.values())
 print(json.dumps(italy, indent=4))
