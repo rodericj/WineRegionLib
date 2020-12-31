@@ -23,7 +23,7 @@ extension MKMultiPolygon: MapKitOverlayable {}
 public enum RegionResult<T> {
     case regions([T])
     case loading(Float)
-    case error(Error)
+    case error(Error, String?)
     case none
 }
 
@@ -171,20 +171,31 @@ public class WineRegion: ObservableObject {
                   let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/France.json")else {
                 fatalError()
             }
+            var regions: [RegionJson] = []
             do {
                 let usaData = try Data(contentsOf: usaURL)
                 let usaRegion = try decoder.decode(RegionJson.self, from: usaData)
+                regions.append(usaRegion)
                 self.update(tree: .loading(0))
-
+            } catch {
+                self.update(tree: .error(error, "USA"))
+            }
+            do {
                 let italyData = try Data(contentsOf: italyURL)
                 let italyRegion = try decoder.decode(RegionJson.self, from: italyData)
-
+                regions.append(italyRegion)
+            }
+            catch {
+                self.update(tree: .error(error, "Italy"))
+            }
+            do {
                 let franceData = try Data(contentsOf: franceURL)
                 let franceRegion = try decoder.decode(RegionJson.self, from: franceData)
-                self.update(tree: .regions([usaRegion, franceRegion, italyRegion]))
+                regions.append(franceRegion)
             } catch {
-                self.update(tree: .error(error))
+                self.update(tree: .error(error, "France"))
             }
+            self.update(tree: .regions(regions))
         }
     }
 }
