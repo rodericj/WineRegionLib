@@ -53,7 +53,7 @@ for result in tuple(both):
 
 d = {}
 
-branch = "renameItalyGeoJson"
+branch = "main"
 
 
 def getRegionTuple(htmlSnippet):
