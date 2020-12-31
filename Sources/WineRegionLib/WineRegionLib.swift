@@ -151,7 +151,7 @@ public class WineRegion: ObservableObject {
 
     public func loadMap(for region: RegionJson) {
         guard let urlString = region.url, let url = URL(string: urlString) else {
-            print("not a valid url: \(region)")
+            print("not a valid url: \(region.title), \(region.url)")
             return
         }
         fetchFrom(urls: [url])
@@ -164,10 +164,11 @@ public class WineRegion: ObservableObject {
     public func getRegionTree() {
         let decoder = JSONDecoder()
         DispatchQueue.global(qos: .utility).async {
+            let branch = "main"
             self.update(tree: .loading(0))
-            guard let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/USA.json"),
-                  let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/Italy.json"),
-                  let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/main/Scripts/France.json")else {
+            guard let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/USA.json"),
+                  let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/Italy.json"),
+                  let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/France.json")else {
                 fatalError()
             }
             do {
