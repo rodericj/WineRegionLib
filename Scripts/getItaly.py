@@ -23,71 +23,6 @@ import re
 # <p class="mb-0 product-title"> Zafferano di San Gimignano DOP </p> <h6 class="mt-2 mb-1 qcont"> tuscany </h6>
 # <h6 class="mt-2 mb-1 qcont">
 
-def StructTitleDecorator(nameOfStruct):
-    return nameOfStruct.title().replace("\t", "")#.replace(" ", "").replace("-", "_").replace("'", "")
-
-def CaseTitleDecorator(nameOfCase):
-    #allCaps = nameOfCase.title().replace("\"", "")
-    allCaps = nameOfCase.title()#.replace("\"", "")
-    return allCaps.replace("\t", "").replace("dop", "DOP").replace("igp", "IGP")#replace(" ", "").replace("/", "").replace("...", "").replace("-", "_").replace("'", "").replace(".", "").replace("'", "").replace("’", "").replace("!", "").replace("”", "")
-#    return replaced[0].lower() + replaced[1:]
-
-def Convert(tup, di): 
-    for a, b in tup: 
-        di.setdefault(a, set()).add(CaseTitleDecorator(b))
-    return di 
-
-def printSwiftStruct(result):
-    print("public struct Italy {")
-    for region in result:
-        print(f'    public enum {StructTitleDecorator(region)}: String, AppelationDescribable, CaseIterable {{')
-
-        for subRegion in result[region]:
-            #print(f'        case {subRegion} ')
-            print(f'        case {CaseTitleDecorator(subRegion)} ')
-
-        print("    }")
-
-    print("}")
-
-def convertSubRegionToURL(subRegion, branch):
-    root = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/"
-    newSubRegion = subRegion.replace("\t", "") \
-        .replace(" ", "").replace("...", "") \
-        .replace("-", "_").replace("'", "").replace(".", "") \
-        .replace("'", "").replace("’", "").replace("!", "") \
-        .replace("”", "").replace("\"", "").replace(" ", "").replace("Dop", "DOP") \
-        .replace("Igp", "IGP").replace("/", "")
-
-    return root + newSubRegion + ".geojson"
-
-def convertToJson(result, branch):
-
-    italyChildren = []
-    for region in result:
-        regionDict = {}
-        regionName = StructTitleDecorator(region)
-        regionDict["title"] = regionName
-        regionDict["url"] = "http://www.findthetoplevelnamehere.com"
-        children = []
-        for subRegion in result[region]:
-            title = CaseTitleDecorator(subRegion)
-            url = convertSubRegionToURL(subRegion, branch)
-            newValue = {"title": title,
-                        "url": url
-                        }
-            children.append(newValue)
-        regionDict["children"] = children
-        italyChildren.append(regionDict)
-
-    # Set up the top level italy map
-    italy = { "title" : "Italy",
-              "url" : "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_regions.geojson",
-              "children": italyChildren
-            }
-
-    return italy
-
 # For looking up the names of the regions
 lookupFileName = "/Users/roderic/dev/rodericj/WineRegionLib/Data/disciplinari.json"
 lookupFile = open(lookupFileName, 'r')
@@ -111,12 +46,8 @@ for result in tuple(both):
 #print(tupleArray)
 
 d = {}
-result = Convert(tupleArray, d)
 
 branch = "renameItalyGeoJson"
-
-newJsonAbleResult = convertToJson(result, branch)
-#print(json.dumps(newJsonAbleResult, indent=4))
 
 def getRegionTuple(htmlSnippet):
     splits = re.split('\n|\t', htmlSnippet.get_text())
@@ -179,7 +110,3 @@ italy["children"] = list(italyChildren.values())
 print(json.dumps(italy, indent=4))
 
 # https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/114/mapOpenData
-
-
-
-#printSwiftStruct(result)
