@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import json
 import re
+import urllib.request
+import urllib
 #                                                                                  class="card prduct-card-position col-md-6 col-sm-6 product-card">
 #
 #                                                                                 <div class="text-white">
@@ -73,6 +75,7 @@ italy = {"title": "Italy",
          "children": []
          }
 
+
 italyChildren = {}
 for region in zippedList:
     # download the geojson
@@ -91,11 +94,17 @@ for region in zippedList:
     # print("wget", downloadUrl, "-O ", "../../WineRegionMaps/Italy/" + fileName, " &")
     # get the appropriate italy child based on the region
     regionName = region[1][1]
+
     if regionName not in  italyChildren.keys():
         italyChildren[regionName] = {"title": regionName,
                                     "children": []}
 
-    dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + subRegionName + ".geojson"
+    dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + urllib.parse.quote(subRegionName) + ".geojson"
+
+    # print(dictURL)
+    # response = urllib.request.urlopen(dictURL)
+    # if response.status != 200:
+    #     print("Failed: ", response.status, dictURL)
 
     subRegionObject = {"title": uneditedSubregionName,
                        "originalURL": downloadUrl,
