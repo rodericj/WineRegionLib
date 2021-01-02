@@ -1,7 +1,60 @@
 import XCTest
 @testable import WineRegionLib
 
+extension RegionJson: Equatable {
+    public static func == (lhs: RegionJson, rhs: RegionJson) -> Bool {
+        lhs.title == rhs.title && lhs.children == rhs.children
+    }
+}
 final class WineRegionLibTests: XCTestCase {
+
+
+    func testFilterChildrenIncludeAll() {
+        let four = RegionJson(title: "four", url: "", children: [])
+        let three = RegionJson(title: "three", url: "", children: [])
+        let two = RegionJson(title: "two", url: "", children: [four])
+        let one = RegionJson(title: "one", url: "", children: [two, three])
+
+        let results = one.filter(searchString: "one", root: one)
+        XCTAssert(results.count == 1)
+        XCTAssert(results.first == one)
+    }
+
+    func testFilterChildren() {
+        let four = RegionJson(title: "four", url: "", children: [])
+        let three = RegionJson(title: "three", url: "", children: [])
+        let two = RegionJson(title: "two", url: "", children: [four])
+        let one = RegionJson(title: "one", url: "", children: [two, three])
+
+        let results = one.filter(searchString: "two", root: one)
+        XCTAssert(results.count == 1)
+        XCTAssert(results.first == two)
+    }
+
+    func testFilterChildrenMultipleResults() {
+        let four = RegionJson(title: "four", url: "", children: [])
+        let three = RegionJson(title: "three", url: "", children: [])
+        let two = RegionJson(title: "two", url: "", children: [four])
+        let one = RegionJson(title: "one", url: "", children: [two, three])
+
+        let results = one.filter(searchString: "o", root: one)
+        XCTAssert(results.count == 3)
+        XCTAssert(results.contains(one))
+        XCTAssert(results.contains(two))
+        XCTAssert(results.contains(four))
+    }
+
+    func testFilterChildrenMultipleResults1() {
+        let four = RegionJson(title: "four", url: "", children: [])
+        let three = RegionJson(title: "three", url: "", children: [])
+        let two = RegionJson(title: "two", url: "", children: [four])
+        let one = RegionJson(title: "one", url: "", children: [two, three])
+
+        let results = one.filter(searchString: "t", root: one)
+        XCTAssert(results.count == 2)
+        XCTAssert(results.contains(two))
+        XCTAssert(results.contains(three))
+    }
 
     func testSortChildren() throws {
         let decoder = JSONDecoder()

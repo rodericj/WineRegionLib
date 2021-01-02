@@ -165,7 +165,7 @@ public class WineRegion: ObservableObject {
         let decoder = JSONDecoder()
         DispatchQueue.global(qos: .utility).async {
             let branch = "main"
-            self.update(tree: .loading(0))
+            self.update(tree: .loading(0.1))
             guard let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/USA.json"),
                   let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/Italy.json"),
                   let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/France.json")else {
@@ -176,7 +176,7 @@ public class WineRegion: ObservableObject {
                 let usaData = try Data(contentsOf: usaURL)
                 let usaRegion = try decoder.decode(RegionJson.self, from: usaData)
                 regions.append(usaRegion)
-                self.update(tree: .loading(0))
+                self.update(tree: .loading(0.4))
             } catch {
                 self.update(tree: .error(error, "USA"))
             }
@@ -195,6 +195,7 @@ public class WineRegion: ObservableObject {
             } catch {
                 self.update(tree: .error(error, "France"))
             }
+
             self.update(tree: .regions(regions))
         }
     }
@@ -252,4 +253,32 @@ public struct RegionJson: Decodable, Identifiable {
         }
     }
 
+}
+
+
+extension RegionJson {
+    func filter(searchString: String, root: RegionJson) -> [RegionJson] {
+        guard let children = root.children else {
+            if root.title.contains(searchString) {
+                return [root]
+            } else {
+                return []
+            }
+        }
+        if children.isEmpty {
+            if root.title.contains(searchString) {
+                return [root]
+            } else {
+                return []
+            }
+        }
+        var ret: [RegionJson] = []
+        if root.title.contains(searchString) {
+            ret.append(root)
+        }
+        root.children?.forEach { region in
+            ret.append(contentsOf: filter(searchString: searchString, root: region))
+        }
+        return ret
+    }
 }
