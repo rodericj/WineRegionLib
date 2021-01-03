@@ -15,7 +15,7 @@ final class WineRegionLibTests: XCTestCase {
         let two = RegionJson(title: "two", url: "", children: [four])
         let one = RegionJson(title: "one", url: "", children: [two, three])
 
-        let results = one.filter(searchString: "one", root: one)
+        let results = one.filter(searchString: "one")
         XCTAssert(results.count == 1)
         XCTAssert(results.first == one)
     }
@@ -26,7 +26,7 @@ final class WineRegionLibTests: XCTestCase {
         let two = RegionJson(title: "two", url: "", children: [four])
         let one = RegionJson(title: "one", url: "", children: [two, three])
 
-        let results = one.filter(searchString: "two", root: one)
+        let results = one.filter(searchString: "two")
         XCTAssert(results.count == 1)
         XCTAssert(results.first == two)
     }
@@ -37,7 +37,7 @@ final class WineRegionLibTests: XCTestCase {
         let two = RegionJson(title: "two", url: "", children: [four])
         let one = RegionJson(title: "one", url: "", children: [two, three])
 
-        let results = one.filter(searchString: "o", root: one)
+        let results = one.filter(searchString: "o")
         XCTAssert(results.count == 3)
         XCTAssert(results.contains(one))
         XCTAssert(results.contains(two))
@@ -50,7 +50,7 @@ final class WineRegionLibTests: XCTestCase {
         let two = RegionJson(title: "two", url: "", children: [four])
         let one = RegionJson(title: "one", url: "", children: [two, three])
 
-        let results = one.filter(searchString: "t", root: one)
+        let results = one.filter(searchString: "t")
         XCTAssert(results.count == 2)
         XCTAssert(results.contains(two))
         XCTAssert(results.contains(three))
