@@ -32,7 +32,6 @@ public class WineRegion: ObservableObject {
     @Published public var regionMaps: RegionResult<MapKitOverlayable> = .none
     @Published public var regionsTree: RegionResult<RegionJson> = .none
 
-    public var loadingValue: Float = 0.0
     let session = URLSession(configuration: .default)
 
     var networkCancellable: AnyCancellable? = nil
@@ -62,7 +61,6 @@ public class WineRegion: ObservableObject {
         let progressIncrement: Float = 1 / (Float(urls.count) * 2.0)
         var currentProgress: Float = 0.0
         self.regionMaps = .loading(currentProgress)
-        self.loadingValue = currentProgress
         DispatchQueue.global(qos: .utility).async {
             urls.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
@@ -83,7 +81,6 @@ public class WineRegion: ObservableObject {
                     do {
                         currentProgress += progressIncrement
                         self?.update(result: RegionResult<MapKitOverlayable>.loading(currentProgress))
-                        self?.loadingValue = currentProgress
                         let data = try Data(contentsOf: temporaryFileLocation)
                         guard let _ = response?.url else {
                             debugPrint("🔴 failed to read temp file")
@@ -138,14 +135,12 @@ public class WineRegion: ObservableObject {
     private func update(result: RegionResult<MapKitOverlayable>) {
         DispatchQueue.main.async {
             self.regionMaps = result
-            self.loadingValue = 1
         }
     }
 
     private func update(tree: RegionResult<RegionJson>) {
         DispatchQueue.main.async {
             self.regionsTree = tree
-            self.loadingValue = 1
         }
     }
 
