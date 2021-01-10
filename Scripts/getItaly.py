@@ -75,7 +75,7 @@ zippedList = list(zip(productID, regionSubRegionPairsArray))
 # print([{"id" : x[0], "region" : x[1][1], "subregion" : x[1][0]} for x in zippedList])
 
 italy = {"title": "Italy",
-         "url": "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_regions.geojson",
+         "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/allRegions.geojson",
          "children": []
          }
 
@@ -110,7 +110,72 @@ for region in zippedList:
     if regionName not in italyChildren.keys():
         italyChildren[regionName] = {"title": regionName,
                                      "children": []}
+        if regionName == 'abruzzo':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/AbruzzoDOP.geojson'
 
+        if regionName == 'trentino':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/TrentinoDOP.geojson'
+
+        if regionName == 'apulia':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/PugliaIGP.geojson'
+
+        if regionName == 'basilicata':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/BasilicataIGP.geojson'
+
+        if regionName == 'calabria':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/CalabriaIGP.geojson'
+
+        if regionName == 'campania':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/CampaniaIGP.geojson'
+
+        if regionName == 'emilia romagna':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/EmiliadellEmiliaIGP.geojson'
+
+        if regionName == 'friuli venezia giulia':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VeneziaGiuliaIGP.geojson'
+
+        if regionName == 'lazio':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/LazioIGP.geojson'
+
+        # Lazio - Umbria could be handled automatically since there is only 1 child
+
+        if regionName == 'liguria':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Liguria.geojson'
+
+        # Liguria - Tuscany could be handled automatically since there is only 1 child
+
+        if regionName == 'lombardy' or regionName == 'lombardy - veneto':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Lombardy.geojson'
+
+        if regionName == 'marche':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/MarcheIGP.geojson'
+
+        if regionName == 'molise':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/MolisedelMoliseDOP.geojson'
+
+        if regionName == 'piedmont':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Piedmont.geojson'
+
+        if regionName == 'sardinia':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/CannonaudiSardegnaDOP.geojson'
+
+        if regionName == 'sicily':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/SiciliaDOP.geojson'
+
+        if regionName == 'trentino' or regionName == 'trentino - veneto':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Trentino.geojson'
+
+        if regionName == 'tuscany':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/ToscanoToscanaIGP.geojson'
+
+        if regionName == 'umbria':
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/UmbriaIGP.geojson'
+
+        if regionName == "valle d'aosta":
+            italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VenetoIGP.geojson'
+
+        if regionName == "valle d'aosta":  # remove this
+            italyChildren[regionName] = None
     dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + encodedName + ".geojson"
 
     # response = urllib.request.urlopen(dictURL)

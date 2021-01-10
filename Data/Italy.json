@@ -1,6 +1,6 @@
 {
     "title": "Italy",
-    "url": "https://raw.githubusercontent.com/openpolis/geojson-italy/master/geojson/limits_IT_regions.geojson",
+    "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/allRegions.geojson",
     "children": [
         {
             "title": "piedmont",
@@ -295,7 +295,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1192/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/PiemonteDOP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Piedmont.geojson"
         },
         {
             "title": "veneto",
@@ -770,7 +771,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/980/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/ValdiMagraIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/ToscanoToscanaIGP.geojson"
         },
         {
             "title": "lazio",
@@ -945,7 +947,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/940/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/LazioIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/LazioIGP.geojson"
         },
         {
             "title": "apulia",
@@ -1140,7 +1143,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1021/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/TarantinoIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/PugliaIGP.geojson"
         },
         {
             "title": "emilia romagna",
@@ -1275,7 +1279,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1026/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/TerrediVelejaIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/EmiliadellEmiliaIGP.geojson"
         },
         {
             "title": "sardinia",
@@ -1445,7 +1450,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/997/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/SibiolaIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/CannonaudiSardegnaDOP.geojson"
         },
         {
             "title": "campania",
@@ -1585,7 +1591,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1003/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/TerredelVolturnoIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/CampaniaIGP.geojson"
         },
         {
             "title": "sicily",
@@ -1740,7 +1747,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1094/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/TerreSicilianeIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/SiciliaDOP.geojson"
         },
         {
             "title": "lombardy",
@@ -1940,7 +1948,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1176/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/AlpiReticheIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Lombardy.geojson"
         },
         {
             "title": "umbria",
@@ -2045,7 +2054,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1095/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/AlleronaIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/UmbriaIGP.geojson"
         },
         {
             "title": "marche",
@@ -2155,7 +2165,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/970/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/MarcheIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/MarcheIGP.geojson"
         },
         {
             "title": "friuli venezia giulia",
@@ -2220,7 +2231,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1002/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VeneziaGiuliaIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VeneziaGiuliaIGP.geojson"
         },
         {
             "title": "calabria",
@@ -2320,7 +2332,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/993/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/ScillaIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/CalabriaIGP.geojson"
         },
         {
             "title": "trentino",
@@ -2350,7 +2363,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1154/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/MitterbergIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Trentino.geojson"
         },
         {
             "title": "abruzzo",
@@ -2440,7 +2454,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1025/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/TerrediChietiIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/AbruzzoDOP.geojson"
         },
         {
             "title": "basilicata",
@@ -2475,7 +2490,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/503/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/BasilicataIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/BasilicataIGP.geojson"
         },
         {
             "title": "liguria",
@@ -2530,7 +2546,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1022/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/TerrazzedellImperieseIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Liguria.geojson"
         },
         {
             "title": "molise",
@@ -2565,12 +2582,10 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/960/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/OscoTerredegliOsciIGP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/MolisedelMoliseDOP.geojson"
         },
-        {
-            "title": "valle d'aosta",
-            "children": []
-        },
+        null,
         {
             "title": "friuli venezia giulia - veneto",
             "children": [
@@ -2624,7 +2639,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1051/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/SanMartinodellaBattagliaDOP.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Lombardy.geojson"
         },
         {
             "title": "trentino - veneto",
@@ -2649,7 +2665,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1007/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VignetidelleDolomitiWeinbergDolomite.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Trentino.geojson"
         },
         {
             "title": "friuli venezia giulia and other 2",
