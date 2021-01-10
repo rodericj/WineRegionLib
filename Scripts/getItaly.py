@@ -171,11 +171,12 @@ for region in zippedList:
         if regionName == 'umbria':
             italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/UmbriaIGP.geojson'
 
-        if regionName == "valle d'aosta":
+        if regionName == "veneto":
             italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VenetoIGP.geojson'
 
         if regionName == "valle d'aosta":  # remove this
-            italyChildren[regionName] = None
+            del italyChildren[regionName]
+            
     dictURL = "https://raw.githubusercontent.com/rodericj/WineRegionMaps/" + branch + "/Italy/" + encodedName + ".geojson"
 
     # response = urllib.request.urlopen(dictURL)

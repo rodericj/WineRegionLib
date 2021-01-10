@@ -491,7 +491,8 @@
                     "originalURL": "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/1004/mapOpenData",
                     "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VeronaVeroneseProvinciadiVeronaIG.geojson"
                 }
-            ]
+            ],
+            "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VenetoIGP.geojson"
         },
         {
             "title": "tuscany",
@@ -2585,7 +2586,6 @@
             ],
             "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/MolisedelMoliseDOP.geojson"
         },
-        null,
         {
             "title": "friuli venezia giulia - veneto",
             "children": [
