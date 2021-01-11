@@ -31,6 +31,17 @@ final class WineRegionLibTests: XCTestCase {
         XCTAssert(results.first == two)
     }
 
+    func testFilterChildrenCaps() {
+        let four = RegionJson(title: "four", url: "", children: [])
+        let three = RegionJson(title: "three", url: "", children: [])
+        let two = RegionJson(title: "Two", url: "", children: [four])
+        let one = RegionJson(title: "one", url: "", children: [two, three])
+
+        let results = one.filter(searchString: "two")
+        XCTAssert(results.count == 1)
+        XCTAssert(results.first == two)
+    }
+
     func testFilterChildrenMultipleResults() {
         let four = RegionJson(title: "four", url: "", children: [])
         let three = RegionJson(title: "three", url: "", children: [])

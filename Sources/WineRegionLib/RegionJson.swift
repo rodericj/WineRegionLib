@@ -64,47 +64,26 @@ public struct RegionJson: Decodable, Identifiable {
 public extension RegionJson {
     func filter(searchString: String) -> [RegionJson] {
         guard let children = children else {
-            if title.contains(searchString) {
+            if title.uppercased().contains(searchString.uppercased()) {
                 return [self]
             } else {
                 return []
             }
         }
         if children.isEmpty {
-            if title.contains(searchString) {
+            if title.uppercased().contains(searchString.uppercased()) {
                 return [self]
             } else {
                 return []
             }
         }
         var ret: [RegionJson] = []
-        if title.contains(searchString) {
+        if title.uppercased().contains(searchString.uppercased()) {
             ret.append(self)
         }
         children.forEach { region in
             ret.append(contentsOf: region.filter(searchString: searchString))
         }
         return ret
-    }
-}
-
-extension RegionJson {
-    func filter(on searchText: String) -> Bool {
-        if title.contains(searchText) { return true }
-        if let children = children {
-            return children.reduce(false) { (result, childRegion) in
-                result || childRegion.filter(on: searchText)
-            }
-        }
-        return false
-    }
-}
-
-public extension Array where Element == RegionJson {
-    func filter(searchString: String) -> [RegionJson] {
-        if searchString.isEmpty { return self }
-        return flatMap { region in
-            region.filter(searchString: searchString)
-        }
     }
 }
