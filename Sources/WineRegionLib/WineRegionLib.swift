@@ -5,10 +5,6 @@
 import Combine
 import MapKit
 
-public protocol AppelationDescribable: CustomStringConvertible {
-    var url: URL { get }
-    var description: String { get }
-}
 
 public protocol MapKitOverlayable {}
 
@@ -115,6 +111,7 @@ public class WineRegion: ObservableObject {
             .map { theData -> [MKGeoJSONObject]? in
                 do {
                     let decoded = try decoder.decode(theData.value)
+
                     currentLoadAmount += increment
                     self.update(result: RegionResult<MapKitOverlayable>.loading(currentLoadAmount))
                     return decoded
@@ -150,10 +147,6 @@ public class WineRegion: ObservableObject {
             return
         }
         fetchFrom(urls: [url])
-    }
-
-    public func getRegions(regions: [AppelationDescribable]) {
-        fetchFrom(urls: regions.map { $0.url })
     }
 
     public func getRegionTree() {
