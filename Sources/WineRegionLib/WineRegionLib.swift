@@ -154,12 +154,25 @@ public class WineRegion: ObservableObject {
         DispatchQueue.global(qos: .utility).async {
             let branch = "main"
             self.update(tree: .loading(0.1))
-            guard let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/USA.json"),
+
+            guard let local = URL(string: "http://localhost:8080/region"),
+                  let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/USA.json"),
                   let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/Italy.json"),
                   let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/France.json")else {
                 fatalError()
             }
+
+            do {
+                let serverData = try Data(contentsOf: local)
+                let children = try decoder.decode([RegionJson].self, from: serverData)
+                self.update(tree: .regions(children))
+                return
+            } catch {
+                self.update(tree: .error(error, "server"))
+            }
+
             var regions: [RegionJson] = []
+
             do {
                 let usaData = try Data(contentsOf: usaURL)
                 let usaRegion = try decoder.decode(RegionJson.self, from: usaData)
