@@ -4,25 +4,20 @@ import re
 import urllib.request
 import urllib
 import string
+from AVAFeatureNode import AVAFeatureNode
 
-#                                                                                  class="card prduct-card-position col-md-6 col-sm-6 product-card">
+#  class="card prduct-card-position col-md-6 col-sm-6 product-card">
 #
-#                                                                                 <div class="text-white">
-#                                                                                         <div class="card-body flex-child">
-#                                                                                                 <p class="mb-0 product-title">
-#
-#
-#                                                                                                                 Chianti Classico DOP
-#
-#                                                                                                 </p>
-#
-#                                                                                                 <h6 class="mt-2 mb-1 qcont">
-#
-#                                                                                                                 tuscany
-#
-#
-#
-#                                                                                                 </h6>
+#  <div class="text-white">
+# <div class="card-body flex-child">
+#   <p class="mb-0 product-title">
+#                  Chianti Classico DOP
+#  </p>
+#<h6 class="mt-2 mb-1 qcont">
+#tuscany
+#</h6>
+
+
 # Example data
 # <p class="mb-0 product-title"> Zafferano di San Gimignano DOP </p> <h6 class="mt-2 mb-1 qcont"> tuscany </h6>
 # <h6 class="mt-2 mb-1 qcont">
@@ -74,6 +69,8 @@ zippedList = list(zip(productID, regionSubRegionPairsArray))
 # print(zippedList)
 # print([{"id" : x[0], "region" : x[1][1], "subregion" : x[1][0]} for x in zippedList])
 
+italyNode = AVAFeatureNode("Italy",
+                       "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/allRegions.geojson")
 italy = {"title": "Italy",
          "url": "https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/allRegions.geojson",
          "children": []
@@ -82,6 +79,7 @@ italy = {"title": "Italy",
 italyChildren = {}
 
 for region in zippedList:
+    print(region)
     # download the geojson
     regionID = region[0]
     downloadUrl = "https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/" + regionID + "/mapOpenData"
@@ -106,7 +104,8 @@ for region in zippedList:
     # print("wget", downloadUrl, "--quiet -O ", writeURL + " &")
     # get the appropriate italy child based on the region
     regionName = region[1][1]
-
+    subNode = AVAFeatureNode(regionName, writeURL)
+    print(subNode.title, subNode.url)
     if regionName not in italyChildren.keys():
         italyChildren[regionName] = {"title": regionName,
                                      "children": []}
@@ -131,15 +130,15 @@ for region in zippedList:
         if regionName == 'emilia romagna':
             italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/EmiliadellEmiliaIGP.geojson'
 
-        if regionName == 'friuli venezia giulia':
+        if regionName == 'friuli venezia giulia' or regionName == 'friuli venezia giulia - veneto' or regionName == 'friuli venezia giulia and other 2':
             italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/VeneziaGiuliaIGP.geojson'
 
-        if regionName == 'lazio':
+        if regionName == 'lazio' or regionName == 'lazio - umbria':
             italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/LazioIGP.geojson'
 
         # Lazio - Umbria could be handled automatically since there is only 1 child
 
-        if regionName == 'liguria':
+        if regionName == 'liguria' or regionName == 'liguria - tuscany':
             italyChildren[regionName]['url'] = 'https://raw.githubusercontent.com/rodericj/WineRegionMaps/main/Italy/Liguria.geojson'
 
         # Liguria - Tuscany could be handled automatically since there is only 1 child
@@ -217,6 +216,23 @@ for region in zippedList:
         italyChildren[regionName]["children"].append(subRegionObject)
 
 italy["children"] = list(italyChildren.values())
-print(json.dumps(italy, indent=4))
+
+for child in italy["children"]:
+    print("hi")
+    print(child["title"])
+    # print(child.keys())
+    # print("url is ", child["url"])
+    region = AVAFeatureNode(child["title"], child["url"])
+    # print("made the region")
+    region.parent = italyNode
+    # print(child["title"])
+    for deepChild in child["children"]:
+        subRegion = AVAFeatureNode(deepChild["title"], deepChild["url"])
+        subRegion.parent = region
+        print("  ", deepChild["title"])
+print(italyNode)
+
+italyNode.depthFirstTreeIteration(None)
+# print(json.dumps(italy, indent=4))
 
 # https://dopigp.politicheagricole.gov.it/bedopigp/v1/disciplinari/114/mapOpenData
