@@ -44,7 +44,7 @@ class AVAFeatureNode(MyBaseClass, NodeMixin):  # Add Node feature
                 print(regions_post_response.status_code)
                 return
         else:
-            url = 'http://localhost:8080/region/' + parentID + "/new"
+            url = 'http://localhost:8080/region/' + parentID + "/add"
             print("PUT on ", parentID)
             print(url)
             regions_put_response = requests.post(url=url, json=payload)
