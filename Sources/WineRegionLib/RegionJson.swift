@@ -7,43 +7,16 @@
 
 import Foundation
 
-
-@propertyWrapper
-public struct DecodableUUID {
-    public var wrappedValue = UUID()
-    public init() {
-        wrappedValue = UUID()
-    }
-}
-
-extension DecodableUUID: Decodable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        wrappedValue = try container.decode(UUID.self)
-    }
-}
-
-extension KeyedDecodingContainer {
-    func decode(_ type: DecodableUUID.Type,
-                forKey key: Key) throws -> DecodableUUID {
-        try decodeIfPresent(type, forKey: key) ?? .init()
-    }
-}
 public struct RegionJson: Decodable, Identifiable {
-    @DecodableUUID public var id: UUID
+    public let id: UUID
     public let title: String
-    public let url: String?
     public let children: [RegionJson]?
-    public init(title: String, url: String, children: [RegionJson]?) {
-        self.title = title
-        self.url = url
-        self.children = children
-    }
 
     private enum CodingKeys: String, CodingKey {
         case title
         case url
         case children
+        case id
     }
 
     public init(from decoder:Decoder) throws {
@@ -51,9 +24,8 @@ public struct RegionJson: Decodable, Identifiable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let theseChildren = try container.decodeIfPresent([RegionJson]?.self, forKey: .children)
             self.children = theseChildren??.sorted { $0.title < $1.title }
-            url = try container.decodeIfPresent(String?.self, forKey: .url) ?? nil
             title = try container.decode(String.self, forKey: .title)
-
+            id = try container.decode(UUID.self, forKey: .id)
         } catch {
             print(error)
             fatalError()

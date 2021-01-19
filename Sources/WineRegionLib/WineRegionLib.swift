@@ -50,18 +50,19 @@ public class WineRegion: ObservableObject {
         }
     }
 
-    private func fetchFrom(urls: [URL]) {
+    private func fetchFrom(regions: [RegionJson]) {
         var datum = [URL: Data]()
         let dispatchGroup = DispatchGroup()
 
-        let progressIncrement: Float = 1 / (Float(urls.count) * 2.0)
+        let progressIncrement: Float = 1 / (Float(regions.count) * 2.0)
         var currentProgress: Float = 0.0
         self.regionMaps = .loading(currentProgress)
         DispatchQueue.global(qos: .utility).async {
-            urls.map { url in
+            regions.compactMap { region in
+                URL(string: "http://localhost:8080/region/\(region.id)/geojson")
+            }.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             }.forEach { request in
-
                 dispatchGroup.enter()
                 let task = self.session.downloadTask(with: request) { [weak self] (temporaryFileLocation, response, error)  in
                     if let error = error {
@@ -142,11 +143,7 @@ public class WineRegion: ObservableObject {
     }
 
     public func loadMap(for region: RegionJson) {
-        guard let urlString = region.url, let url = URL(string: urlString) else {
-            print("not a valid url: \(region.title), \(region.url ?? "No URL")")
-            return
-        }
-        fetchFrom(urls: [url])
+        fetchFrom(regions: [region])
     }
 
     public func getRegionTree() {
