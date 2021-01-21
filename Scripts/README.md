@@ -1,5 +1,14 @@
 # Fetching AVA information
 
+#Dependencies
+
+- [BeautifulSoup](https://macdown.uranusjr.com)
+   - `pip3 install BeautifulSoup4`
+- [pygithub](https://pygithub.readthedocs.io/en/latest/introduction.html)
+   - `pip3 install pygithub`
+- [Requests](https://requests.readthedocs.io/en/master/)
+   - `pip3 install requests`
+
 ## USA
 The united states geojson data comes from [UCDavis' American Viticultural Areas (AVA) Project](https://github.com/rodericj/ava/tree/master) which did a great job of collecting all of the Wine regions across the United States. 
 
