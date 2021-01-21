@@ -37,6 +37,7 @@ class AVAFeatureNode(MyBaseClass, NodeMixin):  # Add Node feature
             print("POST")
             url = 'http://localhost:8080/region'
             regions_post_response = requests.post(url=url, json=payload)
+            print(regions_post_response)
             if regions_post_response.status_code == 200:
                 id = regions_post_response.json()['id']
             else:
@@ -45,12 +46,14 @@ class AVAFeatureNode(MyBaseClass, NodeMixin):  # Add Node feature
                 return
         else:
             url = 'http://localhost:8080/region/' + parentID + "/add"
-            print("PUT on ", parentID)
+            print("POST on ", parentID)
             print(url)
-            regions_put_response = requests.post(url=url, json=payload)
-            if regions_put_response.status_code == 200:
-                id = regions_put_response.json()['id']
+            regions_post_response = requests.post(url=url, json=payload)
+            if regions_post_response.status_code == 200:
+                id = regions_post_response.json()['id']
             else:
+                print("error")
+                print(regions_post_response.status_code)
                 return
             # PUT this item and attach it to parentID
         for child in self.children:
