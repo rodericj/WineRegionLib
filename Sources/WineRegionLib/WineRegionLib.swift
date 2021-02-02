@@ -50,6 +50,7 @@ public class WineRegion: ObservableObject {
         }
     }
 
+    private static let host = "tranquil-garden-84812.herokuapp.com"
     private func fetchFrom(regions: [RegionJson]) {
         var datum = [URL: Data]()
         let dispatchGroup = DispatchGroup()
@@ -59,7 +60,7 @@ public class WineRegion: ObservableObject {
         self.regionMaps = .loading(currentProgress)
         DispatchQueue.global(qos: .utility).async {
             regions.compactMap { region in
-                URL(string: "http://localhost:8080/region/\(region.id)/geojson")
+                URL(string: "http://\(WineRegion.host)/region/\(region.id)/geojson")
             }.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             }.forEach { request in
@@ -149,13 +150,10 @@ public class WineRegion: ObservableObject {
     public func getRegionTree() {
         let decoder = JSONDecoder()
         DispatchQueue.global(qos: .utility).async {
-            let branch = "main"
             self.update(tree: .loading(0.1))
 
-            guard let local = URL(string: "http://localhost:8080/region"),
-                  let usaURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/USA.json"),
-                  let italyURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/Italy.json"),
-                  let franceURL = URL(string: "https://raw.githubusercontent.com/rodericj/WineRegionLib/\(branch)/Data/France.json")else {
+            guard let local = URL(string: "http://\(WineRegion.host)/region")
+            else {
                 fatalError()
             }
 
@@ -167,34 +165,6 @@ public class WineRegion: ObservableObject {
             } catch {
                 self.update(tree: .error(error, "server"))
             }
-
-            var regions: [RegionJson] = []
-
-            do {
-                let usaData = try Data(contentsOf: usaURL)
-                let usaRegion = try decoder.decode(RegionJson.self, from: usaData)
-                regions.append(usaRegion)
-                self.update(tree: .loading(0.4))
-            } catch {
-                self.update(tree: .error(error, "USA"))
-            }
-            do {
-                let italyData = try Data(contentsOf: italyURL)
-                let italyRegion = try decoder.decode(RegionJson.self, from: italyData)
-                regions.append(italyRegion)
-            }
-            catch {
-                self.update(tree: .error(error, "Italy"))
-            }
-            do {
-                let franceData = try Data(contentsOf: franceURL)
-                let franceRegion = try decoder.decode(RegionJson.self, from: franceData)
-                regions.append(franceRegion)
-            } catch {
-                self.update(tree: .error(error, "France"))
-            }
-
-            self.update(tree: .regions(regions))
         }
     }
 }

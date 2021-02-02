@@ -10,6 +10,7 @@ import Foundation
 public struct RegionJson: Decodable, Identifiable {
     public let id: UUID
     public let title: String
+    public let osmID: Int
     public let children: [RegionJson]?
 
     private enum CodingKeys: String, CodingKey {
@@ -17,6 +18,7 @@ public struct RegionJson: Decodable, Identifiable {
         case url
         case children
         case id
+        case osmID
     }
 
     public init(from decoder:Decoder) throws {
@@ -26,6 +28,7 @@ public struct RegionJson: Decodable, Identifiable {
             self.children = theseChildren??.sorted { $0.title < $1.title }
             title = try container.decode(String.self, forKey: .title)
             id = try container.decode(UUID.self, forKey: .id)
+            osmID = try container.decode(Int.self, forKey: .osmID)
         } catch {
             print(error)
             fatalError()
