@@ -26,12 +26,13 @@ public struct RegionJson: Decodable, Identifiable {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let theseChildren = try container.decodeIfPresent([RegionJson]?.self, forKey: .children)
             self.children = theseChildren??.sorted { $0.title < $1.title }
+            
             title = try container.decode(String.self, forKey: .title)
             id = try container.decode(UUID.self, forKey: .id)
             osmID = try container.decode(Int.self, forKey: .osmID)
         } catch {
             print(error)
-            fatalError()
+            throw error
         }
     }
 }
