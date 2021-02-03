@@ -25,6 +25,10 @@ public enum RegionResult<T> {
 
 @available(iOS 13.0, *)
 public class WineRegion: ObservableObject {
+    
+//    private static let host = "http://tranquil-garden-84812.herokuapp.com"
+    private static let host = "http://localhost:3000"
+//    private static let host = "https://thumbworksbot.ngrok.io"
     @Published public var regionMaps: RegionResult<MapKitOverlayable> = .none
     @Published public var regionsTree: RegionResult<RegionJson> = .none
 
@@ -50,7 +54,6 @@ public class WineRegion: ObservableObject {
         }
     }
 
-    private static let host = "tranquil-garden-84812.herokuapp.com"
     private func fetchFrom(regions: [RegionJson]) {
         var datum = [URL: Data]()
         let dispatchGroup = DispatchGroup()
@@ -60,7 +63,7 @@ public class WineRegion: ObservableObject {
         self.regionMaps = .loading(currentProgress)
         DispatchQueue.global(qos: .utility).async {
             regions.compactMap { region in
-                URL(string: "http://\(WineRegion.host)/region/\(region.id)/geojson")
+                URL(string: "\(WineRegion.host)/region/\(region.id)/geojson")
             }.map { url in
                 URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             }.forEach { request in
@@ -142,7 +145,87 @@ public class WineRegion: ObservableObject {
             self.regionsTree = tree
         }
     }
+    
+    private func postRegion(osmID: String, completionHandler: @escaping ((RegionJson?, Error?) -> Void))  {
+        let urlString = "\(WineRegion.host)/region"
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        components?.queryItems = [URLQueryItem(name: "osmid", value: osmID)]
 
+        guard let componentURL = components?.url else { return }
+        var request = URLRequest(url: componentURL)
+        request.httpMethod = "POST"
+        print(componentURL)
+        print(request)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("we got an error \(error)")
+                completionHandler(nil, error)
+            } else if let data = data {
+                let decoder = JSONDecoder()
+                do {
+                    let newRegion = try decoder.decode(RegionJson.self, from: data)
+                    print(newRegion)
+                    completionHandler(newRegion, error)
+                } catch {
+                    do {
+                        let allRegionsForSomeReason = try decoder.decode([RegionJson].self, from: data)
+                        print(allRegionsForSomeReason)
+                        completionHandler(nil, error)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    private func append(child: RegionJson, to parent: RegionJson, completionHandler: @escaping ((RegionJson?, Error?) -> Void))  {
+        var components = URLComponents(string: "\(WineRegion.host)/region/\(child.id)")
+        components?.queryItems = [URLQueryItem(name: "parent_id", value: parent.id.uuidString)]
+        guard let url = components?.url else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("we got an error \(error)")
+                completionHandler(nil, error)
+            } else if let data = data {
+                let decoder = JSONDecoder()
+                do {
+                    let newRegion = try decoder.decode(RegionJson.self, from: data)
+                    print(newRegion)
+                    completionHandler(newRegion, error)
+                } catch {
+                    completionHandler(nil, error)
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    
+    public func createRegion(osmID: String, asChildTo parent: RegionJson) {
+        postRegion(osmID: osmID) { [weak self] (region, error) in
+            if let region = region {
+                print("new region \(region.title)")
+                self?.append(child: region, to: parent) { (region, error) in
+                    if let region = region {
+                        print("udpated region \(region.title) is appended")
+                    } else if let error = error {
+                        print("error appending region \(error)")
+                    }
+                }
+            } else if let error = error {
+                print("error creating region \(error)")
+            }
+            
+        }
+    }
+    
     public func loadMap(for region: RegionJson) {
         fetchFrom(regions: [region])
     }
@@ -152,7 +235,7 @@ public class WineRegion: ObservableObject {
         DispatchQueue.global(qos: .utility).async {
             self.update(tree: .loading(0.1))
 
-            guard let local = URL(string: "http://\(WineRegion.host)/region")
+            guard let local = URL(string: "\(WineRegion.host)/region")
             else {
                 fatalError()
             }
