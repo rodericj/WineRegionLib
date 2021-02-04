@@ -186,26 +186,14 @@ public class WineRegion: ObservableObject {
     }
     
     var cancellables: [AnyCancellable] = []
-    public func createRegion(osmID: String, asChildTo parent: RegionJson) /* -> AnyPublisher<RegionJson, Error> */{
+    public func createRegion(osmID: String, asChildTo parent: RegionJson) -> AnyPublisher<RegionJson, Error> {
         regionLoader
             // post the region
             .loadModel(.post, url: Endpoint.createRegion(osmID).url)
             .flatMap { region in
                 // once we get the region, patch it to the appropriate parent
                 return self.regionLoader.loadModel(.patch, url: Endpoint.addChildToParent(region.id, parent.id).url)
-            }//.eraseToAnyPublisher()
-            .sink { res in
-                switch res {
-                case .finished:
-                    print("finished")
-                case .failure(let error):
-                    print("error patching or posting \(error)")
-                }
-            } receiveValue: { [weak self] regionJson in
-                print("regionJson \(regionJson)")
-                self?.getRegionTree()
-            }.store(in: &cancellables)
-
+            }.eraseToAnyPublisher()
     }
     
     public func loadMap(for region: RegionJson) {
