@@ -147,44 +147,7 @@ public class WineRegion: ObservableObject {
             self.regionsTree = tree
         }
     }
-    
-    private func postRegion(osmID: String, completionHandler: @escaping ((RegionJson?, Error?) -> Void))  {
-        let urlString = "\(Endpoint.host)/region"
-        guard let url = URL(string: urlString) else {
-            return
-        }
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        components?.queryItems = [URLQueryItem(name: "osmid", value: osmID)]
-
-        guard let componentURL = components?.url else { return }
-        var request = URLRequest(url: componentURL)
-        request.httpMethod = "POST"
-        print(componentURL)
-        print(request)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("we got an error \(error)")
-                completionHandler(nil, error)
-            } else if let data = data {
-                let decoder = JSONDecoder()
-                do {
-                    let newRegion = try decoder.decode(RegionJson.self, from: data)
-                    print(newRegion)
-                    completionHandler(newRegion, error)
-                } catch {
-                    do {
-                        let allRegionsForSomeReason = try decoder.decode([RegionJson].self, from: data)
-                        print(allRegionsForSomeReason)
-                        completionHandler(nil, error)
-                    } catch {
-                        print(error)
-                    }
-                }
-            }
-        }
-        task.resume()
-    }
-    
+        
     var cancellables: [AnyCancellable] = []
     public func createRegion(osmID: String, asChildTo parent: RegionJson) -> AnyPublisher<RegionJson, Error> {
         regionLoader
