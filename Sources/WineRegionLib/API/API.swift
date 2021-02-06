@@ -2,10 +2,8 @@ import Combine
 import Foundation
 
 enum Endpoint {
-//    private static let host = "http://tranquil-garden-84812.herokuapp.com"
-    public static let host = "http://localhost:3000" // TODO public for now
-//    private static let host = "https://thumbworksbot.ngrok.io"
-    
+    public static let host = ProcessInfo.processInfo.environment["REGION_SERVICE_HOST"]!
+
     case createRegion(String)
     case region
     case regionJson(UUID)
