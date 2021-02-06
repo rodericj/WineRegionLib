@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct RegionJson: Decodable, Identifiable {
+public struct RegionJson: Decodable, Identifiable, Equatable {
     public let id: UUID
     public let title: String
     public let osmID: Int

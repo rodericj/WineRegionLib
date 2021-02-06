@@ -27,10 +27,7 @@ public enum RegionResult<T> {
 public class WineRegion: ObservableObject {
     
     private let regionLoader: ModelLoader = ModelLoader<RegionJson>()
-    
-//    private static let host = "http://tranquil-garden-84812.herokuapp.com"
-//    private static let host = "http://localhost:3000"
-//    private static let host = "https://thumbworksbot.ngrok.io"
+    private let allRegionsLoader: ModelLoader = ModelLoader<[RegionJson]>()
     @Published public var regionMaps: RegionResult<MapKitOverlayable> = .none
     @Published public var regionsTree: RegionResult<RegionJson> = .none
 
@@ -149,14 +146,27 @@ public class WineRegion: ObservableObject {
     }
         
     var cancellables: [AnyCancellable] = []
+    public func delete(region: RegionJson) -> AnyPublisher<RegionJson, Error> {
+        return regionLoader
+            .loadModel(.delete, url: Endpoint.specificRegion(region.id).url)
+            // TODO optimization opportunity, if the delete succeeds, just delete it from the tree
+        
+    }
+    
+    
     public func createRegion(osmID: String, asChildTo parent: RegionJson) -> AnyPublisher<RegionJson, Error> {
         regionLoader
             // post the region
             .loadModel(.post, url: Endpoint.createRegion(osmID).url)
             .flatMap { region in
                 // once we get the region, patch it to the appropriate parent
-                return self.regionLoader.loadModel(.patch, url: Endpoint.addChildToParent(region.id, parent.id).url)
-            }.eraseToAnyPublisher()
+                self.regionLoader.loadModel(.patch, url: Endpoint.addChildToParent(region.id, parent.id).url)
+            }
+            .mapError({ error in
+                print("Error creating region \(error)")
+                return error
+            })
+            .eraseToAnyPublisher()
     }
     
     public func loadMap(for region: RegionJson) {

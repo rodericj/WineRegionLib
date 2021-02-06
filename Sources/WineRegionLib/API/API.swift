@@ -60,15 +60,16 @@ enum LoaderError: Error {
 }
 
 
-struct ModelLoader<Model: Identifiable & Decodable> {
+struct ModelLoader<Model: Decodable> {
     enum Method: String {
         case post = "POST"
         case get = "GET"
         case patch = "PATCH"
+        case delete = "DELETE"
     }
     var urlSession = URLSession.shared
 
     func loadModel(_ method: Method, url: URL) -> AnyPublisher<Model, Error> {
-        urlSession.publisher(with: method, for: url)
+        return urlSession.publisher(with: method, for: url)
     }
 }
