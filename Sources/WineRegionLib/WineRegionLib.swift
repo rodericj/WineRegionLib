@@ -147,15 +147,17 @@ public class WineRegion: ObservableObject {
         
     var cancellables: [AnyCancellable] = []
     public func delete(region: RegionJson) -> AnyPublisher<RegionJson, Error> {
-        return regionLoader
-            .loadModel(.delete, url: Endpoint.specificRegion(region.id).url)
+        return regionLoader.loadModel(.delete, url: Endpoint.specificRegion(region.id).url)
             // TODO optimization opportunity, if the delete succeeds, just delete it from the tree
-        
     }
     
+    public func getRegions() -> AnyPublisher<[RegionJson], Error> {
+        return regionLoader.loadModels(.get, url: Endpoint.region.url)
+    }
     
     public func createRegion(osmID: String, asChildTo parent: RegionJson) -> AnyPublisher<RegionJson, Error> {
-        regionLoader
+        print("attempt to create a region. what up \(osmID) parent \(parent.title)")
+        return regionLoader
             // post the region
             .loadModel(.post, url: Endpoint.createRegion(osmID).url)
             .flatMap { region in
@@ -174,24 +176,13 @@ public class WineRegion: ObservableObject {
     }
 
     public func getRegionTree() {
-        let decoder = JSONDecoder()
-        DispatchQueue.global(qos: .utility).async {
-            self.update(tree: .loading(0.1))
-
-            guard let local = URL(string: "\(Endpoint.host)/region")
-            else {
-                fatalError()
-            }
-
-            do {
-                let serverData = try Data(contentsOf: local)
-                let children = try decoder.decode([RegionJson].self, from: serverData)
-                self.update(tree: .regions(children))
-                return
-            } catch {
-                self.update(tree: .error(error, "server"))
-            }
-        }
+        self.update(tree: .loading(0.1))
+        getRegions()
+            .sink { completion in
+            print("completion \(completion)")
+        } receiveValue: { regions in
+            self.update(tree: .regions(regions))
+        }.store(in: &cancellables)        
     }
 }
 

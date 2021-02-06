@@ -49,6 +49,21 @@ extension URLSession {
             .map(\.result)
             .eraseToAnyPublisher()
     }
+    
+    func publisherOfArrays<T: Decodable>(
+        with method: ModelLoader<T>.Method,
+        for url: URL,
+        responseType: T.Type = T.self,
+        decoder: JSONDecoder = .init()
+    ) -> AnyPublisher<[T], Error> {
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        return dataTaskPublisher(for: request)
+            .map(\.data)
+            .decode(type: NetworkResponse<[T]>.self, decoder: decoder)
+            .map(\.result)
+            .eraseToAnyPublisher()
+    }
 }
 
 struct NetworkResponse<Wrapped: Decodable>: Decodable {
@@ -71,5 +86,9 @@ struct ModelLoader<Model: Decodable> {
 
     func loadModel(_ method: Method, url: URL) -> AnyPublisher<Model, Error> {
         return urlSession.publisher(with: method, for: url)
+    }
+    
+    func loadModels(_ method: Method, url: URL) -> AnyPublisher<[Model], Error> {
+        return urlSession.publisherOfArrays(with: method, for: url)
     }
 }
