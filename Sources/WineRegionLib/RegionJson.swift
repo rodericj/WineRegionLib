@@ -15,12 +15,11 @@ public struct RegionJson: Decodable, Identifiable, Equatable {
 
     private enum CodingKeys: String, CodingKey {
         case title
-        case url
         case children
         case id
         case osmID
     }
-
+    
     public init(from decoder:Decoder) throws {
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
