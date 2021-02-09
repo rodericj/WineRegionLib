@@ -29,6 +29,7 @@ public class WineRegion: ObservableObject {
     private let regionLoader: ModelLoader = ModelLoader<RegionJson>()
     private let allRegionsLoader: ModelLoader = ModelLoader<[RegionJson]>()
     @Published public var regionMaps: RegionResult<MapKitOverlayable> = .none
+    @Published public var regionMapsData: RegionResult<Data> = .none
     @Published public var regionsTree: RegionResult<RegionJson> = .none
 
     let session = URLSession(configuration: .default)
@@ -103,6 +104,12 @@ public class WineRegion: ObservableObject {
     }
 
     private func consolidate(datum: [URL: Data]) {
+        
+        let justData = datum.map { $0.value }
+        DispatchQueue.main.async {
+            self.regionMapsData = RegionResult<Data>.regions(justData)
+        }
+        
         debugPrint("we got \(datum.count) urls worth of data")
 
         // At this point we are done with the fetch, the other half is the parse
