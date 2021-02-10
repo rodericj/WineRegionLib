@@ -59,7 +59,7 @@ public class WineRegion: ObservableObject {
         let dispatchGroup = DispatchGroup()
 
         let progressIncrement: Float = 1 / (Float(regions.count) * 2.0)
-        var currentProgress: Float = 0.0
+        var currentProgress: Float = 0.1
         self.regionMaps = .loading(currentProgress)
         DispatchQueue.global(qos: .utility).async {
             regions.compactMap { region in
