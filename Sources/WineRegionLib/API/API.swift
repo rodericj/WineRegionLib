@@ -4,7 +4,7 @@ import Foundation
 enum Endpoint {
     public static let host: String = {
         guard let host = ProcessInfo.processInfo.environment["REGION_SERVICE_HOST"] else {
-            fatalError("Please set REGION_SERVICE_HOST environment variable")
+            return "http://tranquil-garden-84812.herokuapp.com"
         }
         return host
     }()
